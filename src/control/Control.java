@@ -27,9 +27,12 @@ public class Control {
 		for (Libro libro : libros) {
 			System.out.println(indice + "." + libro.toString());
 			indice++;
-
 		}
 		System.out.println("**********************************************");
+	}
+
+	public ArrayList<Libro> getLibros() {
+		return libros;
 	}
 
 }

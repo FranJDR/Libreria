@@ -14,20 +14,6 @@ public class ParaUI extends UI {
 	public ParaUI() {
 		super();
 		listenerBtn();
-		Libro[] libros = new Libro[3];
-		libros[0] = new Libro("asdasd", "asd", "asas", "asdas", Tematica.Ciencia, "yukmgh");
-		libros[1] = new Libro("asdasd", "asd", "asas", "asdas", Tematica.Ciencia, "yukmgh");
-		libros[2] = new Libro("asdasd", "asd", "asas", "asdas", Tematica.Ciencia, "yukmgh");
-		rellenarTable(libros, table);
-
-		control.insertarLibro(new Libro("asdasd", "asd", "1", "asdas", Tematica.Ciencia, "yukmgh"));
-		control.insertarLibro(new Libro("asdasd", "asd", "2", "asdas", Tematica.Ciencia, "yukmgh"));
-		control.insertarLibro(new Libro("asdasd", "asd", "3", "asdas", Tematica.Ciencia, "yukmgh"));
-
-		control.eliminarLibro("3");
-
-		control.mostrarLibros();
-
 	}
 
 	private void listenerBtn() {
@@ -42,7 +28,7 @@ public class ParaUI extends UI {
 				String ISBN = listCampos.get(4).getText();
 				String precio = listCampos.get(5).getText();
 				control.insertarLibro(new Libro(titulo, autor, ISBN, paginas, tematica, precio));
-				control.mostrarLibros();
+				rellenarTable(control.getLibros(), table);
 			}
 		});
 

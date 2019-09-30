@@ -30,6 +30,8 @@ import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class UI extends JFrame {
 
@@ -60,12 +62,11 @@ public class UI extends JFrame {
 	private JRadioButton rdbtnCartone = new JRadioButton("Carton\u00E9");
 	private JRadioButton rdbtnRustica = new JRadioButton("Rustica");
 	private JRadioButton rdbtnDigital = new JRadioButton("Digital");
-	
-	private DefaultTableModel model;
-	
+
 	private final JPanel panel_2 = new JPanel();
 
 	protected JTable table = new JTable();
+	private JScrollPane scrollPane;
 
 	public UI() {
 		ready();
@@ -118,21 +119,20 @@ public class UI extends JFrame {
 		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_1
 				.createSequentialGroup().addGap(15)
 				.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
+						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 407, Short.MAX_VALUE)
 						.addGroup(gl_panel_1.createSequentialGroup()
-								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 149, Short.MAX_VALUE).addGap(10)
-								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 148, Short.MAX_VALUE)))
+								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 199, Short.MAX_VALUE).addGap(10)
+								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)))
 				.addGap(15)));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1
 				.createSequentialGroup().addGap(10)
 				.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(verticalBox_1, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE)
-						.addComponent(verticalBox, GroupLayout.PREFERRED_SIZE, 100, GroupLayout.PREFERRED_SIZE))
-				.addGap(18).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-				.addGap(15)));
+						.addComponent(verticalBox_1, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE)
+						.addComponent(verticalBox, GroupLayout.PREFERRED_SIZE, 120, GroupLayout.PREFERRED_SIZE))
+				.addGap(18).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE).addGap(15)));
 		panel_2.setLayout(new BorderLayout(0, 0));
 
-		JScrollPane scrollPane = new JScrollPane();
+		scrollPane = new JScrollPane();
 		panel_2.add(scrollPane, BorderLayout.CENTER);
 
 		JLabel lblEstado = new JLabel("ESTADO");
@@ -174,8 +174,15 @@ public class UI extends JFrame {
 		rellenarPanelDatos();
 
 		scrollPane.add(this.table);
+		scrollPane.setViewportView(this.table);
 
 		revalidate();
+
+		this.btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
 
 	}
 
@@ -200,15 +207,16 @@ public class UI extends JFrame {
 		}
 	}
 
-	protected void rellenarTable(Libro[] libros, JTable table) {
+	protected void rellenarTable(ArrayList<Libro> libros, JTable table) {
 		String[] camposTable = { "ISBN", "Titulo", "Tematica" };
-		String[][] datos = new String[libros.length][camposTable.length];
-		for (int i = 0; i < datos.length; i++) {
-			datos[i][0] = libros[i].getISBN();
-			datos[i][1] = libros[i].getTitulo();
-			datos[i][2] = libros[i].getTema().toString();
+		String[][] datos = new String[libros.size()][camposTable.length];
+		int indice = 0;
+		for (Libro libro : libros) {
+			datos[indice][0] = libro.getISBN();
+			datos[indice][1] = libro.getTitulo();
+			datos[indice][2] = libro.getTema().toString();
 		}
-		model = new DefaultTableModel(datos, camposTable);
+		DefaultTableModel model = new DefaultTableModel(datos, camposTable);
 		table.setModel(model);
 		revalidate();
 	}
@@ -255,7 +263,7 @@ public class UI extends JFrame {
 	}
 
 	private void personalizarBtn(JButton button) {
-		button.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+		button.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
 		button.setBackground(this.colorBtn);
 		button.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 	}
@@ -300,40 +308,4 @@ public class UI extends JFrame {
 		jLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
 		return jLabel;
 	}
-}
-
-class TableroLibro extends AbstractTableModel {
-
-	private int numFilas;
-	private int numColumnas;
-
-	public TableroLibro(int numFilas, int numColumnas) {
-		super();
-		this.numFilas = numFilas;
-		this.numColumnas = numColumnas;
-	}
-
-	@Override
-	public int getColumnCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getRowCount() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public Object getValueAt(int arg0, int arg1) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public String getColumnName(int arg0) {
-		return super.getColumnName(arg0);
-	}
-
 }
