@@ -18,6 +18,13 @@ public class Control {
 		}
 	}
 
+	public boolean validarIsbn(String isbn) {
+		for (Libro libro : libros)
+			if (libro.getISBN().equals(isbn))
+				return false;
+		return true;
+	}
+
 	public void insertarLibro(Libro libro) {
 		this.libros.add(libro);
 	}

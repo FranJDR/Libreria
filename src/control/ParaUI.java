@@ -38,17 +38,34 @@ public class ParaUI extends UI {
 
 		this.btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String titulo = listCampos.get(0).getText();
-				String autor = listCampos.get(1).getText();
-				String paginas = listCampos.get(3).getText();
-				Tematica tematica = obtenerTematica();
-				String ISBN = listCampos.get(4).getText();
-				String precio = listCampos.get(5).getText();
-				Libro libro = new Libro(titulo, autor, ISBN, paginas, tematica, precio);
-				if (validador.validarLibro(libro)) {
-					control.insertarLibro(libro);
-					rellenarTable(control.getLibros(), table);
-					vaciarCampos();
+
+				if (isSelectFormato()) {
+					if (isSelectEstado()) {
+						String titulo = listCampos.get(0).getText();
+						String autor = listCampos.get(1).getText();
+						String paginas = listCampos.get(3).getText();
+						Tematica tematica = obtenerTematica();
+						String ISBN = listCampos.get(4).getText();
+						String precio = listCampos.get(5).getText();
+
+						Libro libro = new Libro(titulo, autor, ISBN, paginas, tematica, precio, obtenerFormato(),
+								obtenerEstado());
+
+						if (validador.validarLibro(libro)) {
+							if (control.validarIsbn(ISBN)) {
+								control.insertarLibro(libro);
+								rellenarTable(control.getLibros(), table);
+								vaciarCampos();
+							} else {
+								validador.WarningMessage("El ISBN ya existe.");
+							}
+						}
+
+					} else {
+						validador.WarningMessage("Debes marcar estado.");
+					}
+				} else {
+					validador.WarningMessage("Debes marcar formato.");
 				}
 			}
 		});

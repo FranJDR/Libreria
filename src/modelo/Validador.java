@@ -5,12 +5,17 @@ import javax.swing.JOptionPane;
 public class Validador {
 
 	public boolean validarLibro(Libro libro) {
-		if (!libro.getTitulo().isEmpty() && !libro.getAutor().isEmpty() && !libro.getISBN().isEmpty()
-				&& !libro.getPrecio().isEmpty() && !libro.getPaginas().isEmpty()) {
+		if (!libro.getTITULO().isEmpty() && !libro.getAUTOR().isEmpty() && !libro.getISBN().isEmpty()
+				&& !libro.getPrecio().isEmpty() && !libro.getPAGINAS().isEmpty()) {
 			if (isNumber(libro.getISBN(), "El campo ISBN debe ser digitos")
-					&& isNumber(libro.getPrecio(), "El campo de precio debe ser digitos")
-					&& isNumber(libro.getPaginas(), "El campo de paginas debe ser un digito")) {
-				return true;
+					&& isNumber(libro.getPrecio(), "El campo de precio deben ser digitos")
+					&& isNumber(libro.getPAGINAS(), "El campo de paginas deben ser digito")) {
+				if (libro.getISBN().length() == 13) {
+					return true;
+				} else {
+					WarningMessage("El campo ISBN debe contener 13 digitos");
+					return false;
+				}
 			} else {
 				return false;
 			}
@@ -20,7 +25,7 @@ public class Validador {
 		}
 	}
 
-	private void WarningMessage(String mensaje) {
+	public void WarningMessage(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
 	}
 

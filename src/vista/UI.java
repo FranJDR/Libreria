@@ -26,6 +26,7 @@ import java.awt.Dimension;
 import javax.swing.JTable;
 import javax.swing.JRadioButton;
 import javax.swing.Box;
+import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
@@ -59,6 +60,9 @@ public class UI extends JFrame {
 	private JRadioButton rdbtnRustica = new JRadioButton("Rustica");
 	private JRadioButton rdbtnDigital = new JRadioButton("Digital");
 
+	private ButtonGroup groupFormato = new ButtonGroup();
+	private ButtonGroup groupEstado = new ButtonGroup();
+
 	private final JPanel panel_2 = new JPanel();
 
 	protected String[][] datos;
@@ -67,6 +71,13 @@ public class UI extends JFrame {
 	private JScrollPane scrollPane;
 
 	public UI() {
+
+		this.groupFormato.add(this.rdbtnCartone);
+		this.groupFormato.add(this.rdbtnRustica);
+		this.groupFormato.add(this.rdbtnDigital);
+
+		this.groupEstado.add(this.rdbtnNovedad);
+		this.groupEstado.add(this.rdbtnReedicion);
 		ready();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -172,11 +183,37 @@ public class UI extends JFrame {
 		scrollPane.add(this.table);
 		scrollPane.setViewportView(this.table);
 		this.table.setRowHeight(25);
-
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
+		scrollPane.setBackground(Color.WHITE);
 
 		revalidate();
 
+	}
+
+	protected String obtenerFormato() {
+		if (this.rdbtnCartone.isSelected())
+			return this.rdbtnCartone.getText();
+		if (this.rdbtnRustica.isSelected())
+			return this.rdbtnRustica.getText();
+		if (this.rdbtnDigital.isSelected())
+			return this.rdbtnDigital.getText();
+		return null;
+	}
+
+	protected String obtenerEstado() {
+		if (this.rdbtnNovedad.isSelected())
+			return this.rdbtnNovedad.getText();
+		if (this.rdbtnReedicion.isSelected())
+			return this.rdbtnReedicion.getText();
+		return null;
+	}
+
+	protected boolean isSelectFormato() {
+		return this.rdbtnCartone.isSelected() || this.rdbtnRustica.isSelected() || this.rdbtnDigital.isSelected();
+	}
+
+	protected boolean isSelectEstado() {
+		return this.rdbtnNovedad.isSelected() || this.rdbtnReedicion.isSelected();
 	}
 
 	protected void vaciarCampos() {
@@ -212,7 +249,7 @@ public class UI extends JFrame {
 		int indice = 0;
 		for (Libro libro : libros) {
 			this.datos[indice][0] = libro.getISBN();
-			this.datos[indice][1] = libro.getTitulo();
+			this.datos[indice][1] = libro.getTITULO();
 			this.datos[indice][2] = libro.getTema().toString();
 			indice++;
 		}
@@ -227,7 +264,7 @@ public class UI extends JFrame {
 		}
 	}
 
-	public void ready() {
+	private void ready() {
 		for (int i = 0; i < this.campos.length; i++) {
 			this.listCampos.add(insertarJText());
 			this.listLabel.add(insertarLabel(i));
@@ -285,6 +322,7 @@ public class UI extends JFrame {
 		this.comboTematica = new JComboBox<Tematica>();
 		this.comboTematica.setForeground(Color.BLACK);
 		this.comboTematica.setFont(new Font("Monospaced", Font.BOLD, 20));
+		this.comboTematica.setBackground(Color.WHITE);
 		this.panelDatos.add(this.comboTematica);
 		for (Tematica tematica : Tematica.values()) {
 			this.comboTematica.addItem(tematica);
