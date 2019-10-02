@@ -22,15 +22,6 @@ public class Control {
 		this.libros.add(libro);
 	}
 
-	public void mostrarLibros() {
-		int indice = 1;
-		for (Libro libro : libros) {
-			System.out.println(indice + "." + libro.toString());
-			indice++;
-		}
-		System.out.println("**********************************************");
-	}
-
 	public ArrayList<Libro> getLibros() {
 		return libros;
 	}

@@ -8,7 +8,6 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.border.MatteBorder;
-import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Libro;
@@ -30,8 +29,6 @@ import javax.swing.Box;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
 public class UI extends JFrame {
 
@@ -49,8 +46,7 @@ public class UI extends JFrame {
 	private Color colorBtn = new Color(197, 225, 58);
 
 	protected JButton btnNuevo = new JButton("NUEVO");
-	protected JButton btnAlta = new JButton("ALTA");
-	protected JButton btnBaja = new JButton("BAJA");
+	protected JButton btnEliminar = new JButton("ELIMINAR");
 	protected JButton btnSalir = new JButton("SALIR");
 
 	private JPanel panel = new JPanel();
@@ -64,6 +60,8 @@ public class UI extends JFrame {
 	private JRadioButton rdbtnDigital = new JRadioButton("Digital");
 
 	private final JPanel panel_2 = new JPanel();
+
+	protected String[][] datos;
 
 	protected JTable table = new JTable();
 	private JScrollPane scrollPane;
@@ -79,10 +77,10 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
-		lblNewLabel.setFont(new Font("Microsoft YaHei", Font.BOLD, 40));
+		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(this.colorBtn);
@@ -156,13 +154,11 @@ public class UI extends JFrame {
 		verticalBox.add(rdbtnDigital);
 
 		panelBtn.add(btnNuevo);
-		panelBtn.add(btnAlta);
-		panelBtn.add(btnBaja);
+		panelBtn.add(btnEliminar);
 		panelBtn.add(btnSalir);
 
 		personalizarBtn(this.btnNuevo);
-		personalizarBtn(this.btnAlta);
-		personalizarBtn(this.btnBaja);
+		personalizarBtn(this.btnEliminar);
 		personalizarBtn(this.btnSalir);
 
 		personalizarRadioBtn(this.rdbtnNovedad);
@@ -175,15 +171,18 @@ public class UI extends JFrame {
 
 		scrollPane.add(this.table);
 		scrollPane.setViewportView(this.table);
+		this.table.setRowHeight(25);
+
+		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
 
 		revalidate();
 
-		this.btnSalir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
+	}
 
+	protected void vaciarCampos() {
+		for (JTextField field : this.listCampos) {
+			field.setText(null);
+		}
 	}
 
 	protected Tematica obtenerTematica() {
@@ -209,14 +208,15 @@ public class UI extends JFrame {
 
 	protected void rellenarTable(ArrayList<Libro> libros, JTable table) {
 		String[] camposTable = { "ISBN", "Titulo", "Tematica" };
-		String[][] datos = new String[libros.size()][camposTable.length];
+		this.datos = new String[libros.size()][camposTable.length];
 		int indice = 0;
 		for (Libro libro : libros) {
-			datos[indice][0] = libro.getISBN();
-			datos[indice][1] = libro.getTitulo();
-			datos[indice][2] = libro.getTema().toString();
+			this.datos[indice][0] = libro.getISBN();
+			this.datos[indice][1] = libro.getTitulo();
+			this.datos[indice][2] = libro.getTema().toString();
+			indice++;
 		}
-		DefaultTableModel model = new DefaultTableModel(datos, camposTable);
+		DefaultTableModel model = new DefaultTableModel(this.datos, camposTable);
 		table.setModel(model);
 		revalidate();
 	}
