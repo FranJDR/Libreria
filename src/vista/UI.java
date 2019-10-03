@@ -9,8 +9,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.Keymap;
 
 import modelo.Libro;
+import modelo.Referencia;
 import modelo.Tematica;
 
 import java.awt.Color;
@@ -20,6 +22,8 @@ import javax.swing.SwingConstants;
 import java.awt.Font;
 import java.awt.GridLayout;
 import java.util.ArrayList;
+import java.util.HashMap;
+
 import javax.swing.JButton;
 import java.awt.Dimension;
 
@@ -81,7 +85,7 @@ public class UI extends JFrame {
 		ready();
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 700);
+		setBounds(100, 100, 917, 713);
 		contentPane = new JPanel();
 		contentPane.setBackground(this.colorFondo);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -190,7 +194,19 @@ public class UI extends JFrame {
 
 	}
 
-	protected String obtenerFormato() {
+	protected HashMap<Referencia, String> obtenerMap() {
+		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
+		map.put(Referencia.titulo, this.listCampos.get(0).getText());
+		map.put(Referencia.autor, this.listCampos.get(1).getText());
+		map.put(Referencia.paginas, this.listCampos.get(2).getText());
+		map.put(Referencia.isbn, this.listCampos.get(3).getText());
+		map.put(Referencia.precio, this.listCampos.get(4).getText());
+		map.put(Referencia.formato, obtenerFormato());
+		map.put(Referencia.estado, obtenerEstado());
+		return map;
+	}
+
+	private String obtenerFormato() {
 		if (this.rdbtnCartone.isSelected())
 			return this.rdbtnCartone.getText();
 		if (this.rdbtnRustica.isSelected())
@@ -200,7 +216,7 @@ public class UI extends JFrame {
 		return null;
 	}
 
-	protected String obtenerEstado() {
+	private String obtenerEstado() {
 		if (this.rdbtnNovedad.isSelected())
 			return this.rdbtnNovedad.getText();
 		if (this.rdbtnReedicion.isSelected())

@@ -2,9 +2,9 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
-import modelo.Libro;
-import modelo.Tematica;
+import modelo.Referencia;
 import modelo.Validador;
 import vista.UI;
 
@@ -41,32 +41,19 @@ public class ParaUI extends UI {
 
 				if (isSelectFormato()) {
 					if (isSelectEstado()) {
-						String titulo = listCampos.get(0).getText();
-						String autor = listCampos.get(1).getText();
-						String paginas = listCampos.get(3).getText();
-						Tematica tematica = obtenerTematica();
-						String ISBN = listCampos.get(4).getText();
-						String precio = listCampos.get(5).getText();
-
-						Libro libro = new Libro(titulo, autor, ISBN, paginas, tematica, precio, obtenerFormato(),
-								obtenerEstado());
-
-						if (validador.validarLibro(libro)) {
-							if (control.validarIsbn(ISBN)) {
-								control.insertarLibro(libro);
+						HashMap<Referencia, String> map = obtenerMap();
+						if (validador.validarLibro(map)) {
+							if (control.validarIsbn(map.get("isbn"))) {
+								control.insertarLibro(obtenerTematica(), map);
 								rellenarTable(control.getLibros(), table);
 								vaciarCampos();
-							} else {
+							} else
 								validador.WarningMessage("El ISBN ya existe.");
-							}
 						}
-
-					} else {
+					} else
 						validador.WarningMessage("Debes marcar estado.");
-					}
-				} else {
+				} else
 					validador.WarningMessage("Debes marcar formato.");
-				}
 			}
 		});
 

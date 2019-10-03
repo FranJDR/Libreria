@@ -1,16 +1,19 @@
 package modelo;
 
+import java.util.HashMap;
+
 import javax.swing.JOptionPane;
 
 public class Validador {
 
-	public boolean validarLibro(Libro libro) {
-		if (!libro.getTITULO().isEmpty() && !libro.getAUTOR().isEmpty() && !libro.getISBN().isEmpty()
-				&& !libro.getPrecio().isEmpty() && !libro.getPAGINAS().isEmpty()) {
-			if (isNumber(libro.getISBN(), "El campo ISBN debe ser digitos")
-					&& isNumber(libro.getPrecio(), "El campo de precio deben ser digitos")
-					&& isNumber(libro.getPAGINAS(), "El campo de paginas deben ser digito")) {
-				if (libro.getISBN().length() == 13) {
+	public boolean validarLibro(HashMap<Referencia, String> map) {
+		if (!map.get(Referencia.titulo).isEmpty() && !map.get(Referencia.autor).isEmpty()
+				&& !map.get(Referencia.isbn).isEmpty() && !map.get(Referencia.paginas).isEmpty()
+				&& !map.get(Referencia.precio).isEmpty()) {
+			if (isNumber(map.get("isbn"), "El campo ISBN debe ser digitos")
+					&& isNumber(map.get("precios"), "El campo de precio deben ser digitos")
+					&& isNumber(map.get("precio"), "El campo de paginas deben ser digito")) {
+				if (map.get("isbn").length() == 13) {
 					return true;
 				} else {
 					WarningMessage("El campo ISBN debe contener 13 digitos");
