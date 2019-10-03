@@ -38,7 +38,7 @@ import javax.swing.JScrollPane;
 public class UI extends JFrame {
 
 	protected ArrayList<JLabel> listLabel = new ArrayList<JLabel>();
-	protected ArrayList<JTextField> listCampos = new ArrayList<JTextField>();
+	protected ArrayList<JTextField> listFields = new ArrayList<JTextField>();
 
 	private final String[] campos = { "  Titulo :   ", "  Autor :    ", "  Tematica : ", "  Paginas :  ",
 			"  ISBN :     ", "  Precio :   " };
@@ -82,7 +82,9 @@ public class UI extends JFrame {
 
 		this.groupEstado.add(this.rdbtnNovedad);
 		this.groupEstado.add(this.rdbtnReedicion);
+		
 		ready();
+		
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 917, 713);
@@ -92,7 +94,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
@@ -196,11 +198,11 @@ public class UI extends JFrame {
 
 	protected HashMap<Referencia, String> obtenerMap() {
 		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
-		map.put(Referencia.titulo, this.listCampos.get(0).getText());
-		map.put(Referencia.autor, this.listCampos.get(1).getText());
-		map.put(Referencia.paginas, this.listCampos.get(2).getText());
-		map.put(Referencia.isbn, this.listCampos.get(3).getText());
-		map.put(Referencia.precio, this.listCampos.get(4).getText());
+		map.put(Referencia.titulo, this.listFields.get(0).getText());
+		map.put(Referencia.autor, this.listFields.get(1).getText());
+		map.put(Referencia.paginas, this.listFields.get(3).getText());
+		map.put(Referencia.isbn, this.listFields.get(4).getText());
+		map.put(Referencia.precio, this.listFields.get(5).getText());
 		map.put(Referencia.formato, obtenerFormato());
 		map.put(Referencia.estado, obtenerEstado());
 		return map;
@@ -233,7 +235,7 @@ public class UI extends JFrame {
 	}
 
 	protected void vaciarCampos() {
-		for (JTextField field : this.listCampos) {
+		for (JTextField field : this.listFields) {
 			field.setText(null);
 		}
 	}
@@ -275,14 +277,14 @@ public class UI extends JFrame {
 	}
 
 	protected void limpiarVista() {
-		for (JTextField field : this.listCampos) {
+		for (JTextField field : this.listFields) {
 			field.setText("");
 		}
 	}
 
 	private void ready() {
 		for (int i = 0; i < this.campos.length; i++) {
-			this.listCampos.add(insertarJText());
+			this.listFields.add(insertarJText());
 			this.listLabel.add(insertarLabel(i));
 		}
 	}
@@ -307,7 +309,7 @@ public class UI extends JFrame {
 				boxAux.add(insertarComboTematica());
 			} else {
 				boxAux.add(this.listLabel.get(i));
-				boxAux.add(this.listCampos.get(i));
+				boxAux.add(this.listFields.get(i));
 			}
 			this.panelDatos.add(boxAux);
 		}

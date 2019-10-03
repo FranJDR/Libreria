@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 import modelo.Libro;
+import modelo.Referencia;
 import modelo.Tematica;
 import modelo.Validador;
 
@@ -22,15 +23,21 @@ public class Control {
 		}
 	}
 
-	public boolean validarIsbn(String isbn) {
+	private boolean validarIsbn(String isbn) {
 		for (Libro libro : libros)
-			if (libro.getISBN().equals(isbn))
+			if (libro.getISBN().equals(isbn)) {
+				this.validador.WarningMessage("El ISBN ya existe.");
 				return false;
+			}
 		return true;
 	}
 
-	public void insertarLibro(Tematica tematica, HashMap<String, String> map) {
-		this.libros.add(new Libro(map.get("titulo"), map.get("autor"), map.get(key), paginas, tema, precio, formato, estado))
+	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
+		return this.validador.validarLibro(map) && validarIsbn(map.get(Referencia.isbn))
+				? this.libros.add(new Libro(map.get(Referencia.titulo), map.get(Referencia.autor),
+						map.get(Referencia.isbn), map.get(Referencia.paginas), tematica, map.get(Referencia.precio),
+						map.get(Referencia.formato), map.get(Referencia.estado)))
+				: false;
 	}
 
 	public ArrayList<Libro> getLibros() {

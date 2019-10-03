@@ -1,47 +1,43 @@
 package modelo;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
 public class Validador {
 
+	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
+
 	public boolean validarLibro(HashMap<Referencia, String> map) {
-		if (!map.get(Referencia.titulo).isEmpty() && !map.get(Referencia.autor).isEmpty()
-				&& !map.get(Referencia.isbn).isEmpty() && !map.get(Referencia.paginas).isEmpty()
-				&& !map.get(Referencia.precio).isEmpty()) {
-			if (isNumber(map.get("isbn"), "El campo ISBN debe ser digitos")
-					&& isNumber(map.get("precios"), "El campo de precio deben ser digitos")
-					&& isNumber(map.get("precio"), "El campo de paginas deben ser digito")) {
-				if (map.get("isbn").length() == 13) {
-					return true;
-				} else {
-					WarningMessage("El campo ISBN debe contener 13 digitos");
-					return false;
-				}
-			} else {
+		this.respuestas.clear();
+		for (String campo : map.values()) 
+			this.respuestas.add(new Respuesta("Campo vacios.", !campo.isEmpty()));
+		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.",isNumber(map.get(Referencia.isbn))));
+		this.respuestas.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.paginas))));
+		this.respuestas.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.precio))));
+		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.isbn).length() == 13));
+		this.respuestas.add(new Respuesta("El nombre del autor no puede tener digitos.", !isNumber(map.get(Referencia.autor))));
+		
+		for (Respuesta respuesta : respuestas) {
+			if (!respuesta.isValido()) {
+				WarningMessage(respuesta.getMensage());
 				return false;
 			}
-		} else {
-			WarningMessage("Campos vacios");
-			return false;
 		}
+		return true;
 	}
 
 	public void WarningMessage(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
 	}
 
-	private boolean isNumber(String cadena, String mensaje) {
-		boolean retorno = true;
+	private boolean isNumber(String cadena) {
 		for (int i = 0; i < cadena.length(); i++) {
 			if (!Character.isDigit(cadena.charAt(i))) {
-				retorno = false;
+				return false;
 			}
 		}
-		if (!retorno) {
-			WarningMessage(mensaje);
-		}
-		return retorno;
+		return true;
 	}
 }
