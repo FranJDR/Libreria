@@ -5,9 +5,13 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.border.MatteBorder;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
 import modelo.Libro;
@@ -192,6 +196,25 @@ public class UI extends JFrame {
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		
+		
+		ListSelectionModel model = this.table.getSelectionModel();
+		model.addListSelectionListener(new ListSelectionListener() {
+			public void valueChanged(ListSelectionEvent arg0) {
+				if (!model.isSelectionEmpty()) {
+					int indice = model.getMinSelectionIndex();
+					String[] dato = new String[6];
+					dato[0] = datos[indice][0];
+					dato[1] = datos[indice][1];
+					dato[2] = obtenerTematica().toString();
+					dato[3] = datos[indice][2];
+					dato[4] = datos[indice][3];
+					dato[5] = datos[indice][4];
+					DiagoInfo diagoInfo = new DiagoInfo(dato);
+				}
+			}
+		});
+		
 
 		revalidate();
 
