@@ -97,7 +97,7 @@ public class UI extends JFrame {
 //		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
-		lblNewLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 40));
+		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(this.colorBtn);
@@ -242,6 +242,8 @@ public class UI extends JFrame {
 	}
 
 	protected void vaciarCampos() {
+		this.groupFormato.clearSelection();
+		this.groupEstado.clearSelection();
 		for (JTextField field : this.listFields) {
 			field.setText(null);
 		}
@@ -335,7 +337,7 @@ public class UI extends JFrame {
 	}
 
 	private void personalizarRadioBtn(JRadioButton radioBtn) {
-		radioBtn.setFont(new Font("Book Antiqua", Font.ITALIC, 15));
+		radioBtn.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 15));
 		radioBtn.setBackground(this.colorBtn);
 	}
 
@@ -351,7 +353,7 @@ public class UI extends JFrame {
 		this.comboTematica = new JComboBox<Tematica>();
 		this.comboTematica.setForeground(Color.BLACK);
 		this.comboTematica.setFont(new Font("Monospaced", Font.BOLD, 20));
-		this.comboTematica.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+		this.comboTematica.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
 		this.comboTematica.setBackground(Color.WHITE);
 		this.panelDatos.add(this.comboTematica);
 		for (Tematica tematica : Tematica.values()) {
