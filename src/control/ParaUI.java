@@ -2,12 +2,7 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.HashMap;
 
-import javax.swing.JOptionPane;
-
-import modelo.Referencia;
-import modelo.Validador;
 import vista.UI;
 
 public class ParaUI extends UI {
@@ -39,24 +34,15 @@ public class ParaUI extends UI {
 
 		this.btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-
-				if (isSelectFormato()) {
-					if (isSelectEstado()) {
-						if (control.insertarLibro(obtenerTematica(), obtenerMap())) {
-							rellenarTable(control.getLibros(), table);
-							vaciarCampos();
-						}
-					} else
-						WarningMessage("Debes marcar estado.");
-				} else
-					WarningMessage("Debes marcar formato.");
+				if (isSelectFormato() && isSelectEstado()) {
+					if (control.insertarLibro(obtenerTematica(), obtenerMap())) {
+						rellenarTable(control.getLibros(), table);
+						vaciarCampos();
+					}
+				}
 			}
 		});
 
-	}
-
-	private void WarningMessage(String mensaje) {
-		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
 	}
 
 }

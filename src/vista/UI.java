@@ -9,7 +9,6 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.text.Keymap;
 
 import modelo.Libro;
 import modelo.Referencia;
@@ -17,6 +16,7 @@ import modelo.Tematica;
 
 import java.awt.Color;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
@@ -40,15 +40,15 @@ public class UI extends JFrame {
 	protected ArrayList<JLabel> listLabel = new ArrayList<JLabel>();
 	protected ArrayList<JTextField> listFields = new ArrayList<JTextField>();
 
-	private final String[] campos = { "  Titulo :   ", "  Autor :    ", "  Tematica : ", "  Paginas :  ",
-			"  ISBN :     ", "  Precio :   " };
+	private final String[] campos = { "  Titulo :       ", "  Autor :       ", "  Tematica :  ", "  Paginas :    ",
+			"  ISBN :        ", "  Precio :       " };
 
 	private JPanel contentPane = new JPanel();
 
 	protected JComboBox<Tematica> comboTematica = new JComboBox<Tematica>();
 
-	private Color colorFondo = new Color(232, 225, 146);
-	private Color colorBtn = new Color(197, 225, 58);
+	private Color colorFondo = new Color(200, 200, 200); // 232, 225, 146
+	private Color colorBtn = new Color(208, 222, 237);
 
 	protected JButton btnNuevo = new JButton("NUEVO");
 	protected JButton btnEliminar = new JButton("ELIMINAR");
@@ -82,9 +82,9 @@ public class UI extends JFrame {
 
 		this.groupEstado.add(this.rdbtnNovedad);
 		this.groupEstado.add(this.rdbtnReedicion);
-		
+
 		ready();
-		
+
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 917, 713);
@@ -97,11 +97,11 @@ public class UI extends JFrame {
 //		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
-		lblNewLabel.setFont(new Font("Bookman Old Style", Font.PLAIN, 40));
+		lblNewLabel.setFont(new Font("Book Antiqua", Font.PLAIN, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setOpaque(true);
 		lblNewLabel.setBackground(this.colorBtn);
-		lblNewLabel.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		lblNewLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 
 		JPanel panelBtn = new JPanel();
@@ -121,12 +121,12 @@ public class UI extends JFrame {
 		panel.add(panel_1);
 
 		Box verticalBox = Box.createVerticalBox();
-		verticalBox.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		verticalBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		verticalBox.setBackground(this.colorBtn);
 		verticalBox.setOpaque(true);
 
 		Box verticalBox_1 = Box.createVerticalBox();
-		verticalBox_1.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		verticalBox_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		verticalBox_1.setBackground(this.colorBtn);
 		verticalBox_1.setOpaque(true);
 
@@ -191,6 +191,7 @@ public class UI extends JFrame {
 		this.table.setRowHeight(25);
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
 		scrollPane.setBackground(Color.WHITE);
+		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
 		revalidate();
 
@@ -227,11 +228,17 @@ public class UI extends JFrame {
 	}
 
 	protected boolean isSelectFormato() {
-		return this.rdbtnCartone.isSelected() || this.rdbtnRustica.isSelected() || this.rdbtnDigital.isSelected();
+		if (this.rdbtnCartone.isSelected() || this.rdbtnRustica.isSelected() || this.rdbtnDigital.isSelected())
+			return true;
+		WarningMessage("Debes marcar formato.");
+		return false;
 	}
 
 	protected boolean isSelectEstado() {
-		return this.rdbtnNovedad.isSelected() || this.rdbtnReedicion.isSelected();
+		if (this.rdbtnNovedad.isSelected() || this.rdbtnReedicion.isSelected())
+			return true;
+		WarningMessage("Debes marcar estado.");
+		return false;
 	}
 
 	protected void vaciarCampos() {
@@ -298,6 +305,10 @@ public class UI extends JFrame {
 //		}
 //	}
 
+	private void WarningMessage(String mensaje) {
+		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
+	}
+
 	private void rellenarPanelDatos() {
 		this.panelDatos.add(new JLabel());
 		this.panelDatos.add(insertarTitulo());
@@ -320,11 +331,11 @@ public class UI extends JFrame {
 	private void personalizarBtn(JButton button) {
 		button.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
 		button.setBackground(this.colorBtn);
-		button.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		button.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 	}
 
 	private void personalizarRadioBtn(JRadioButton radioBtn) {
-		radioBtn.setFont(new Font("Baskerville Old Face", Font.BOLD, 15));
+		radioBtn.setFont(new Font("Book Antiqua", Font.ITALIC, 15));
 		radioBtn.setBackground(this.colorBtn);
 	}
 
@@ -332,7 +343,7 @@ public class UI extends JFrame {
 		JLabel jLabel = new JLabel();
 		jLabel.setText(this.campos[i]);
 		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Monospaced", Font.BOLD, 20));
+		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, 20));
 		return jLabel;
 	}
 
@@ -340,6 +351,7 @@ public class UI extends JFrame {
 		this.comboTematica = new JComboBox<Tematica>();
 		this.comboTematica.setForeground(Color.BLACK);
 		this.comboTematica.setFont(new Font("Monospaced", Font.BOLD, 20));
+		this.comboTematica.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		this.comboTematica.setBackground(Color.WHITE);
 		this.panelDatos.add(this.comboTematica);
 		for (Tematica tematica : Tematica.values()) {
@@ -353,15 +365,16 @@ public class UI extends JFrame {
 		field.setText(null);
 		field.setForeground(Color.BLUE);
 		field.setFont(new Font("Monospaced", Font.BOLD, 20));
-		field.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
+		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return field;
 	}
 
 	private JLabel insertarTitulo() {
 		JLabel jLabel = new JLabel();
-		jLabel.setText(" DATOS");
+		jLabel.setText(" DATOS :");
 		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Monospaced", Font.BOLD, 30));
+		jLabel.setFont(new Font("Book Antiqua", Font.ROMAN_BASELINE, 30));
+//		jLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return jLabel;
 	}
 }
