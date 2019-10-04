@@ -29,6 +29,7 @@ public class DiagoInfo extends JDialog {
 
 	public DiagoInfo(String[] datos) {
 		this.datos = datos;
+		setBackground(new Color(200, 200, 200));
 		setResizable(false);
 		setVisible(true);
 		setBounds(100, 100, 400, 407);

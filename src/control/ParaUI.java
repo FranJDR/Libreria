@@ -27,7 +27,7 @@ public class ParaUI extends UI {
 				int indice = table.getSelectedRow();
 				if (indice >= 0) {
 					control.eliminarLibro(datos[indice][0]);
-					rellenarTable(control.getLibros(), table);
+					rellenarTable(control.obtenerDatosLibros(), table);
 				}
 			}
 		});
@@ -36,7 +36,7 @@ public class ParaUI extends UI {
 			public void actionPerformed(ActionEvent e) {
 				if (isSelectFormato() && isSelectEstado()) {
 					if (control.insertarLibro(obtenerTematica(), obtenerMap())) {
-						rellenarTable(control.getLibros(), table);
+						rellenarTable(control.obtenerDatosLibros(), table);
 						vaciarCampos();
 					}
 				}

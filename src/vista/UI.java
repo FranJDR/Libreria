@@ -77,6 +77,7 @@ public class UI extends JFrame {
 
 	protected JTable table = new JTable();
 	private JScrollPane scrollPane;
+	private DiagoInfo diagoInfo;
 
 	public UI() {
 
@@ -196,25 +197,20 @@ public class UI extends JFrame {
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		
-		
+
 		ListSelectionModel model = this.table.getSelectionModel();
 		model.addListSelectionListener(new ListSelectionListener() {
 			public void valueChanged(ListSelectionEvent arg0) {
 				if (!model.isSelectionEmpty()) {
 					int indice = model.getMinSelectionIndex();
 					String[] dato = new String[6];
-					dato[0] = datos[indice][0];
-					dato[1] = datos[indice][1];
-					dato[2] = obtenerTematica().toString();
-					dato[3] = datos[indice][2];
-					dato[4] = datos[indice][3];
-					dato[5] = datos[indice][4];
-					DiagoInfo diagoInfo = new DiagoInfo(dato);
+					for (int i = 0; i < dato.length; i++) {
+						dato[i] = datos[indice][i];
+					}
+					diagoInfo = new DiagoInfo(dato);
 				}
 			}
 		});
-		
 
 		revalidate();
 
@@ -293,17 +289,17 @@ public class UI extends JFrame {
 		}
 	}
 
-	protected void rellenarTable(ArrayList<Libro> libros, JTable table) {
+	protected void rellenarTable(String[][] datos, JTable table) {
 		String[] camposTable = { "ISBN", "Titulo", "Tematica" };
-		this.datos = new String[libros.size()][camposTable.length];
-		int indice = 0;
-		for (Libro libro : libros) {
-			this.datos[indice][0] = libro.getISBN();
-			this.datos[indice][1] = libro.getTITULO();
-			this.datos[indice][2] = libro.getTema().toString();
-			indice++;
+		this.datos = datos;
+		String[][] aux = new String[this.datos.length][camposTable.length];
+		System.out.println(this.datos.length);
+		for (int i = 0; i < this.datos.length; i++) {
+			aux[i][0] = this.datos[i][4];
+			aux[i][1] = this.datos[i][0];
+			aux[i][2] = this.datos[i][2];
 		}
-		DefaultTableModel model = new DefaultTableModel(this.datos, camposTable);
+		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
 		table.setModel(model);
 		revalidate();
 	}
