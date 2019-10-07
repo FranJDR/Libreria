@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import modelo.AlmacenLibros;
 import modelo.Libro;
 import modelo.Referencia;
 import modelo.Tematica;
@@ -16,20 +17,14 @@ public class Control {
 
 	public Control() {
 		super();
-		this.libros.add(new Libro("El Silmarillion", "Tolkien", "6784561234568", "365", Tematica.Fantasia, "25",
-				"Rustico", "Novedad"));
-		this.libros.add(new Libro("El nombre del viento", "Patrick Rothfuss", "1231232344567", "613", Tematica.Fantasia,
-				"19", "Rustica", "Novedad"));
-		this.libros.add(new Libro("Naruto", "Masashi Kishimoto", "1232343454568", "1500", Tematica.Ficcion, "150",
-				"Digital", "Reedicion"));
+		this.libros.addAll(new AlmacenLibros().getLibros());
 	}
 
 	public void eliminarLibro(String ISBN) {
 		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();
-			if (libro.getISBN() == ISBN) {
+			if (libro.getISBN() == ISBN)
 				iterator.remove();
-			}
 		}
 	}
 
