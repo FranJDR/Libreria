@@ -5,16 +5,11 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
-import javax.swing.JDialog;
 import javax.swing.border.MatteBorder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Libro;
 import modelo.Referencia;
 import modelo.Tematica;
 
@@ -79,7 +74,8 @@ public class UI extends JFrame {
 
 	protected JTable table = new JTable();
 	private JScrollPane scrollPane;
-	private DiagoInfo diagoInfo;
+
+	private PanelInfo panelInfo;
 
 	public UI() {
 
@@ -201,7 +197,6 @@ public class UI extends JFrame {
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
 		this.table.addMouseListener(new MouseAdapter() {
-
 			@Override
 			public void mouseClicked(MouseEvent e) {
 				super.mouseClicked(e);
@@ -210,13 +205,11 @@ public class UI extends JFrame {
 				for (int i = 0; i < dato.length; i++) {
 					dato[i] = datos[indice][i];
 				}
-				diagoInfo = new DiagoInfo(dato);
+				panelInfo = new PanelInfo(dato);
 			}
 
 		});
-
 		revalidate();
-
 	}
 
 	protected HashMap<Referencia, String> obtenerMap() {
@@ -296,7 +289,6 @@ public class UI extends JFrame {
 		String[] camposTable = { "ISBN", "Titulo", "Tematica" };
 		this.datos = datos;
 		String[][] aux = new String[this.datos.length][camposTable.length];
-		System.out.println(this.datos.length);
 		for (int i = 0; i < this.datos.length; i++) {
 			aux[i][0] = this.datos[i][4];
 			aux[i][1] = this.datos[i][0];
