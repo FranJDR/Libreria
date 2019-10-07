@@ -12,6 +12,7 @@ public class ParaUI extends UI {
 	public ParaUI() {
 		super();
 		listenerBtn();
+		rellenarTable(control.obtenerDatosLibros(), table);
 	}
 
 	private void listenerBtn() {

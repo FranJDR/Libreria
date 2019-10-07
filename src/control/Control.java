@@ -14,6 +14,16 @@ public class Control {
 	private Validador validador = new Validador();
 	private ArrayList<Libro> libros = new ArrayList<Libro>();
 
+	public Control() {
+		super();
+		this.libros.add(new Libro("El Silmarillion", "Tolkien", "6784561234568", "365", Tematica.Fantasia, "25",
+				"Rustico", "Novedad"));
+		this.libros.add(new Libro("El nombre del viento", "Patrick Rothfuss", "1231232344567", "613", Tematica.Fantasia,
+				"19", "Rustica", "Novedad"));
+		this.libros.add(new Libro("Naruto", "Masashi Kishimoto", "1232343454568", "1500", Tematica.Ficcion, "150",
+				"Digital", "Reedicion"));
+	}
+
 	public void eliminarLibro(String ISBN) {
 		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();

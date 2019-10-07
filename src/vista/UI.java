@@ -25,6 +25,8 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -198,18 +200,19 @@ public class UI extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
-		ListSelectionModel model = this.table.getSelectionModel();
-		model.addListSelectionListener(new ListSelectionListener() {
-			public void valueChanged(ListSelectionEvent arg0) {
-				if (!model.isSelectionEmpty()) {
-					int indice = model.getMinSelectionIndex();
-					String[] dato = new String[6];
-					for (int i = 0; i < dato.length; i++) {
-						dato[i] = datos[indice][i];
-					}
-					diagoInfo = new DiagoInfo(dato);
+		this.table.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseClicked(MouseEvent e) {
+				super.mouseClicked(e);
+				int indice = table.getSelectedRow();
+				String[] dato = new String[6];
+				for (int i = 0; i < dato.length; i++) {
+					dato[i] = datos[indice][i];
 				}
+				diagoInfo = new DiagoInfo(dato);
 			}
+
 		});
 
 		revalidate();
