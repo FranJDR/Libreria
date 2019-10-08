@@ -223,6 +223,7 @@ public class UI extends JFrame {
 		map.put(Referencia.estado, obtenerEstado());
 		return map;
 	}
+	
 
 	private String obtenerFormato() {
 		if (this.rdbtnCartone.isSelected())

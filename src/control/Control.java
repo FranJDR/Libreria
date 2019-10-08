@@ -1,11 +1,8 @@
 package control;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import modelo.AlmacenLibros;
-import modelo.Libro;
+import modelo.Libreria;
 import modelo.Referencia;
 import modelo.Tematica;
 import modelo.Validador;
@@ -13,51 +10,25 @@ import modelo.Validador;
 public class Control {
 
 	private Validador validador = new Validador();
-	private ArrayList<Libro> libros = new ArrayList<Libro>();
+	private Libreria libreria;
 
 	public Control() {
 		super();
-		this.libros.addAll(new AlmacenLibros().getLibros());
+		this.libreria = new Libreria();
 	}
 
 	public void eliminarLibro(String ISBN) {
-		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
-			Libro libro = (Libro) iterator.next();
-			if (libro.getISBN() == ISBN)
-				iterator.remove();
-		}
-	}
-
-	private boolean validarIsbn(String isbn) {
-		for (Libro libro : libros)
-			if (libro.getISBN().equals(isbn)) {
-				this.validador.WarningMessage("El ISBN ya existe.");
-				return false;
-			}
-		return true;
+		this.libreria.eliminarLibro(ISBN);
 	}
 
 	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
-		return this.validador.validarLibro(map) && validarIsbn(map.get(Referencia.isbn))
-				? this.libros.add(new Libro(map.get(Referencia.titulo), map.get(Referencia.autor),
-						map.get(Referencia.isbn), map.get(Referencia.paginas), tematica, map.get(Referencia.precio),
-						map.get(Referencia.formato), map.get(Referencia.estado)))
+		return this.validador.validarLibro(map) && this.libreria.validarIsbn(map.get(Referencia.isbn))
+				? this.libreria.insertarLibro(tematica, map)
 				: false;
 	}
 
 	public String[][] obtenerDatosLibros() {
-		int index = 0;
-		String[][] datos = new String[this.libros.size()][6];
-		for (Libro libro : libros) {
-			datos[index][0] = libro.getTITULO();
-			datos[index][1] = libro.getAUTOR();
-			datos[index][2] = libro.getTema().toString();
-			datos[index][3] = libro.getPAGINAS();
-			datos[index][4] = libro.getISBN();
-			datos[index][5] = libro.getPrecio();
-			index++;
-		}
-		return datos;
+		return this.libreria.obtenerDatosLibros();
 	}
 
 }
