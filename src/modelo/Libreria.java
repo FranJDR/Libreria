@@ -15,6 +15,13 @@ public class Libreria {
 		this.libros = new AlmacenLibros().getLibros();
 	}
 
+	public void aumentarNumLibro(String ISBN, int cantidad) {
+		for (Libro libro : libros) {
+			if (libro.getISBN() == ISBN)
+				libro.aumentarCantidad(cantidad);
+		}
+	}
+
 	public boolean validarIsbn(String isbn) {
 		for (Libro libro : libros)
 			if (libro.getISBN().equals(isbn)) {
@@ -41,7 +48,7 @@ public class Libreria {
 
 	public String[][] obtenerDatosLibros() {
 		int index = 0;
-		String[][] datos = new String[this.libros.size()][6];
+		String[][] datos = new String[this.libros.size()][7];
 		for (Libro libro : libros) {
 			datos[index][0] = libro.getTITULO();
 			datos[index][1] = libro.getAUTOR();
@@ -49,6 +56,7 @@ public class Libreria {
 			datos[index][3] = libro.getPAGINAS();
 			datos[index][4] = libro.getISBN();
 			datos[index][5] = libro.getPrecio();
+			datos[index][6] = String.valueOf(libro.getCantidad());
 			index++;
 		}
 		return datos;

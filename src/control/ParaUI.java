@@ -3,6 +3,8 @@ package control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.JOptionPane;
+
 import vista.UI;
 
 public class ParaUI extends UI {
@@ -41,6 +43,29 @@ public class ParaUI extends UI {
 						vaciarCampos();
 					}
 				}
+			}
+		});
+
+//		this.btnAdd.addActionListener(new ActionListener() {
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				if ((e.getModifiers() & 4) != 0) {
+//				
+//				}
+//			}
+//		});
+
+		this.btnAdd.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (table.getSelectedRow() != -1) {
+					String respuesta = JOptionPane.showInputDialog("¿Que cantidad desea añadir?");
+					if (respuesta != null) {
+						control.aumentarNumLibro(datos[table.getSelectedRow()][4], respuesta);
+						rellenarTable(datos, table);
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 

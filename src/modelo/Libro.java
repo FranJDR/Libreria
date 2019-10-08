@@ -8,6 +8,7 @@ public class Libro {
 	private final String PAGINAS;
 	private final Tematica tema;
 	private String precio;
+	private int cantidad;
 
 	private String formato;
 	private String estado;
@@ -23,6 +24,15 @@ public class Libro {
 		this.precio = precio;
 		this.formato = formato;
 		this.estado = estado;
+		this.cantidad = 1;
+	}
+
+	public void aumentarCantidad(int cantidad) {
+		this.cantidad += cantidad;
+	}
+
+	public void diminuirCantidad(int cantidad) {
+		this.cantidad -= cantidad;
 	}
 
 	public String getTITULO() {
@@ -55,6 +65,10 @@ public class Libro {
 
 	public String getEstado() {
 		return estado;
+	}
+
+	public int getCantidad() {
+		return cantidad;
 	}
 
 }

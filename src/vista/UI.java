@@ -20,6 +20,8 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -54,6 +56,8 @@ public class UI extends JFrame {
 	protected JButton btnNuevo = new JButton("NUEVO");
 	protected JButton btnEliminar = new JButton("ELIMINAR");
 	protected JButton btnSalir = new JButton("SALIR");
+	protected JButton btnAdd = new JButton("ADD");
+	protected JButton btnVerDetalles = new JButton("VER DETALLES");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
@@ -174,12 +178,18 @@ public class UI extends JFrame {
 		verticalBox.add(rdbtnDigital);
 
 		panelBtn.add(btnNuevo);
+
+		panelBtn.add(btnAdd);
+
+		panelBtn.add(btnVerDetalles);
 		panelBtn.add(btnEliminar);
 		panelBtn.add(btnSalir);
 
 		personalizarBtn(this.btnNuevo);
 		personalizarBtn(this.btnEliminar);
 		personalizarBtn(this.btnSalir);
+		personalizarBtn(this.btnAdd);
+		personalizarBtn(this.btnVerDetalles);
 
 		personalizarRadioBtn(this.rdbtnNovedad);
 		personalizarRadioBtn(this.rdbtnReedicion);
@@ -196,18 +206,33 @@ public class UI extends JFrame {
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
-		this.table.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseClicked(MouseEvent e) {
-				super.mouseClicked(e);
-				int indice = table.getSelectedRow();
-				String[] dato = new String[6];
-				for (int i = 0; i < dato.length; i++) {
-					dato[i] = datos[indice][i];
-				}
-				panelInfo = new PanelInfo(dato);
-			}
+//		this.table.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				super.mouseClicked(e);
+//				int indice = table.getSelectedRow();
+//				String[] dato = new String[6];
+//				for (int i = 0; i < dato.length; i++) {
+//					dato[i] = datos[indice][i];
+//				}
+//				panelInfo = new PanelInfo(dato);
+//			}
+//
+//		});
 
+		this.btnVerDetalles.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				int indice = table.getSelectedRow();
+				if (indice != -1) {
+					String[] dato = new String[6];
+					for (int i = 0; i < dato.length; i++)
+						dato[i] = datos[indice][i];
+					panelInfo = new PanelInfo(dato);
+				} else
+					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
+							JOptionPane.WARNING_MESSAGE);
+			}
 		});
 		revalidate();
 	}
@@ -223,7 +248,6 @@ public class UI extends JFrame {
 		map.put(Referencia.estado, obtenerEstado());
 		return map;
 	}
-	
 
 	private String obtenerFormato() {
 		if (this.rdbtnCartone.isSelected())
@@ -287,13 +311,14 @@ public class UI extends JFrame {
 	}
 
 	protected void rellenarTable(String[][] datos, JTable table) {
-		String[] camposTable = { "ISBN", "Titulo", "Tematica" };
+		String[] camposTable = { "ISBN", "Titulo", "Tematica", "Cantidad" };
 		this.datos = datos;
 		String[][] aux = new String[this.datos.length][camposTable.length];
 		for (int i = 0; i < this.datos.length; i++) {
 			aux[i][0] = this.datos[i][4];
 			aux[i][1] = this.datos[i][0];
 			aux[i][2] = this.datos[i][2];
+			aux[i][3] = this.datos[i][6];
 		}
 		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
 		table.setModel(model);

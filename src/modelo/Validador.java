@@ -40,17 +40,14 @@ public class Validador {
 		return Pattern.matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$*", nombre);
 	}
 
-	// ascii < 48 && 57 < ascii int ascii = (int) cadena.charAt(i);
 	private boolean isNumber(String cadena) {
-		for (int i = 0; i < cadena.length(); i++) {
-			if (!Character.isDigit((int) cadena.charAt(i))) {
-				return false;
-			}
-		}
-		return true;
+		if (isNumeric(cadena))
+			return true;
+		WarningMessage("Tiene que ser un digito.");
+		return false;
 	}
 
-	public static boolean isNumeric(String str) {
+	public boolean isNumeric(String str) {
 		for (char c : str.toCharArray()) {
 			if (!Character.isDigit(c))
 				return false;
