@@ -101,7 +101,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
@@ -300,7 +300,7 @@ public class UI extends JFrame {
 	}
 
 	protected void rellenarTable(String[][] datos, JTable table) {
-		String[] camposTable = { "ISBN", "Titulo", "Tematica", "Cantidad" };
+		String[] camposTable = { "ISBN", "TITULO", "TEMATICA", "CANTIDAD", "PRECIO" };
 		this.datos = datos;
 		String[][] aux = new String[this.datos.length][camposTable.length];
 		for (int i = 0; i < this.datos.length; i++) {
@@ -308,6 +308,7 @@ public class UI extends JFrame {
 			aux[i][1] = this.datos[i][0];
 			aux[i][2] = this.datos[i][2];
 			aux[i][3] = this.datos[i][6];
+			aux[i][4] = this.datos[i][5];
 		}
 		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
 		table.setModel(model);
