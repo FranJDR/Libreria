@@ -37,7 +37,7 @@ public class Libro {
 		this.cantidad += cantidad;
 	}
 
-	public void diminuirCantidad(int cantidad) {
+	public void reducirCantidad(int cantidad) {
 		this.cantidad -= cantidad;
 	}
 

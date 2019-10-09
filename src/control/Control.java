@@ -32,6 +32,11 @@ public class Control {
 			this.libreria.aumentarNumLibro(ISBN, Integer.parseInt(cantidad));
 	}
 
+	public void reducirNumLibro(String ISBN, String cantidad) {
+		if (this.validador.isNumeric(cantidad))
+			this.libreria.reducirNumLibro(ISBN, Integer.parseInt(cantidad));
+	}
+
 	public String[][] obtenerDatosLibros() {
 		return this.libreria.obtenerDatosLibros();
 	}

@@ -15,6 +15,14 @@ public class Libreria {
 		this.libros = new AlmacenLibros().getLibros();
 	}
 
+	private void quitarLibrosACero() {
+		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
+			Libro libro = (Libro) iterator.next();
+			if (libro.getCantidad() <= 0)
+				iterator.remove();
+		}
+	}
+
 	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
 		Libro libro = getLibroISBN(ISBN);
 		if (libro != null) {
@@ -26,6 +34,18 @@ public class Libreria {
 		Libro libro = getLibroISBN(ISBN);
 		if (libro != null)
 			libro.aumentarCantidad(cantidad);
+	}
+
+	public void reducirNumLibro(String ISBN, int cantidad) {
+		Libro libro = getLibroISBN(ISBN);
+		if (libro != null) {
+			if (libro.getCantidad() >= cantidad) {
+				libro.reducirCantidad(cantidad);
+				quitarLibrosACero();
+			} else
+				JOptionPane.showMessageDialog(null, "La cantidad es superior al numero de unidades.", "error de datos ",
+						JOptionPane.WARNING_MESSAGE);
+		}
 	}
 
 	public boolean validarIsbn(String ISBN) {

@@ -31,8 +31,8 @@ public class ParaUI extends UI {
 		this.btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int indice = table.getSelectedRow();
-				if (indice >= 0) {
-					control.eliminarLibro(datos[indice][0]);
+				if (indice != -1) {
+					control.eliminarLibro(datos[indice][4]);
 					rellenarTable(control.obtenerDatosLibros(), table);
 				}
 			}
@@ -48,15 +48,6 @@ public class ParaUI extends UI {
 				}
 			}
 		});
-
-//		this.btnAdd.addActionListener(new ActionListener() {
-//			@Override
-//			public void actionPerformed(ActionEvent e) {
-//				if ((e.getModifiers() & 4) != 0) {
-//				
-//				}
-//			}
-//		});
 
 		this.btnAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -77,6 +68,20 @@ public class ParaUI extends UI {
 				HashMap<Referencia, String> map = panelInfo.getMap();
 				control.modificarLibro(map.get(Referencia.isbn), map);
 				rellenarTable(control.obtenerDatosLibros(), table);
+			}
+		});
+
+		this.btnBaja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				if (table.getSelectedRow() != -1) {
+					String respuesta = JOptionPane.showInputDialog("¿Que cantidad desea dar de baja?");
+					if (respuesta != null) {
+						control.reducirNumLibro(datos[table.getSelectedRow()][4], respuesta);
+						rellenarTable(control.obtenerDatosLibros(), table);
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 

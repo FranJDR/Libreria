@@ -59,6 +59,7 @@ public class UI extends JFrame {
 	protected JButton btnAdd = new JButton("ADD");
 	protected JButton btnVerDetalles = new JButton("VER DETALLES");
 	protected JButton btnModificar = new JButton("MODIFICAR");
+	protected JButton btnBaja = new JButton("BAJA");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
@@ -95,7 +96,7 @@ public class UI extends JFrame {
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 917, 713);
+		setBounds(100, 100, 1100, 750);
 		contentPane = new JPanel();
 		contentPane.setBackground(this.colorFondo);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -171,26 +172,26 @@ public class UI extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 
 		verticalBox_1.add(lblEstado);
-		verticalBox_1.add(rdbtnNovedad);
-		verticalBox_1.add(rdbtnReedicion);
+		verticalBox_1.add(this.rdbtnNovedad);
+		verticalBox_1.add(this.rdbtnReedicion);
 		verticalBox.add(lblNewLabel_1);
-		verticalBox.add(rdbtnCartone);
-		verticalBox.add(rdbtnRustica);
-		verticalBox.add(rdbtnDigital);
+		verticalBox.add(this.rdbtnCartone);
+		verticalBox.add(this.rdbtnRustica);
+		verticalBox.add(this.rdbtnDigital);
 
-		panelBtn.add(btnNuevo);
-
-		panelBtn.add(btnAdd);
-
-		panelBtn.add(btnVerDetalles);
-		panelBtn.add(btnEliminar);
-		panelBtn.add(btnSalir);
+		panelBtn.add(this.btnNuevo);
+		panelBtn.add(this.btnAdd);
+		panelBtn.add(this.btnBaja);
+		panelBtn.add(this.btnVerDetalles);
+		panelBtn.add(this.btnEliminar);
+		panelBtn.add(this.btnSalir);
 
 		personalizarBtn(this.btnNuevo);
 		personalizarBtn(this.btnEliminar);
 		personalizarBtn(this.btnSalir);
 		personalizarBtn(this.btnAdd);
 		personalizarBtn(this.btnVerDetalles);
+		personalizarBtn(this.btnBaja);
 
 		personalizarRadioBtn(this.rdbtnNovedad);
 		personalizarRadioBtn(this.rdbtnReedicion);
