@@ -2,9 +2,12 @@ package control;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.HashMap;
 
 import javax.swing.JOptionPane;
 
+import modelo.Referencia;
+import vista.PanelInfo;
 import vista.UI;
 
 public class ParaUI extends UI {
@@ -61,11 +64,19 @@ public class ParaUI extends UI {
 					String respuesta = JOptionPane.showInputDialog("¿Que cantidad desea añadir?");
 					if (respuesta != null) {
 						control.aumentarNumLibro(datos[table.getSelectedRow()][4], respuesta);
-						rellenarTable(datos, table);
+						rellenarTable(control.obtenerDatosLibros(), table);
 					}
 				} else
 					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
 							JOptionPane.WARNING_MESSAGE);
+			}
+		});
+
+		this.btnModificar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				HashMap<Referencia, String> map = panelInfo.getMap();
+				control.modificarLibro(map.get(Referencia.isbn), map);
+				rellenarTable(control.obtenerDatosLibros(), table);
 			}
 		});
 

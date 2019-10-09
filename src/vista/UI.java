@@ -58,6 +58,7 @@ public class UI extends JFrame {
 	protected JButton btnSalir = new JButton("SALIR");
 	protected JButton btnAdd = new JButton("ADD");
 	protected JButton btnVerDetalles = new JButton("VER DETALLES");
+	protected JButton btnModificar = new JButton("MODIFICAR");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
@@ -79,7 +80,7 @@ public class UI extends JFrame {
 	protected JTable table = new JTable();
 	private JScrollPane scrollPane;
 
-	private PanelInfo panelInfo;
+	protected PanelInfo panelInfo;
 
 	public UI() {
 
@@ -201,24 +202,12 @@ public class UI extends JFrame {
 
 		scrollPane.add(this.table);
 		scrollPane.setViewportView(this.table);
-		this.table.setRowHeight(25);
-		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
-//		this.table.addMouseListener(new MouseAdapter() {
-//			@Override
-//			public void mouseClicked(MouseEvent e) {
-//				super.mouseClicked(e);
-//				int indice = table.getSelectedRow();
-//				String[] dato = new String[6];
-//				for (int i = 0; i < dato.length; i++) {
-//					dato[i] = datos[indice][i];
-//				}
-//				panelInfo = new PanelInfo(dato);
-//			}
-//
-//		});
+		this.table.setRowHeight(25);
+		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
+		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
 
 		this.btnVerDetalles.addActionListener(new ActionListener() {
 			@Override
@@ -228,12 +217,13 @@ public class UI extends JFrame {
 					String[] dato = new String[6];
 					for (int i = 0; i < dato.length; i++)
 						dato[i] = datos[indice][i];
-					panelInfo = new PanelInfo(dato);
+					panelInfo = new PanelInfo(dato, btnModificar);
 				} else
 					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
 							JOptionPane.WARNING_MESSAGE);
 			}
 		});
+
 		revalidate();
 	}
 
@@ -419,4 +409,5 @@ public class UI extends JFrame {
 //		jLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return jLabel;
 	}
+
 }

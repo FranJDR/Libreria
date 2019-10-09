@@ -1,5 +1,7 @@
 package modelo;
 
+import java.util.HashMap;
+
 public class Libro {
 
 	private final String TITULO;
@@ -25,6 +27,10 @@ public class Libro {
 		this.formato = formato;
 		this.estado = estado;
 		this.cantidad = 1;
+	}
+
+	public void modificarLibro(HashMap<Referencia, String> map) {
+		this.precio = map.get(Referencia.precio);
 	}
 
 	public void aumentarCantidad(int cantidad) {

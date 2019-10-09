@@ -15,20 +15,25 @@ public class Libreria {
 		this.libros = new AlmacenLibros().getLibros();
 	}
 
-	public void aumentarNumLibro(String ISBN, int cantidad) {
-		for (Libro libro : libros) {
-			if (libro.getISBN() == ISBN)
-				libro.aumentarCantidad(cantidad);
+	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
+		Libro libro = getLibroISBN(ISBN);
+		if (libro != null) {
+			libro.modificarLibro(map);
 		}
 	}
 
-	public boolean validarIsbn(String isbn) {
-		for (Libro libro : libros)
-			if (libro.getISBN().equals(isbn)) {
-				JOptionPane.showMessageDialog(null, "El ISBN ya existe.", "error de datos ",
-						JOptionPane.WARNING_MESSAGE);
-				return false;
-			}
+	public void aumentarNumLibro(String ISBN, int cantidad) {
+		Libro libro = getLibroISBN(ISBN);
+		if (libro != null)
+			libro.aumentarCantidad(cantidad);
+	}
+
+	public boolean validarIsbn(String ISBN) {
+		Libro libro = getLibroISBN(ISBN);
+		if (libro != null) {
+			JOptionPane.showMessageDialog(null, "El ISBN ya existe.", "error de datos ", JOptionPane.WARNING_MESSAGE);
+			return false;
+		}
 		return true;
 	}
 
@@ -60,6 +65,14 @@ public class Libreria {
 			index++;
 		}
 		return datos;
+	}
+
+	private Libro getLibroISBN(String isbn) {
+		for (Libro libro : libros) {
+			if (libro.getISBN() == isbn)
+				return libro;
+		}
+		return null;
 	}
 
 }
