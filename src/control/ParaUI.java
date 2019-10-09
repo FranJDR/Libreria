@@ -7,7 +7,6 @@ import java.util.HashMap;
 import javax.swing.JOptionPane;
 
 import modelo.Referencia;
-import vista.PanelInfo;
 import vista.UI;
 
 public class ParaUI extends UI {

@@ -79,8 +79,11 @@ public class PanelInfo extends JDialog {
 	}
 
 	private void personalizarCampos() {
-		this.fields.get(4).setFocusable(false);
+		this.fields.get(0).setFocusable(false);
+		this.fields.get(1).setFocusable(false);
 		this.fields.get(2).setFocusable(false);
+		this.fields.get(3).setFocusable(false);
+		this.fields.get(4).setFocusable(false);
 		for (int i = 0; i < this.fields.size(); i++) {
 			this.labels.get(i).setFont(new Font("Bookman Old Style", Font.BOLD, 20));
 			this.labels.get(i).setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
