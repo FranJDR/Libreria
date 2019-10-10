@@ -39,7 +39,7 @@ public class PanelInfo extends JDialog {
 		personalizarCampos();
 		setVisible(true);
 		setBackground(new Color(200, 200, 200));
-		setBounds(100, 100, 508, 670);
+		setBounds(100, 100, 450, 350);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(new BorderLayout());
 		setResizable(false);
@@ -50,7 +50,7 @@ public class PanelInfo extends JDialog {
 		JLabel lblDatos = new JLabel("DATOS");
 		lblDatos.setHorizontalAlignment(SwingConstants.CENTER);
 		lblDatos.setFont(new Font("Bookman Old Style", Font.BOLD, 40));
-		lblDatos.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+//		lblDatos.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		getContentPane().add(lblDatos, BorderLayout.NORTH);
 		panelBtn.setLayout(new GridLayout(0, 1, 0, 0));
 
@@ -86,12 +86,12 @@ public class PanelInfo extends JDialog {
 		this.fields.get(4).setFocusable(false);
 		for (int i = 0; i < this.fields.size(); i++) {
 			this.labels.get(i).setFont(new Font("Bookman Old Style", Font.BOLD, 20));
-			this.labels.get(i).setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+			this.labels.get(i).setBorder(new MatteBorder(2, 2, 0, 0, (Color) new Color(0, 0, 0)));
 			this.labels.get(i).setText(this.nombreCampos[i]);
 			this.labels.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 			this.panelCampos.add(this.labels.get(i));
 			this.fields.get(i).setFont(new Font("Bookman Old Style", Font.BOLD, 20));
-			this.fields.get(i).setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+			this.fields.get(i).setBorder(new MatteBorder(2, 2, 0, 2, (Color) new Color(0, 0, 0)));
 			this.fields.get(i).setHorizontalAlignment(SwingConstants.CENTER);
 			this.fields.get(i).setForeground(Color.BLUE);
 			this.fields.get(i).setText(this.datos[i]);

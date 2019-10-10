@@ -29,11 +29,15 @@ public class ParaUI extends UI {
 
 		this.btnEliminar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				int indice = table.getSelectedRow();
-				if (indice != -1) {
-					control.eliminarLibro(datos[indice][4]);
-					rellenarTable(control.obtenerDatosLibros(), table);
-				}
+				if (table.getSelectedRow() != -1) {
+					int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que quieres eliminarlo?");
+					if (resp == 0) {
+						control.eliminarLibro(datos[table.getSelectedRow()][4]);
+						rellenarTable(control.obtenerDatosLibros(), table);
+					}
+				} else
+					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
+							JOptionPane.WARNING_MESSAGE);
 			}
 		});
 
@@ -56,9 +60,14 @@ public class ParaUI extends UI {
 						control.aumentarNumLibro(datos[table.getSelectedRow()][4], respuesta);
 						rellenarTable(control.obtenerDatosLibros(), table);
 					}
-				} else
-					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
-							JOptionPane.WARNING_MESSAGE);
+				} else {
+					String respuesta = JOptionPane.showInputDialog("ISBN-CANTIDAD");
+					if (respuesta != null) {
+						String[] dat = respuesta.split("-");
+						control.aumentarNumLibro(dat[0], dat[1]);
+						rellenarTable(control.obtenerDatosLibros(), table);
+					}
+				}
 			}
 		});
 
