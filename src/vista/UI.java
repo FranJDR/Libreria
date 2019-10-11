@@ -14,6 +14,8 @@ import modelo.Referencia;
 import modelo.Tematica;
 
 import java.awt.Color;
+import java.awt.Component;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
@@ -22,6 +24,8 @@ import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -223,7 +227,41 @@ public class UI extends JFrame {
 			}
 		});
 
+		soloLetras(this.listFields.get(1));
+		soloLetras(this.listFields.get(0));
+		soloNumeros(this.listFields.get(3));
+		soloNumeros(this.listFields.get(4));
+		soloNumeros(this.listFields.get(5));
+
+		this.listFields.get(4).addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (listFields.get(4).getText().length() == 13) {
+					e.consume();
+				}
+			}
+		});
+
 		revalidate();
+	}
+
+	public void soloLetras(Component component) {
+		component.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if ((e.getKeyChar() < 'a' || e.getKeyChar() > 'z') && (e.getKeyChar() < 'A' || e.getKeyChar() > 'Z')) {
+					e.consume();
+				}
+			}
+		});
+	}
+
+	public void soloNumeros(Component component) {
+		component.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if ((e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
+					e.consume();
+				}
+			}
+		});
 	}
 
 	public HashMap<Referencia, String> obtenerMap() {
@@ -307,8 +345,8 @@ public class UI extends JFrame {
 			aux[i][0] = this.datos[i][4];
 			aux[i][1] = this.datos[i][0];
 			aux[i][2] = this.datos[i][2];
-			aux[i][3] = this.datos[i][6];
-			aux[i][4] = this.datos[i][5];
+			aux[i][3] = this.datos[i][6] + " Unidades";
+			aux[i][4] = this.datos[i][5] + "$";
 		}
 		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
 		table.setModel(model);
