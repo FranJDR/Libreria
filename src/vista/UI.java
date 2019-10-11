@@ -51,13 +51,13 @@ public class UI extends JFrame {
 	private Color colorFondo = new Color(200, 200, 200); // 232, 225, 146
 	private Color colorBtn = new Color(208, 222, 237);
 
-	protected JButton btnNuevo = new JButton("NUEVO");
-	protected JButton btnEliminar = new JButton("ELIMINAR");
-	protected JButton btnSalir = new JButton("SALIR");
-	protected JButton btnAdd = new JButton("ADD");
-	protected JButton btnVerDetalles = new JButton("VER DETALLES");
-	protected JButton btnModificar = new JButton("MODIFICAR");
-	protected JButton btnBaja = new JButton("BAJA");
+	private JButton btnNuevo = new JButton("NUEVO");
+	private JButton btnEliminar = new JButton("ELIMINAR");
+	private JButton btnSalir = new JButton("SALIR");
+	private JButton btnAdd = new JButton("ADD");
+	private JButton btnVerDetalles = new JButton("VER DETALLES");
+	private JButton btnModificar = new JButton("MODIFICAR");
+	private JButton btnBaja = new JButton("BAJA");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
@@ -74,9 +74,9 @@ public class UI extends JFrame {
 
 	private final JPanel panel_2 = new JPanel();
 
-	protected String[][] datos;
+	private String[][] datos;
 
-	protected JTable table = new JTable();
+	private JTable table = new JTable();
 	private JScrollPane scrollPane;
 
 	protected PanelInfo panelInfo;
@@ -226,7 +226,7 @@ public class UI extends JFrame {
 		revalidate();
 	}
 
-	protected HashMap<Referencia, String> obtenerMap() {
+	public HashMap<Referencia, String> obtenerMap() {
 		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
 		map.put(Referencia.titulo, this.listFields.get(0).getText());
 		map.put(Referencia.autor, this.listFields.get(1).getText());
@@ -256,21 +256,21 @@ public class UI extends JFrame {
 		return null;
 	}
 
-	protected boolean isSelectFormato() {
+	public boolean isSelectFormato() {
 		if (this.rdbtnCartone.isSelected() || this.rdbtnRustica.isSelected() || this.rdbtnDigital.isSelected())
 			return true;
 		WarningMessage("Debes marcar formato.");
 		return false;
 	}
 
-	protected boolean isSelectEstado() {
+	public boolean isSelectEstado() {
 		if (this.rdbtnNovedad.isSelected() || this.rdbtnReedicion.isSelected())
 			return true;
 		WarningMessage("Debes marcar estado.");
 		return false;
 	}
 
-	protected void vaciarCampos() {
+	public void vaciarCampos() {
 		this.groupFormato.clearSelection();
 		this.groupEstado.clearSelection();
 		for (JTextField field : this.listFields) {
@@ -278,7 +278,7 @@ public class UI extends JFrame {
 		}
 	}
 
-	protected Tematica obtenerTematica() {
+	public Tematica obtenerTematica() {
 		switch (this.comboTematica.getSelectedItem().toString()) {
 		case "Poesia":
 			return Tematica.Poesia;
@@ -299,7 +299,7 @@ public class UI extends JFrame {
 		}
 	}
 
-	protected void rellenarTable(String[][] datos, JTable table) {
+	public void rellenarTable(String[][] datos, JTable table) {
 		String[] camposTable = { "ISBN", "TITULO", "TEMATICA", "CANTIDAD", "PRECIO" };
 		this.datos = datos;
 		String[][] aux = new String[this.datos.length][camposTable.length];
@@ -315,7 +315,7 @@ public class UI extends JFrame {
 		revalidate();
 	}
 
-	protected void limpiarVista() {
+	public void limpiarVista() {
 		for (JTextField field : this.listFields) {
 			field.setText("");
 		}
@@ -408,6 +408,42 @@ public class UI extends JFrame {
 		jLabel.setFont(new Font("Book Antiqua", Font.ROMAN_BASELINE, 30));
 //		jLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return jLabel;
+	}
+
+	public JTable getTable() {
+		return table;
+	}
+
+	public String[][] getDatos() {
+		return datos;
+	}
+
+	public JButton getBtnNuevo() {
+		return btnNuevo;
+	}
+
+	public JButton getBtnEliminar() {
+		return btnEliminar;
+	}
+
+	public JButton getBtnSalir() {
+		return btnSalir;
+	}
+
+	public JButton getBtnAdd() {
+		return btnAdd;
+	}
+
+	public JButton getBtnVerDetalles() {
+		return btnVerDetalles;
+	}
+
+	public JButton getBtnModificar() {
+		return btnModificar;
+	}
+
+	public JButton getBtnBaja() {
+		return btnBaja;
 	}
 
 }
