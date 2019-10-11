@@ -71,9 +71,9 @@ public class Libreria {
 	}
 
 	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
-		return this.libros.add(new Libro(map.get(Referencia.titulo), map.get(Referencia.autor),
-				map.get(Referencia.isbn), map.get(Referencia.paginas), tematica, map.get(Referencia.precio),
-				map.get(Referencia.formato), map.get(Referencia.estado)));
+		return this.libros.add(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
+				map.get(Referencia.ISBN), map.get(Referencia.PAGINAS), tematica, map.get(Referencia.PRECIO),
+				map.get(Referencia.FORMATO), map.get(Referencia.ESTADO)));
 	}
 
 	public String[][] obtenerDatosLibros() {

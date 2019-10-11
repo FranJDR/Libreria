@@ -14,14 +14,14 @@ public class Validador {
 		this.respuestas.clear();
 		for (String campo : map.values())
 			this.respuestas.add(new Respuesta("Campo vacios.", !campo.isEmpty()));
-		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.", isNumber(map.get(Referencia.isbn))));
+		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.", isNumber(map.get(Referencia.ISBN))));
 		this.respuestas
-				.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.paginas))));
+				.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.PAGINAS))));
 		this.respuestas
-				.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.precio))));
-		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.isbn).length() == 13));
+				.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.PRECIO))));
+		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.ISBN).length() == 13));
 		this.respuestas.add(
-				new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.autor))));
+				new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.AUTOR))));
 
 		for (Respuesta respuesta : respuestas) {
 			if (!respuesta.isValido()) {
@@ -40,18 +40,15 @@ public class Validador {
 		return Pattern.matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$*", nombre);
 	}
 
-	private boolean isNumber(String cadena) {
-		if (isNumeric(cadena))
+	private boolean validarISBN(String ISBN) {
+		return Pattern.matches("\\d{13}", ISBN);
+	}
+
+	public boolean isNumber(String cadena) {
+		if (Pattern.matches("[0-9]{1,200}", cadena))
 			return true;
 		WarningMessage("Tiene que ser un digito.");
 		return false;
 	}
 
-	public boolean isNumeric(String str) {
-		for (char c : str.toCharArray()) {
-			if (!Character.isDigit(c))
-				return false;
-		}
-		return true;
-	}
 }

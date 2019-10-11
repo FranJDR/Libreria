@@ -22,18 +22,18 @@ public class Control {
 	}
 
 	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
-		return this.validador.validarLibro(map) && this.libreria.validarIsbn(map.get(Referencia.isbn))
+		return this.validador.validarLibro(map) && this.libreria.validarIsbn(map.get(Referencia.ISBN))
 				? this.libreria.insertarLibro(tematica, map)
 				: false;
 	}
 
 	public void aumentarNumLibro(String ISBN, String cantidad) {
-		if (this.validador.isNumeric(cantidad))
+		if (this.validador.isNumber(cantidad))
 			this.libreria.aumentarNumLibro(ISBN, Integer.parseInt(cantidad));
 	}
 
 	public void reducirNumLibro(String ISBN, String cantidad) {
-		if (this.validador.isNumeric(cantidad))
+		if (this.validador.isNumber(cantidad))
 			this.libreria.reducirNumLibro(ISBN, Integer.parseInt(cantidad));
 	}
 
@@ -42,7 +42,7 @@ public class Control {
 	}
 
 	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
-		if (this.validador.isNumeric(ISBN))
+		if (this.validador.isNumber(ISBN))
 			this.libreria.modificarLibro(ISBN, map);
 	}
 

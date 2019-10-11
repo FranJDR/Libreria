@@ -6,12 +6,12 @@ import java.awt.event.ActionListener;
 import control.Control;
 import control.ParaUI;
 
-public class BtnInsertarLibro implements ActionListener {
+public class BtnNuevoLibro implements ActionListener {
 
 	private Control control;
 	private ParaUI paraUI;
 
-	public BtnInsertarLibro(Control control, ParaUI paraUI) {
+	public BtnNuevoLibro(Control control, ParaUI paraUI) {
 		super();
 		this.control = control;
 		this.paraUI = paraUI;

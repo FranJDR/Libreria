@@ -19,6 +19,7 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -209,23 +210,8 @@ public class UI extends JFrame {
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
 		this.table.setRowHeight(25);
-		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 18));
+		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 15));
 		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
-
-		this.btnVerDetalles.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				int indice = table.getSelectedRow();
-				if (indice != -1) {
-					String[] dato = new String[6];
-					for (int i = 0; i < dato.length; i++)
-						dato[i] = datos[indice][i];
-					panelInfo = new PanelInfo(dato, btnModificar);
-				} else
-					JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
-							JOptionPane.WARNING_MESSAGE);
-			}
-		});
 
 		soloLetras(this.listFields.get(1));
 		soloLetras(this.listFields.get(0));
@@ -242,6 +228,7 @@ public class UI extends JFrame {
 		});
 
 		revalidate();
+		repaint();
 	}
 
 	public void soloLetras(Component component) {
@@ -266,14 +253,18 @@ public class UI extends JFrame {
 
 	public HashMap<Referencia, String> obtenerMap() {
 		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
-		map.put(Referencia.titulo, this.listFields.get(0).getText());
-		map.put(Referencia.autor, this.listFields.get(1).getText());
-		map.put(Referencia.paginas, this.listFields.get(3).getText());
-		map.put(Referencia.isbn, this.listFields.get(4).getText());
-		map.put(Referencia.precio, this.listFields.get(5).getText());
-		map.put(Referencia.formato, obtenerFormato());
-		map.put(Referencia.estado, obtenerEstado());
+		map.put(Referencia.TITULO, this.listFields.get(0).getText());
+		map.put(Referencia.AUTOR, this.listFields.get(1).getText());
+		map.put(Referencia.PAGINAS, this.listFields.get(3).getText());
+		map.put(Referencia.ISBN, this.listFields.get(4).getText());
+		map.put(Referencia.PRECIO, this.listFields.get(5).getText());
+		map.put(Referencia.FORMATO, obtenerFormato());
+		map.put(Referencia.ESTADO, obtenerEstado());
 		return map;
+	}
+
+	public HashMap<Referencia, String> getMapPanelInfo() {
+		return this.panelInfo.getMap();
 	}
 
 	private String obtenerFormato() {
@@ -345,7 +336,7 @@ public class UI extends JFrame {
 			aux[i][0] = this.datos[i][4];
 			aux[i][1] = this.datos[i][0];
 			aux[i][2] = this.datos[i][2];
-			aux[i][3] = this.datos[i][6] + " Unidades";
+			aux[i][3] = this.datos[i][6];
 			aux[i][4] = this.datos[i][5] + "$";
 		}
 		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
@@ -365,15 +356,6 @@ public class UI extends JFrame {
 			this.listLabel.add(insertarLabel(i));
 		}
 	}
-
-//	public void actualizarPantalla() {
-//		try {
-//			JPanel temp = (JPanel) this.getContentPane();
-//			SwingUtilities.updateComponentTreeUI(temp);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//	}
 
 	private void WarningMessage(String mensaje) {
 		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
@@ -396,6 +378,7 @@ public class UI extends JFrame {
 		}
 		this.panelDatos.add(new JLabel());
 		revalidate();
+		repaint();
 	}
 
 	private void personalizarBtn(JButton button) {
@@ -482,6 +465,14 @@ public class UI extends JFrame {
 
 	public JButton getBtnBaja() {
 		return btnBaja;
+	}
+
+	public PanelInfo getPanelInfo() {
+		return panelInfo;
+	}
+
+	public void setPanelInfo(PanelInfo panelInfo) {
+		this.panelInfo = panelInfo;
 	}
 
 }

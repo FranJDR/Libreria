@@ -62,11 +62,11 @@ public class PanelInfo extends JDialog {
 	}
 
 	private void rellenarHashMap() {
-		this.map.put(Referencia.titulo, this.fields.get(0).getText());
-		this.map.put(Referencia.autor, this.fields.get(1).getText());
-		this.map.put(Referencia.paginas, this.fields.get(3).getText());
-		this.map.put(Referencia.isbn, this.fields.get(4).getText());
-		this.map.put(Referencia.precio, this.fields.get(5).getText());
+		this.map.put(Referencia.TITULO, this.fields.get(0).getText());
+		this.map.put(Referencia.AUTOR, this.fields.get(1).getText());
+		this.map.put(Referencia.PAGINAS, this.fields.get(3).getText());
+		this.map.put(Referencia.ISBN, this.fields.get(4).getText());
+		this.map.put(Referencia.PRECIO, this.fields.get(5).getText());
 	}
 
 	private void crearCampos() {

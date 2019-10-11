@@ -1,5 +1,5 @@
 package modelo;
 
 public enum Referencia {
-	titulo, autor, isbn, precio, paginas, formato, estado
+	TITULO, AUTOR, ISBN, PRECIO, PAGINAS, FORMATO, ESTADO
 }

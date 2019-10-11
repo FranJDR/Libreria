@@ -21,9 +21,9 @@ public class BtnModificar implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-//		HashMap<Referencia, String> map = panelInfo.getMap();
-//		control.modificarLibro(map.get(Referencia.isbn), map);
-//		rellenarTable(control.obtenerDatosLibros(), table);
+		HashMap<Referencia, String> map = this.paraUI.getMapPanelInfo();
+		this.control.modificarLibro(map.get(Referencia.ISBN), map);
+		this.paraUI.rellenarTable(control.obtenerDatosLibros(), this.paraUI.getTable());
 	}
 
 }

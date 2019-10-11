@@ -30,7 +30,7 @@ public class Libro {
 	}
 
 	public void modificarLibro(HashMap<Referencia, String> map) {
-		this.precio = map.get(Referencia.precio);
+		this.precio = map.get(Referencia.PRECIO);
 	}
 
 	public void aumentarCantidad(int cantidad) {

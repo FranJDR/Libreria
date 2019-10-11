@@ -2,6 +2,7 @@ package listener;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
@@ -30,10 +31,14 @@ public class BtnAdd implements ActionListener {
 		} else {
 			String respuesta = JOptionPane.showInputDialog("ISBN-CANTIDAD");
 			if (respuesta != null) {
-				String[] dat = respuesta.split("-");
-				control.aumentarNumLibro(dat[0], dat[1]);
-				this.paraUI.rellenarTable(control.obtenerDatosLibros(), this.paraUI.getTable());
-			}
+				if (Pattern.matches("[0-9]{13}[\\-]{1}[0-9]{1, 200}", respuesta)) {
+					String[] dat = respuesta.split("-");
+					control.aumentarNumLibro(dat[0], dat[1]);
+					this.paraUI.rellenarTable(control.obtenerDatosLibros(), this.paraUI.getTable());
+				}
+			} else
+				JOptionPane.showMessageDialog(null, "Error al introducir los datos.", "error de datos ",
+						JOptionPane.WARNING_MESSAGE);
 		}
 	}
 
