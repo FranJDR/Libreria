@@ -30,7 +30,6 @@ public class PanelInfo extends JDialog {
 	private JButton btnModificar = new JButton("MODIFICAR");
 	private JPanel panelBtn = new JPanel();
 	private JPanel panelCampos = new JPanel();
-	private HashMap<Referencia, String> map = new HashMap<Referencia, String>();
 
 	public PanelInfo(String[] datos, JButton btn) {
 		this.btnModificar = btn;
@@ -58,15 +57,16 @@ public class PanelInfo extends JDialog {
 		this.btnModificar.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		this.panelBtn.add(this.btnModificar);
 
-		rellenarHashMap();
 	}
 
-	private void rellenarHashMap() {
-		this.map.put(Referencia.TITULO, this.fields.get(0).getText());
-		this.map.put(Referencia.AUTOR, this.fields.get(1).getText());
-		this.map.put(Referencia.PAGINAS, this.fields.get(3).getText());
-		this.map.put(Referencia.ISBN, this.fields.get(4).getText());
-		this.map.put(Referencia.PRECIO, this.fields.get(5).getText());
+	public HashMap<Referencia, String> getHashMap() {
+		HashMap<Referencia, String> retorno = new HashMap<Referencia, String>();
+		retorno.put(Referencia.TITULO, this.fields.get(0).getText());
+		retorno.put(Referencia.AUTOR, this.fields.get(1).getText());
+		retorno.put(Referencia.PAGINAS, this.fields.get(3).getText());
+		retorno.put(Referencia.ISBN, this.fields.get(4).getText());
+		retorno.put(Referencia.PRECIO, this.fields.get(5).getText());
+		return retorno;
 	}
 
 	private void crearCampos() {
@@ -97,10 +97,6 @@ public class PanelInfo extends JDialog {
 			this.fields.get(i).setText(this.datos[i]);
 			this.panelCampos.add(this.fields.get(i));
 		}
-	}
-
-	public HashMap<Referencia, String> getMap() {
-		return this.map;
 	}
 
 }

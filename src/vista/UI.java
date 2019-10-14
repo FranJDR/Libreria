@@ -19,12 +19,9 @@ import java.awt.Component;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
-import javax.swing.SwingUtilities;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
@@ -99,14 +96,14 @@ public class UI extends JFrame {
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1100, 750);
+		setBounds(100, 100, 1000, 600);
 		contentPane = new JPanel();
 		contentPane.setBackground(this.colorFondo);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
@@ -127,7 +124,7 @@ public class UI extends JFrame {
 
 		panelDatos.setBackground(this.colorFondo);
 		panel.add(panelDatos);
-		panelDatos.setLayout(new GridLayout(0, 1, 0, 35));
+		panelDatos.setLayout(new GridLayout(0, 1, 0, 28));
 
 		panel_1.setBackground(this.colorFondo);
 		panel.add(panel_1);
@@ -264,7 +261,7 @@ public class UI extends JFrame {
 	}
 
 	public HashMap<Referencia, String> getMapPanelInfo() {
-		return this.panelInfo.getMap();
+		return this.panelInfo.getHashMap();
 	}
 
 	private String obtenerFormato() {
