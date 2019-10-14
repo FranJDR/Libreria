@@ -40,10 +40,6 @@ public class Validador {
 		return Pattern.matches("^([A-Z]{1}[a-z]+[ ]?){1,2}$*", nombre);
 	}
 
-	private boolean validarISBN(String ISBN) {
-		return Pattern.matches("\\d{13}", ISBN);
-	}
-
 	public boolean isNumber(String cadena) {
 		if (Pattern.matches("[0-9]{1,200}", cadena))
 			return true;

@@ -100,4 +100,8 @@ public class Libreria {
 		return null;
 	}
 
+	public ArrayList<Libro> getLibros() {
+		return libros;
+	}
+
 }
