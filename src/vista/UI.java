@@ -53,13 +53,13 @@ public class UI extends JFrame {
 	private Color colorFondo = new Color(200, 200, 200); // 232, 225, 146
 	private Color colorBtn = new Color(208, 222, 237);
 
-	private JButton btnNuevo = new JButton("NUEVO");
-	private JButton btnEliminar = new JButton("ELIMINAR");
-	private JButton btnSalir = new JButton("SALIR");
-	private JButton btnAdd = new JButton("ADD");
-	private JButton btnVerDetalles = new JButton("VER DETALLES");
-	private JButton btnModificar = new JButton("MODIFICAR");
-	private JButton btnBaja = new JButton("BAJA");
+	private JButton btnNuevo = new JButton("Nuevo");
+	private JButton btnAdd = new JButton("Alta ISBN / Alta");
+	private JButton btnBaja = new JButton("Baja ISBN / Baja");
+	private JButton btnVerDetalles = new JButton("Ver Detalles");
+	private JButton btnModificar = new JButton("Modificar");
+	private JButton btnEliminar = new JButton("Eliminar");
+	private JButton btnSalir = new JButton("Salir");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
@@ -379,7 +379,7 @@ public class UI extends JFrame {
 	}
 
 	private void personalizarBtn(JButton button) {
-		button.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
+		button.setFont(new Font("Microsoft JhengHei", Font.BOLD, 16));
 		button.setBackground(this.colorBtn);
 		button.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 	}

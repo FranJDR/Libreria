@@ -26,6 +26,9 @@ public class BtnAddBaja implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
+		this.respuesta = null;
+		this.cantidad = null;
+		this.isbn = null;
 		if (this.paraUI.getTable().getSelectedRow() != -1) {
 			respuesta = JOptionPane.showInputDialog("¿Que cantidad desea añadir?");
 		} else {
@@ -49,7 +52,7 @@ public class BtnAddBaja implements ActionListener {
 	}
 
 	protected boolean validarCantidad(String cadena) {
-		return Pattern.matches("[0-9]{1,200}", cadena);
+		return Pattern.matches("[1-9]{1}[1-9]{0,200}", cadena);
 	}
 
 }
