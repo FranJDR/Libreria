@@ -31,7 +31,7 @@
   </class>  
   <class id="4" language="java" name="modelo.Libro" project="Biblioteca" file="/Biblioteca/src/modelo/Libro.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="220" width="140" x="1229" y="380"/>    
+    <position height="220" width="140" x="1275" y="376"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="false" package="false" protected="false" private="false" static="true"/>      
@@ -47,16 +47,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="6" language="java" name="modelo.AlmacenLibros" project="Biblioteca" 
-    file="/Biblioteca/src/modelo/AlmacenLibros.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1297" y="276"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
-      sort-features="false" accessors="true" visibility="true">      
-      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
-      <operations public="true" package="true" protected="true" private="true" static="true"/>    
-    </display>  
-  </class>  
-  <class id="7" language="java" name="modelo.Libreria" project="Biblioteca" file="/Biblioteca/src/modelo/Libreria.java" 
+  <class id="6" language="java" name="control.Logica" project="Biblioteca" file="/Biblioteca/src/control/Logica.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="153" width="171" x="1007" y="411"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -65,16 +56,16 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <enumeration id="8" language="java" name="modelo.Tematica" project="Biblioteca" 
+  <enumeration id="7" language="java" name="modelo.Tematica" project="Biblioteca" 
     file="/Biblioteca/src/modelo/Tematica.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="91" width="122" x="1240" y="635"/>    
+    <position height="91" width="122" x="1248" y="673"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </enumeration>  
-  <class id="9" language="java" name="vista.PanelInfo" project="Biblioteca" file="/Biblioteca/src/vista/PanelInfo.java" 
+  <class id="8" language="java" name="vista.PanelInfo" project="Biblioteca" file="/Biblioteca/src/vista/PanelInfo.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="144" width="112" x="67" y="513"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -83,7 +74,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="10" language="java" name="listener.BtnSalir" project="Biblioteca" 
+  <class id="9" language="java" name="listener.BtnSalir" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnSalir.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="110" x="587" y="70"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -92,7 +83,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="11" language="java" name="listener.BtnModificar" project="Biblioteca" 
+  <class id="10" language="java" name="listener.BtnModificar" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnModificar.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="111" x="596" y="345"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -101,7 +92,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="12" language="java" name="listener.BtnNuevoLibro" project="Biblioteca" 
+  <class id="11" language="java" name="listener.BtnNuevoLibro" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnNuevoLibro.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="117" width="117" x="585" y="205"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -110,7 +101,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="13" language="java" name="listener.BtnEliminarLibro" project="Biblioteca" 
+  <class id="12" language="java" name="listener.BtnEliminarLibro" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnEliminarLibro.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="125" x="592" y="458"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -119,7 +110,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="14" language="java" name="listener.BtnBaja" project="Biblioteca" 
+  <class id="13" language="java" name="listener.BtnBaja" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnBaja.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="114" x="378" y="526"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -128,7 +119,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="15" language="java" name="listener.BtnAdd" project="Biblioteca" file="/Biblioteca/src/listener/BtnAdd.java" 
+  <class id="14" language="java" name="listener.BtnAdd" project="Biblioteca" file="/Biblioteca/src/listener/BtnAdd.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="99" width="145" x="363" y="682"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -137,7 +128,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="16" language="java" name="listener.BtnAddBaja" project="Biblioteca" 
+  <class id="15" language="java" name="listener.BtnAddBaja" project="Biblioteca" 
     file="/Biblioteca/src/listener/BtnAddBaja.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="145" width="123" x="597" y="580"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -146,7 +137,7 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="17" language="java" name="control.Main" project="Biblioteca" file="/Biblioteca/src/control/Main.java" 
+  <class id="16" language="java" name="control.Main" project="Biblioteca" file="/Biblioteca/src/control/Main.java" 
     binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="252" y="155"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
@@ -155,124 +146,125 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <dependency id="18">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="10"/>  
-  </dependency>  
-  <association id="19">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="20" name="control">        
+  <class id="17" language="java" name="modelo.Datos" project="Biblioteca" file="/Biblioteca/src/modelo/Datos.java" 
+    binary="false" corner="BOTTOM_RIGHT">    
+    <position height="-1" width="-1" x="1364" y="222"/>    
+    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+      sort-features="false" accessors="true" visibility="true">      
+      <attributes public="true" package="true" protected="true" private="true" static="true"/>      
+      <operations public="true" package="true" protected="true" private="true" static="true"/>    
+    </display>  
+  </class>  
+  <association id="18">    
+    <end type="SOURCE" refId="12" navigable="false">      
+      <attribute id="19" name="control">        
+        <position height="0" width="0" x="-204" y="-196"/>      
+      </attribute>      
+      <multiplicity id="20" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-204" y="-196"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="21">    
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="22" name="control">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="21" minimum="0" maximum="1">        
+      <multiplicity id="23" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="22">    
-    <end type="SOURCE" refId="6" navigable="false">      
-      <attribute id="23" name="libros">        
-        <position height="0" width="0" x="33" y="231"/>      
+  <association id="24">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="25" name="panelInfo">        
+        <position height="0" width="0" x="-280" y="-102"/>      
       </attribute>      
-      <multiplicity id="24" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="33" y="231"/>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-280" y="-102"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
+    <end type="TARGET" refId="8" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="25">    
+  <association id="27">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="26" name="paraUI">        
+      <attribute id="28" name="paraUI">        
         <position height="0" width="0" x="52" y="-270"/>      
       </attribute>      
-      <multiplicity id="27" minimum="0" maximum="1">        
+      <multiplicity id="29" minimum="0" maximum="1">        
         <position height="0" width="0" x="52" y="-270"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="28">    
-    <end type="SOURCE" refId="15"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="29">    
-    <end type="SOURCE" refId="12" navigable="false">      
-      <attribute id="30" name="control">        
+  <association id="30">    
+    <end type="SOURCE" refId="4" navigable="false">      
+      <attribute id="31" name="tema">        
+        <position height="0" width="0" x="195" y="205"/>      
+      </attribute>      
+      <multiplicity id="32" minimum="0" maximum="1">        
+        <position height="0" width="0" x="195" y="205"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="7" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="33">    
+    <end type="SOURCE" refId="6" navigable="false">      
+      <attribute id="34" name="datos"/>      
+      <multiplicity id="35" minimum="0" maximum="1"/>    
+    </end>    
+    <end type="TARGET" refId="17" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="36">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="2"/>  
+  </dependency>  
+  <association id="37">    
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="38" name="control">        
         <position height="0" width="0" x="-204" y="-196"/>      
       </attribute>      
-      <multiplicity id="31" minimum="0" maximum="1">        
+      <multiplicity id="39" minimum="0" maximum="1">        
         <position height="0" width="0" x="-204" y="-196"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <generalization id="32">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="16"/>  
-  </generalization>  
-  <association id="33">    
+  <association id="40">    
     <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="34" name="validador">        
+      <attribute id="41" name="validador">        
         <position height="0" width="0" x="-227" y="-618"/>      
       </attribute>      
-      <multiplicity id="35" minimum="0" maximum="1">        
+      <multiplicity id="42" minimum="0" maximum="1">        
         <position height="0" width="0" x="-227" y="-618"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="5" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="36">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="37" name="control">        
-        <position height="0" width="0" x="-204" y="-196"/>      
-      </attribute>      
-      <multiplicity id="38" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-204" y="-196"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="39">    
-    <end type="SOURCE" refId="4" navigable="false">      
-      <attribute id="40" name="tema">        
-        <position height="0" width="0" x="187" y="167"/>      
-      </attribute>      
-      <multiplicity id="41" minimum="0" maximum="1">        
-        <position height="0" width="0" x="187" y="167"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="42">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="43" name="panelInfo">        
-        <position height="0" width="0" x="-280" y="-102"/>      
-      </attribute>      
-      <multiplicity id="44" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-280" y="-102"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
+  <generalization id="43">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <dependency id="44">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="9"/>  
+  </dependency>  
   <association id="45">    
-    <end type="SOURCE" refId="13" navigable="false">      
-      <attribute id="46" name="paraUI">        
-        <position height="0" width="0" x="52" y="-270"/>      
-      </attribute>      
-      <multiplicity id="47" minimum="0" maximum="1">        
-        <position height="0" width="0" x="52" y="-270"/>      
-      </multiplicity>    
+    <end type="SOURCE" refId="17" navigable="false">      
+      <attribute id="46" name="libros"/>      
+      <multiplicity id="47" minimum="0" maximum="2147483647"/>    
     </end>    
-    <end type="TARGET" refId="2" navigable="true"/>    
+    <end type="TARGET" refId="4" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <generalization id="48">    
@@ -280,27 +272,27 @@
     <end type="TARGET" refId="1"/>  
   </generalization>  
   <association id="49">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="50" name="libreria">        
-        <position height="0" width="0" x="34" y="186"/>      
+    <end type="SOURCE" refId="15" navigable="false">      
+      <attribute id="50" name="paraUI">        
+        <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
       <multiplicity id="51" minimum="0" maximum="1">        
-        <position height="0" width="0" x="34" y="186"/>      
+        <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="7" navigable="true"/>    
+    <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="52">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="53" name="control">        
-        <position height="0" width="0" x="-204" y="-196"/>      
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="53" name="libreria">        
+        <position height="0" width="0" x="34" y="186"/>      
       </attribute>      
       <multiplicity id="54" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-204" y="-196"/>      
+        <position height="0" width="0" x="34" y="186"/>      
       </multiplicity>    
     </end>    
-    <end type="TARGET" refId="3" navigable="true"/>    
+    <end type="TARGET" refId="6" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="55">    
@@ -316,33 +308,33 @@
     <display labels="true" multiplicity="true"/>  
   </association>  
   <association id="58">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="59" name="libros">        
-        <position height="0" width="0" x="-29" y="176"/>      
+    <end type="SOURCE" refId="10" navigable="false">      
+      <attribute id="59" name="paraUI">        
+        <position height="0" width="0" x="52" y="-270"/>      
       </attribute>      
-      <multiplicity id="60" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="-29" y="176"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="61">    
-    <end type="SOURCE" refId="16" navigable="false">      
-      <attribute id="62" name="paraUI">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="63" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
+      <multiplicity id="60" minimum="0" maximum="1">        
+        <position height="0" width="0" x="52" y="-270"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="2" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <dependency id="64">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="2"/>  
-  </dependency>  
+  <generalization id="61">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="15"/>  
+  </generalization>  
+  <association id="62">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="63" name="control">        
+        <position height="0" width="0" x="-204" y="-196"/>      
+      </attribute>      
+      <multiplicity id="64" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-204" y="-196"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="3" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
     sort-features="false" accessors="true" visibility="true">    
     <attributes public="true" package="true" protected="true" private="true" static="true"/>    

@@ -1,8 +1,9 @@
 package modelo;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
-public class Libro {
+public class Libro implements Serializable {
 
 	private final String TITULO;
 	private final String AUTOR;

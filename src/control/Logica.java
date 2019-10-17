@@ -1,4 +1,4 @@
-package modelo;
+package control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -6,34 +6,43 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class Libreria {
+import modelo.Datos;
+import modelo.Libro;
+import modelo.Referencia;
+import modelo.Tematica;
 
-	private ArrayList<Libro> libros = new ArrayList<Libro>();
+public class Logica {
 
-	public Libreria() {
+	private Datos datos;
+
+	public Logica() {
 		super();
-		this.libros.addAll(new AlmacenLibros().getLibros());
+		this.datos = new Datos();
 	}
 
 	private void quitarLibrosACero() {
-		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();
 			if (libro.getCantidad() <= 0)
 				iterator.remove();
 		}
+		guardarCambios();
 	}
 
 	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
 		Libro libro = getLibroISBN(ISBN);
 		if (libro != null) {
 			libro.modificarLibro(map);
+			guardarCambios();
 		}
 	}
 
 	public void aumentarNumLibro(String ISBN, int cantidad) {
 		Libro libro = getLibroISBN(ISBN);
-		if (libro != null)
+		if (libro != null) {
 			libro.aumentarCantidad(cantidad);
+			guardarCambios();
+		}
 	}
 
 	public void reducirNumLibro(String ISBN, int cantidad) {
@@ -49,7 +58,7 @@ public class Libreria {
 	}
 
 	public boolean validarIsbn(String ISBN) {
-		for (Libro libro : this.libros) {
+		for (Libro libro : this.datos.getLibros()) {
 			if (libro.getISBN().compareTo(ISBN) == 0) {
 				JOptionPane.showMessageDialog(null, "El ISBN ya existe.", "error de datos ",
 						JOptionPane.WARNING_MESSAGE);
@@ -60,26 +69,27 @@ public class Libreria {
 	}
 
 	public void eliminarLibro(String ISBN) {
-		for (Libro libro : libros) {
-
-		}
-		for (Iterator iterator = libros.iterator(); iterator.hasNext();) {
+		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();
 			if (libro.getISBN() == ISBN)
 				iterator.remove();
 		}
+		guardarCambios();
 	}
 
 	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
-		return this.libros.add(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
-				map.get(Referencia.ISBN), map.get(Referencia.PAGINAS), tematica, map.get(Referencia.PRECIO),
-				map.get(Referencia.FORMATO), map.get(Referencia.ESTADO)));
+		if (this.datos.getLibros()
+				.add(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR), map.get(Referencia.ISBN),
+						map.get(Referencia.PAGINAS), tematica, map.get(Referencia.PRECIO), map.get(Referencia.FORMATO),
+						map.get(Referencia.ESTADO))))
+			return guardarCambios();
+		return false;
 	}
 
 	public String[][] obtenerDatosLibros() {
 		int index = 0;
-		String[][] datos = new String[this.libros.size()][7];
-		for (Libro libro : libros) {
+		String[][] datos = new String[this.datos.getLibros().size()][7];
+		for (Libro libro : this.datos.getLibros()) {
 			datos[index][0] = libro.getTITULO();
 			datos[index][1] = libro.getAUTOR();
 			datos[index][2] = libro.getTema().toString();
@@ -93,15 +103,19 @@ public class Libreria {
 	}
 
 	private Libro getLibroISBN(String isbn) {
-		for (Libro libro : this.libros) {
+		for (Libro libro : this.datos.getLibros()) {
 			if (libro.getISBN().compareTo(isbn) == 0)
 				return libro;
 		}
 		return null;
 	}
 
+	private boolean guardarCambios() {
+		return this.datos.gerGrabarLibros();
+	}
+
 	public ArrayList<Libro> getLibros() {
-		return libros;
+		return this.datos.getLibros();
 	}
 
 }

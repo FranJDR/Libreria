@@ -2,7 +2,6 @@ package control;
 
 import java.util.HashMap;
 
-import modelo.Libreria;
 import modelo.Referencia;
 import modelo.Tematica;
 import modelo.Validador;
@@ -10,11 +9,11 @@ import modelo.Validador;
 public class Control {
 
 	private Validador validador = new Validador();
-	private Libreria libreria;
+	private Logica libreria;
 
 	public Control() {
 		super();
-		this.libreria = new Libreria();
+		this.libreria = new Logica();
 	}
 
 	public void eliminarLibro(String ISBN) {

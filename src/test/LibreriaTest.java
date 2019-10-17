@@ -6,13 +6,13 @@ import java.util.HashMap;
 
 import org.junit.jupiter.api.Test;
 
-import modelo.Libreria;
+import control.Logica;
 import modelo.Referencia;
 import modelo.Tematica;
 
 class LibreriaTest {
 
-	Libreria libreria = new Libreria();
+	Logica libreria = new Logica();
 
 	@Test
 	void testModificarLibro() {
