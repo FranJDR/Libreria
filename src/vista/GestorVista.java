@@ -61,6 +61,14 @@ public class GestorVista {
 
 	}
 
+	public void limpiarVista() {
+		this.formato.clearSelection();
+		this.estado.clearSelection();
+		for (JTextField field : this.fields.values()) {
+			field.setText(null);
+		}
+	}
+
 	public JRadioButton getRadioBtn(Referencia referencia) {
 		return this.jradbtn.get(referencia);
 	}
@@ -144,7 +152,7 @@ public class GestorVista {
 	private JTextField insertarJText() {
 		JTextField field = new JTextField();
 		field.setText(null);
-		field.setForeground(new Color(254, 243, 196));
+		field.setForeground(new Color(106, 93, 77));
 		field.setFont(new Font("Monospaced", Font.BOLD, 25));
 		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return field;

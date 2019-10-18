@@ -33,7 +33,7 @@ public class BtnNuevoLibro implements ActionListener {
 			if (validarSinCeros(map.get(Referencia.PRECIO)) && validarSinCeros(map.get(Referencia.PAGINAS))) {
 				if (control.insertarLibro(this.paraUI.obtenerTematica(), map)) {
 					this.paraUI.rellenarTable(this.control.obtenerDatosLibros(), this.paraUI.getTable());
-//					this.paraUI.vaciarCampos();
+					this.paraUI.limpiarVista();
 				}
 			} else
 				JOptionPane.showMessageDialog(null, "Paginas y precio debe ser mayor de 0.", "error de datos ",

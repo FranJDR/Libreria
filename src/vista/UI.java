@@ -216,6 +216,10 @@ public class UI extends JFrame {
 		repaint();
 	}
 
+	public void limpiarVista() {
+		this.gestor.limpiarVista();
+	}
+
 	public boolean isSelectFormato() {
 		return this.gestor.isSelectFormato();
 	}
