@@ -2,10 +2,12 @@ package vista;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Font;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -31,17 +33,19 @@ public class PanelInfo extends JDialog {
 	private JPanel panelBtn = new JPanel();
 	private JPanel panelCampos = new JPanel();
 
-	public PanelInfo(String[] datos, JButton btn) {
+	public PanelInfo(String[] datos, JButton btn, JFrame frame) {
+		super(frame);
 		this.btnModificar = btn;
 		this.datos = datos;
-		crearCampos();
-		personalizarCampos();
 		setVisible(true);
 		setBackground(new Color(200, 200, 200));
 		setBounds(100, 100, 450, 350);
-		setLocationRelativeTo(null);
+
 		getContentPane().setLayout(new BorderLayout());
-		setResizable(false);
+		setMinimumSize(new Dimension(400, 400));
+		setSize(new Dimension(500, 500));
+		setLocationRelativeTo(null);
+		setModal(true);
 		getContentPane().add(panelCampos, BorderLayout.CENTER);
 		panelCampos.setLayout(new GridLayout(0, 2, 0, 0));
 		getContentPane().add(panelBtn, BorderLayout.SOUTH);
@@ -56,7 +60,8 @@ public class PanelInfo extends JDialog {
 		this.btnModificar.setFont(new Font("Bookman Old Style", Font.BOLD, 20));
 		this.btnModificar.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		this.panelBtn.add(this.btnModificar);
-
+		crearCampos();
+		personalizarCampos();
 	}
 
 	public HashMap<Referencia, String> getHashMap() {

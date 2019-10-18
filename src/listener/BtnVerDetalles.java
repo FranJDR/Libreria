@@ -25,7 +25,7 @@ public class BtnVerDetalles implements ActionListener {
 			String[] datos = new String[6];
 			for (int i = 0; i < datos.length; i++)
 				datos[i] = this.paraUI.getDatos()[indice][i];
-			this.paraUI.setPanelInfo(new PanelInfo(datos, this.paraUI.getBtn(Referencia.BTN_MODIFICAR)));
+			this.paraUI.setPanelInfo(new PanelInfo(datos, this.paraUI.getBtn(Referencia.BTN_MODIFICAR), this.paraUI));
 		} else
 			JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",
 					JOptionPane.WARNING_MESSAGE);

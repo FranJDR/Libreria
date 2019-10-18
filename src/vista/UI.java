@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
-import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
 import javax.swing.border.MatteBorder;
@@ -21,9 +20,6 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import javax.swing.JButton;
