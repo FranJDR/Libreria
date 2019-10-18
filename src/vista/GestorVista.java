@@ -128,7 +128,7 @@ public class GestorVista {
 		JRadioButton button = new JRadioButton();
 		button.setText(titulo);
 		button.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 15));
-		button.setBackground(new Color(208, 222, 237));
+		button.setBackground(new Color(238, 236, 226));
 		return button;
 	}
 
@@ -136,7 +136,7 @@ public class GestorVista {
 		JButton btn = new JButton();
 		btn.setText(textBtn);
 		btn.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
-		btn.setBackground(new Color(208, 222, 237));
+		btn.setBackground(new Color(238, 236, 226));
 		btn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return btn;
 	}
@@ -144,8 +144,8 @@ public class GestorVista {
 	private JTextField insertarJText() {
 		JTextField field = new JTextField();
 		field.setText(null);
-		field.setForeground(Color.BLUE);
-		field.setFont(new Font("Monospaced", Font.BOLD, 20));
+		field.setForeground(new Color(254, 243, 196));
+		field.setFont(new Font("Monospaced", Font.BOLD, 25));
 		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return field;
 	}
