@@ -17,7 +17,6 @@ import java.awt.Color;
 import java.awt.Component;
 
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
@@ -31,48 +30,25 @@ import javax.swing.JButton;
 import java.awt.Dimension;
 
 import javax.swing.JTable;
-import javax.swing.JRadioButton;
 import javax.swing.Box;
-import javax.swing.ButtonGroup;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
 
 public class UI extends JFrame {
 
-	protected ArrayList<JLabel> listLabel = new ArrayList<JLabel>();
-	protected ArrayList<JTextField> listFields = new ArrayList<JTextField>();
-
-	private final String[] campos = { "  Titulo :       ", "  Autor :       ", "  Tematica :  ", "  Paginas :    ",
-			"  ISBN :        ", "  Precio :       " };
+	private GestorVista gestor = new GestorVista();
 
 	private JPanel contentPane = new JPanel();
 
 	protected JComboBox<Tematica> comboTematica = new JComboBox<Tematica>();
 
-	private Color colorFondo = new Color(200, 200, 200); // 232, 225, 146
+	private Color colorFondo = new Color(121, 190, 190); // 232, 225, 146
 	private Color colorBtn = new Color(208, 222, 237);
-
-	private JButton btnNuevo = new JButton("Nuevo");
-	private JButton btnAdd = new JButton("Alta ISBN / Alta");
-	private JButton btnBaja = new JButton("Baja ISBN / Baja");
-	private JButton btnVerDetalles = new JButton("Ver Detalles");
-	private JButton btnModificar = new JButton("Modificar");
-	private JButton btnEliminar = new JButton("Eliminar");
-	private JButton btnSalir = new JButton("Salir");
 
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
 	private JPanel panel_1 = new JPanel();
-
-	private JRadioButton rdbtnNovedad = new JRadioButton("Novedad");
-	private JRadioButton rdbtnReedicion = new JRadioButton("Reedici\u00F3n");
-	private JRadioButton rdbtnCartone = new JRadioButton("Carton\u00E9");
-	private JRadioButton rdbtnRustica = new JRadioButton("Rustica");
-	private JRadioButton rdbtnDigital = new JRadioButton("Digital");
-
-	private ButtonGroup groupFormato = new ButtonGroup();
-	private ButtonGroup groupEstado = new ButtonGroup();
 
 	private final JPanel panel_2 = new JPanel();
 
@@ -84,15 +60,7 @@ public class UI extends JFrame {
 	protected PanelInfo panelInfo;
 
 	public UI() {
-
-		this.groupFormato.add(this.rdbtnCartone);
-		this.groupFormato.add(this.rdbtnRustica);
-		this.groupFormato.add(this.rdbtnDigital);
-
-		this.groupEstado.add(this.rdbtnNovedad);
-		this.groupEstado.add(this.rdbtnReedicion);
-
-		ready();
+		this.gestor = new GestorVista();
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -103,7 +71,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
@@ -172,32 +140,19 @@ public class UI extends JFrame {
 		panel_1.setLayout(gl_panel_1);
 
 		verticalBox_1.add(lblEstado);
-		verticalBox_1.add(this.rdbtnNovedad);
-		verticalBox_1.add(this.rdbtnReedicion);
+		verticalBox_1.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_NOVEDAD));
+		verticalBox_1.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_REEDICION));
 		verticalBox.add(lblNewLabel_1);
-		verticalBox.add(this.rdbtnCartone);
-		verticalBox.add(this.rdbtnRustica);
-		verticalBox.add(this.rdbtnDigital);
+		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_CARTONE));
+		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_RUSTICA));
+		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_DIGITAL));
 
-		panelBtn.add(this.btnNuevo);
-		panelBtn.add(this.btnAdd);
-		panelBtn.add(this.btnBaja);
-		panelBtn.add(this.btnVerDetalles);
-		panelBtn.add(this.btnEliminar);
-		panelBtn.add(this.btnSalir);
-
-		personalizarBtn(this.btnNuevo);
-		personalizarBtn(this.btnEliminar);
-		personalizarBtn(this.btnSalir);
-		personalizarBtn(this.btnAdd);
-		personalizarBtn(this.btnVerDetalles);
-		personalizarBtn(this.btnBaja);
-
-		personalizarRadioBtn(this.rdbtnNovedad);
-		personalizarRadioBtn(this.rdbtnReedicion);
-		personalizarRadioBtn(this.rdbtnCartone);
-		personalizarRadioBtn(this.rdbtnRustica);
-		personalizarRadioBtn(this.rdbtnDigital);
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_ALTA));
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_BAJA));
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_VERDETALLES));
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_ELIMINAR));
+		panelBtn.add(this.gestor.getBtn(Referencia.BTN_SALIR));
 
 		rellenarPanelDatos();
 
@@ -210,102 +165,24 @@ public class UI extends JFrame {
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 15));
 		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
 
-		soloLetras(this.listFields.get(1));
-		soloLetras(this.listFields.get(0));
-		soloNumeros(this.listFields.get(3));
-		soloNumeros(this.listFields.get(4));
-		soloNumeros(this.listFields.get(5));
-
-		this.listFields.get(4).addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				if (listFields.get(4).getText().length() == 13) {
-					e.consume();
-				}
-			}
-		});
-
 		revalidate();
 		repaint();
 	}
 
-	public void soloLetras(Component component) {
-		component.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-//				if ((e.getKeyChar() < 'a' || e.getKeyChar() > 'z') && (e.getKeyChar() < 'A' || e.getKeyChar() > 'Z')) {
-//					e.consume();
-//				}
-				if (!Character.isLetter(e.getKeyChar()) && !(e.getKeyChar() == KeyEvent.VK_SPACE)
-						&& !(e.getKeyChar() == KeyEvent.VK_BACK_SPACE)) {
-					e.consume();
-				}
-			}
-		});
+	public boolean isSelectFormato() {
+		return this.gestor.isSelectFormato();
 	}
 
-	public void soloNumeros(Component component) {
-		component.addKeyListener(new KeyAdapter() {
-			public void keyTyped(KeyEvent e) {
-				if ((e.getKeyChar() < '0' || e.getKeyChar() > '9')) {
-					e.consume();
-				}
-			}
-		});
-	}
-
-	public HashMap<Referencia, String> obtenerMap() {
-		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
-		map.put(Referencia.TITULO, this.listFields.get(0).getText());
-		map.put(Referencia.AUTOR, this.listFields.get(1).getText());
-		map.put(Referencia.PAGINAS, this.listFields.get(3).getText());
-		map.put(Referencia.ISBN, this.listFields.get(4).getText());
-		map.put(Referencia.PRECIO, this.listFields.get(5).getText());
-		map.put(Referencia.FORMATO, obtenerFormato());
-		map.put(Referencia.ESTADO, obtenerEstado());
-		return map;
+	public boolean isSelectEstado() {
+		return this.gestor.isSelectEstado();
 	}
 
 	public HashMap<Referencia, String> getMapPanelInfo() {
 		return this.panelInfo.getHashMap();
 	}
 
-	private String obtenerFormato() {
-		if (this.rdbtnCartone.isSelected())
-			return this.rdbtnCartone.getText();
-		if (this.rdbtnRustica.isSelected())
-			return this.rdbtnRustica.getText();
-		if (this.rdbtnDigital.isSelected())
-			return this.rdbtnDigital.getText();
-		return null;
-	}
-
-	private String obtenerEstado() {
-		if (this.rdbtnNovedad.isSelected())
-			return this.rdbtnNovedad.getText();
-		if (this.rdbtnReedicion.isSelected())
-			return this.rdbtnReedicion.getText();
-		return null;
-	}
-
-	public boolean isSelectFormato() {
-		if (this.rdbtnCartone.isSelected() || this.rdbtnRustica.isSelected() || this.rdbtnDigital.isSelected())
-			return true;
-		WarningMessage("Debes marcar formato.");
-		return false;
-	}
-
-	public boolean isSelectEstado() {
-		if (this.rdbtnNovedad.isSelected() || this.rdbtnReedicion.isSelected())
-			return true;
-		WarningMessage("Debes marcar estado.");
-		return false;
-	}
-
-	public void vaciarCampos() {
-		this.groupFormato.clearSelection();
-		this.groupEstado.clearSelection();
-		for (JTextField field : this.listFields) {
-			field.setText(null);
-		}
+	public HashMap<Referencia, String> getDatosField() {
+		return this.gestor.getDatosField();
 	}
 
 	public Tematica obtenerTematica() {
@@ -345,57 +222,33 @@ public class UI extends JFrame {
 		revalidate();
 	}
 
-	public void limpiarVista() {
-		for (JTextField field : this.listFields) {
-			field.setText("");
-		}
-	}
-
-	private void ready() {
-		for (int i = 0; i < this.campos.length; i++) {
-			this.listFields.add(insertarJText());
-			this.listLabel.add(insertarLabel(i));
-		}
-	}
-
-	private void WarningMessage(String mensaje) {
-		JOptionPane.showMessageDialog(null, mensaje, "error de datos ", JOptionPane.WARNING_MESSAGE);
-	}
-
 	private void rellenarPanelDatos() {
 		this.panelDatos.add(new JLabel());
 		this.panelDatos.add(insertarTitulo());
-		Box boxAux = Box.createHorizontalBox();
-		for (int i = 0; i < this.campos.length; i++) {
-			boxAux = Box.createHorizontalBox();
-			if (i == 2) {
-				boxAux.add(this.listLabel.get(i));
-				boxAux.add(insertarComboTematica());
-			} else {
-				boxAux.add(this.listLabel.get(i));
-				boxAux.add(this.listFields.get(i));
-			}
-			this.panelDatos.add(boxAux);
-		}
+		this.panelDatos.add(getBoxHorizontal(newLabel("Titulo : ", 14), this.gestor.getField(Referencia.FIELD_TITULO)));
+		this.panelDatos.add(getBoxHorizontal(newLabel("Autor : ", 14), this.gestor.getField(Referencia.FIELD_AUTOR)));
+		this.panelDatos.add(getBoxHorizontal(newLabel("Tematica : ", 8), insertarComboTematica()));
+		this.panelDatos.add(getBoxHorizontal(newLabel("ISBN : ", 14), this.gestor.getField(Referencia.FIELD_ISBN)));
+		this.panelDatos
+				.add(getBoxHorizontal(newLabel("Num.Paginas : ", 1), this.gestor.getField(Referencia.FIELD_PAGINAS)));
+		this.panelDatos.add(getBoxHorizontal(newLabel("Precio : ", 14), this.gestor.getField(Referencia.FIELD_PRECIO)));
 		this.panelDatos.add(new JLabel());
 		revalidate();
 		repaint();
 	}
 
-	private void personalizarBtn(JButton button) {
-		button.setFont(new Font("Microsoft JhengHei", Font.BOLD, 16));
-		button.setBackground(this.colorBtn);
-		button.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
+	private Box getBoxHorizontal(Component componentUno, Component componentDos) {
+		Box boxAux = Box.createHorizontalBox();
+		boxAux.add(componentUno);
+		boxAux.add(componentDos);
+		return boxAux;
 	}
 
-	private void personalizarRadioBtn(JRadioButton radioBtn) {
-		radioBtn.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 15));
-		radioBtn.setBackground(this.colorBtn);
-	}
-
-	private JLabel insertarLabel(int i) {
-		JLabel jLabel = new JLabel();
-		jLabel.setText(this.campos[i]);
+	private JLabel newLabel(String titulo, int cantidad) {
+		for (int i = 0; i < cantidad; i++) {
+			titulo += " ";
+		}
+		JLabel jLabel = new JLabel(titulo);
 		jLabel.setForeground(Color.BLACK);
 		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, 20));
 		return jLabel;
@@ -414,22 +267,16 @@ public class UI extends JFrame {
 		return this.comboTematica;
 	}
 
-	private JTextField insertarJText() {
-		JTextField field = new JTextField();
-		field.setText(null);
-		field.setForeground(Color.BLUE);
-		field.setFont(new Font("Monospaced", Font.BOLD, 20));
-		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		return field;
-	}
-
 	private JLabel insertarTitulo() {
 		JLabel jLabel = new JLabel();
 		jLabel.setText(" DATOS :");
 		jLabel.setForeground(Color.BLACK);
 		jLabel.setFont(new Font("Book Antiqua", Font.ROMAN_BASELINE, 30));
-//		jLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return jLabel;
+	}
+
+	public JButton getBtn(Referencia referencia) {
+		return this.gestor.getBtn(referencia);
 	}
 
 	public JTable getTable() {
@@ -438,34 +285,6 @@ public class UI extends JFrame {
 
 	public String[][] getDatos() {
 		return datos;
-	}
-
-	public JButton getBtnNuevo() {
-		return btnNuevo;
-	}
-
-	public JButton getBtnEliminar() {
-		return btnEliminar;
-	}
-
-	public JButton getBtnSalir() {
-		return btnSalir;
-	}
-
-	public JButton getBtnAdd() {
-		return btnAdd;
-	}
-
-	public JButton getBtnVerDetalles() {
-		return btnVerDetalles;
-	}
-
-	public JButton getBtnModificar() {
-		return btnModificar;
-	}
-
-	public JButton getBtnBaja() {
-		return btnBaja;
 	}
 
 	public PanelInfo getPanelInfo() {

@@ -7,6 +7,7 @@ import listener.BtnModificar;
 import listener.BtnNuevoLibro;
 import listener.BtnSalir;
 import listener.BtnVerDetalles;
+import modelo.Referencia;
 import vista.UI;
 
 public class ParaUI extends UI {
@@ -17,14 +18,13 @@ public class ParaUI extends UI {
 
 		rellenarTable(control.obtenerDatosLibros(), getTable());
 
-		getBtnAdd().addActionListener(new BtnAdd(control, this));
-		getBtnBaja().addActionListener(new BtnBaja(control, this));
-		getBtnEliminar().addActionListener(new BtnEliminarLibro(control, this));
-		getBtnModificar().addActionListener(new BtnModificar(control, this));
-		getBtnNuevo().addActionListener(new BtnNuevoLibro(control, this));
-		getBtnSalir().addActionListener(new BtnSalir());
-		getBtnVerDetalles().addActionListener(new BtnVerDetalles(this));
-
+		getBtn(Referencia.BTN_NUEVO).addActionListener(new BtnNuevoLibro(control, this));
+		getBtn(Referencia.BTN_ALTA).addActionListener(new BtnAdd(control, this));
+		getBtn(Referencia.BTN_BAJA).addActionListener(new BtnBaja(control, this));
+		getBtn(Referencia.BTN_ELIMINAR).addActionListener(new BtnEliminarLibro(control, this));
+		getBtn(Referencia.BTN_MODIFICAR).addActionListener(new BtnModificar(control, this));
+		getBtn(Referencia.BTN_SALIR).addActionListener(new BtnSalir());
+		getBtn(Referencia.BTN_VERDETALLES).addActionListener(new BtnVerDetalles(this));
 	}
 
 }
