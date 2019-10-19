@@ -1,0 +1,31 @@
+package listener.menosCantidad;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import control.Control;
+import control.ParaUI;
+
+abstract class BtnMenosCantidad implements ActionListener {
+
+	protected Control control;
+	protected ParaUI paraUI;
+
+	protected String cantidad;
+	protected String isbn;
+
+	public BtnMenosCantidad(Control control, ParaUI paraUI) {
+		super();
+		this.control = control;
+		this.paraUI = paraUI;
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		this.control.reducirNumLibro(this.isbn, this.cantidad);
+		this.paraUI.rellenarTable(this.control.obtenerDatosLibros());
+		this.cantidad = null;
+		this.isbn = null;
+	}
+
+}

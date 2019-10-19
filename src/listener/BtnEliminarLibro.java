@@ -25,7 +25,7 @@ public class BtnEliminarLibro implements ActionListener {
 			int resp = JOptionPane.showConfirmDialog(null, "¿Está seguro que quieres eliminarlo?");
 			if (resp == 0) {
 				control.eliminarLibro(this.paraUI.getDatos()[this.paraUI.getTable().getSelectedRow()][4]);
-				this.paraUI.rellenarTable(control.obtenerDatosLibros(), this.paraUI.getTable());
+				this.paraUI.rellenarTable(control.obtenerDatosLibros());
 			}
 		} else
 			JOptionPane.showMessageDialog(null, "Selecciona un fila de la tabla.", "error de datos ",

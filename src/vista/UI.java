@@ -255,7 +255,7 @@ public class UI extends JFrame {
 		return this.gestor.getDatosField();
 	}
 
-	public void rellenarTable(String[][] datos, JTable table) {
+	public void rellenarTable(String[][] datos) {
 		String[] camposTable = { "ISBN", "TITULO", "TEMATICA", "CANTIDAD", "PRECIO" };
 		this.datos = datos;
 		String[][] aux = new String[this.datos.length][camposTable.length];
@@ -267,7 +267,7 @@ public class UI extends JFrame {
 			aux[i][4] = this.datos[i][5] + "$";
 		}
 		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
-		table.setModel(model);
+		this.table.setModel(model);
 		revalidate();
 	}
 

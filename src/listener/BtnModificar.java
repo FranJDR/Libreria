@@ -23,7 +23,7 @@ public class BtnModificar implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		HashMap<Referencia, String> map = this.paraUI.getMapPanelInfo();
 		this.control.modificarLibro(map.get(Referencia.ISBN), map);
-		this.paraUI.rellenarTable(control.obtenerDatosLibros(), this.paraUI.getTable());
+		this.paraUI.rellenarTable(control.obtenerDatosLibros());
 	}
 
 }
