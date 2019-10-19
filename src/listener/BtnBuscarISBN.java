@@ -8,6 +8,7 @@ import javax.swing.JOptionPane;
 
 import control.Control;
 import control.ParaUI;
+import modelo.Referencia;
 
 public class BtnBuscarISBN implements ActionListener {
 
@@ -22,8 +23,7 @@ public class BtnBuscarISBN implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		String isbn = JOptionPane.showInputDialog("Introduce ISBN.");
-		if (validarIsbn(isbn)) {
+		if (validarIsbn(this.paraUI.getTextField(Referencia.FIELD_BUSQUEDAISBN))) {
 
 		} else
 			WarningMessage("No se ha encotrando el ISBN");
@@ -32,7 +32,7 @@ public class BtnBuscarISBN implements ActionListener {
 	public boolean validarIsbn(String isbn) {
 		if (isbn == null)
 			return false;
-		return this.control.existeISBN(isbn);
+		return this.control.getListISBN().contains(isbn);
 	}
 
 	public void WarningMessage(String mensaje) {

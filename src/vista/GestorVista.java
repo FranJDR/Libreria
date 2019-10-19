@@ -53,8 +53,10 @@ public class GestorVista {
 		soloLetras(this.fields.get(Referencia.FIELD_AUTOR));
 		soloNumeros(this.fields.get(Referencia.FIELD_PRECIO));
 		soloNumeros(this.fields.get(Referencia.FIELD_PAGINAS));
+		soloNumeros(this.fields.get(Referencia.FIELD_BUSQUEDAISBN));
 		soloNumeros(this.fields.get(Referencia.FIELD_ISBN));
 		longitudMax(this.fields.get(Referencia.FIELD_ISBN), 13);
+		longitudMax(this.fields.get(Referencia.FIELD_BUSQUEDAISBN), 13);
 
 		this.button.put(Referencia.BTN_NUEVO, this.creador.dameJButton("Añadir nuevo libro"));
 		this.button.put(Referencia.BTN_ALTA, this.creador.dameJButton("Añadir"));
@@ -62,6 +64,7 @@ public class GestorVista {
 		this.button.put(Referencia.BTN_VERDETALLES, this.creador.dameJButton("Ver Detalles"));
 		this.button.put(Referencia.BTN_MODIFICAR, this.creador.dameJButton("Modificar"));
 		this.button.put(Referencia.BTN_ELIMINAR, this.creador.dameJButton("Eliminar"));
+		this.button.put(Referencia.BTN_BUSCAR, this.creador.dameJButton("Buscar"));
 
 		this.jradbtn.put(Referencia.RADIOBTN_DIGITAL, this.creador.dameJRadioButton("Digital"));
 		this.jradbtn.put(Referencia.RADIOBTN_REEDICION, this.creador.dameJRadioButton("Reedicion"));

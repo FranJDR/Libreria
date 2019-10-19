@@ -58,14 +58,18 @@ public class Logica {
 	}
 
 	public boolean validarIsbn(String ISBN) {
-		for (Libro libro : this.datos.getLibros()) {
-			if (libro.getISBN().compareTo(ISBN) == 0) {
-				JOptionPane.showMessageDialog(null, "El ISBN ya existe.", "error de datos ",
-						JOptionPane.WARNING_MESSAGE);
-				return false;
-			}
+		if (this.getListISBN().contains(ISBN)) {
+			JOptionPane.showMessageDialog(null, "El ISBN ya existe.", "error de datos ", JOptionPane.WARNING_MESSAGE);
+			return false;
 		}
 		return true;
+	}
+
+	public ArrayList<String> getListISBN() {
+		ArrayList<String> isbn = new ArrayList<String>();
+		for (Libro libro : this.datos.getLibros())
+			isbn.add(libro.getISBN());
+		return isbn;
 	}
 
 	public void eliminarLibro(String ISBN) {

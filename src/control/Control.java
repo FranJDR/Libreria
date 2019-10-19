@@ -1,5 +1,6 @@
 package control;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import modelo.Referencia;
@@ -43,6 +44,10 @@ public class Control {
 	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
 		if (this.validador.isNumber(ISBN))
 			this.logica.modificarLibro(ISBN, map);
+	}
+
+	public ArrayList<String> getListISBN() {
+		return this.logica.getListISBN();
 	}
 
 	public boolean existeISBN(String ISBN) {
