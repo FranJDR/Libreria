@@ -71,7 +71,7 @@ public class UI extends JFrame {
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblNewLabel = new JLabel("Librería");
+		JLabel lblNewLabel = new JLabel("Librerï¿½a");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setOpaque(true);
@@ -196,6 +196,7 @@ public class UI extends JFrame {
 		panel_2.add(scrollPane, BorderLayout.CENTER);
 
 		panel_1.setLayout(gl_panel_1);
+
 		// sd
 		panelBtnNuevo.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ALTA));
@@ -203,6 +204,7 @@ public class UI extends JFrame {
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_VERDETALLES));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ELIMINAR));
 		panelBtnTable.setLayout(new GridLayout(1, 0, 5, 0));
+
 
 		scrollPane.add(this.table);
 		scrollPane.setViewportView(this.table);
