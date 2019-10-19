@@ -197,7 +197,7 @@ public class UI extends JFrame {
 
 		panel_1.setLayout(gl_panel_1);
 
-		// sd
+		// sdasd
 		panelBtnNuevo.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ALTA));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_BAJA));
