@@ -65,14 +65,15 @@ public class UI extends JFrame {
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1000, 600);
+		setSize(1000, 600);
+		setMinimumSize(new Dimension(800, 800));
 		contentPane = new JPanel();
 		contentPane.setBackground(this.colorFondo);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
+//		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
@@ -94,8 +95,8 @@ public class UI extends JFrame {
 		panelDatos.setBackground(this.colorFondo);
 		panel.add(panelDatos);
 
-		JLabel lblRegistrarNuevoLibro = new JLabel("REGISTRAR NUEVO LIBRO :");
-		lblRegistrarNuevoLibro.setFont(new Font("Baskerville Old Face", Font.PLAIN, 27));
+		JLabel lblRegistrarNuevoLibro = new JLabel("REGISTRAR NUEVO LIBRO");
+		lblRegistrarNuevoLibro.setFont(new Font("Baskerville Old Face", Font.PLAIN, 25));
 		lblRegistrarNuevoLibro.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 
 		panelLabel = new JPanel();
@@ -107,7 +108,7 @@ public class UI extends JFrame {
 		verticalBox.setOpaque(true);
 
 		JLabel lblNewLabel_1 = new JLabel("FORMATO");
-		lblNewLabel_1.setFont(new Font("Bookman Old Style", Font.BOLD, 20));
+		lblNewLabel_1.setFont(new Font("Bookman Old Style", Font.BOLD, 25));
 		lblNewLabel_1.setBackground(this.colorBtn);
 		lblNewLabel_1.setOpaque(true);
 		verticalBox.add(lblNewLabel_1);
@@ -121,7 +122,7 @@ public class UI extends JFrame {
 		verticalBox_1.setOpaque(true);
 
 		JLabel lblEstado = new JLabel("ESTADO");
-		lblEstado.setFont(new Font("Bookman Old Style", Font.BOLD, 20));
+		lblEstado.setFont(new Font("Bookman Old Style", Font.BOLD, 25));
 		lblEstado.setBackground(this.colorBtn);
 		lblEstado.setOpaque(true);
 
@@ -132,32 +133,39 @@ public class UI extends JFrame {
 		panelField = new JPanel();
 		panelField.setBackground(this.colorFondo);
 		GroupLayout gl_panelDatos = new GroupLayout(panelDatos);
-		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+		gl_panelDatos.setHorizontalGroup(
+			gl_panelDatos.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelDatos.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelDatos.createSequentialGroup()
-								.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+							.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+							.addGap(18)
+							.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
 						.addGroup(gl_panelDatos.createSequentialGroup()
-								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addGap(20)
-								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-						.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 365,
-								GroupLayout.PREFERRED_SIZE))
-				.addContainerGap()));
-		gl_panelDatos.setVerticalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
-				.createSequentialGroup().addGap(15)
-				.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-				.addGap(18)
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE)
-						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 254, Short.MAX_VALUE))
-				.addGap(18)
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE))
-				.addContainerGap()));
-		panelField.setLayout(new GridLayout(0, 1, 0, 25));
-		panelLabel.setLayout(new GridLayout(0, 1, 0, 25));
+							.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+							.addGap(20)
+							.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+						.addComponent(lblRegistrarNuevoLibro))
+					.addContainerGap())
+		);
+		gl_panelDatos.setVerticalGroup(
+			gl_panelDatos.createParallelGroup(Alignment.LEADING)
+				.addGroup(gl_panelDatos.createSequentialGroup()
+					.addGap(15)
+					.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+					.addGap(18)
+					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+					.addGap(18)
+					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
+					.addContainerGap())
+		);
+		panelField.setLayout(new GridLayout(0, 1, 0, 30));
+		panelLabel.setLayout(new GridLayout(0, 1, 0, 30));
 		panelDatos.setLayout(gl_panelDatos);
 
 		panel_1.setBackground(this.colorFondo);
@@ -296,7 +304,7 @@ public class UI extends JFrame {
 		}
 		JLabel jLabel = new JLabel(titulo);
 		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, 25));
+		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, 20));
 		return jLabel;
 	}
 

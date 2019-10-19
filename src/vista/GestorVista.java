@@ -135,7 +135,7 @@ public class GestorVista {
 	private JRadioButton insertarRadioBtn(String titulo) {
 		JRadioButton button = new JRadioButton();
 		button.setText(titulo);
-		button.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 15));
+		button.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 20));
 		button.setBackground(new Color(238, 236, 226));
 		return button;
 	}
@@ -153,7 +153,7 @@ public class GestorVista {
 		JTextField field = new JTextField();
 		field.setText(null);
 		field.setForeground(new Color(106, 93, 77));
-		field.setFont(new Font("Monospaced", Font.BOLD, 25));
+		field.setFont(new Font("Monospaced", Font.BOLD, 20));
 		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		return field;
 	}
