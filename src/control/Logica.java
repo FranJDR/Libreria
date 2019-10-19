@@ -92,7 +92,7 @@ public class Logica {
 		for (Libro libro : this.datos.getLibros()) {
 			datos[index][0] = libro.getTITULO();
 			datos[index][1] = libro.getAUTOR();
-			datos[index][2] = libro.getTema().toString();
+			datos[index][2] = libro.getTema();
 			datos[index][3] = libro.getPAGINAS();
 			datos[index][4] = libro.getISBN();
 			datos[index][5] = libro.getPrecio();

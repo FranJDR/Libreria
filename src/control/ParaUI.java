@@ -5,7 +5,6 @@ import listener.BtnBaja;
 import listener.BtnEliminarLibro;
 import listener.BtnModificar;
 import listener.BtnNuevoLibro;
-import listener.BtnSalir;
 import listener.BtnVerDetalles;
 import modelo.Referencia;
 import vista.UI;
@@ -23,7 +22,6 @@ public class ParaUI extends UI {
 		getBtn(Referencia.BTN_BAJA).addActionListener(new BtnBaja(control, this));
 		getBtn(Referencia.BTN_ELIMINAR).addActionListener(new BtnEliminarLibro(control, this));
 		getBtn(Referencia.BTN_MODIFICAR).addActionListener(new BtnModificar(control, this));
-		getBtn(Referencia.BTN_SALIR).addActionListener(new BtnSalir());
 		getBtn(Referencia.BTN_VERDETALLES).addActionListener(new BtnVerDetalles(this));
 	}
 
