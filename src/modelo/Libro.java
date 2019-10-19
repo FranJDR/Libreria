@@ -9,14 +9,14 @@ public class Libro implements Serializable {
 	private final String AUTOR;
 	private final String ISBN;
 	private final String PAGINAS;
-	private final Tematica tema;
+	private final String tema;
 	private String precio;
 	private int cantidad;
 
 	private String formato;
 	private String estado;
 
-	public Libro(String titulo, String autor, String isbn, String paginas, Tematica tema, String precio, String formato,
+	public Libro(String titulo, String autor, String isbn, String paginas, String tema, String precio, String formato,
 			String estado) {
 		super();
 		this.TITULO = titulo;
@@ -58,7 +58,7 @@ public class Libro implements Serializable {
 		return PAGINAS;
 	}
 
-	public Tematica getTema() {
+	public String getTema() {
 		return tema;
 	}
 

@@ -1,37 +1,53 @@
 package vista;
 
-import java.awt.Color;
 import java.awt.Component;
-import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.HashMap;
 
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
-import javax.swing.border.MatteBorder;
 
 import modelo.Referencia;
+import modelo.Tematica;
 
 public class GestorVista {
 
-	private HashMap<Referencia, JTextField> fields = new HashMap<Referencia, JTextField>();
-	private HashMap<Referencia, JButton> button = new HashMap<Referencia, JButton>();
-	private HashMap<Referencia, JRadioButton> jradbtn = new HashMap<Referencia, JRadioButton>();
+	private CreadorComponentes creador;
 
-	private ButtonGroup formato = new ButtonGroup();
-	private ButtonGroup estado = new ButtonGroup();
+	private HashMap<Referencia, JTextField> fields;
+	private HashMap<Referencia, JButton> button;
+	private HashMap<Referencia, JRadioButton> jradbtn;
+
+	private JComboBox<Tematica> comboTematica;
+
+	private ButtonGroup formato;
+	private ButtonGroup estado;
 
 	public GestorVista() {
 		super();
-		this.fields.put(Referencia.FIELD_TITULO, insertarJText());
-		this.fields.put(Referencia.FIELD_AUTOR, insertarJText());
-		this.fields.put(Referencia.FIELD_PRECIO, insertarJText());
-		this.fields.put(Referencia.FIELD_ISBN, insertarJText());
-		this.fields.put(Referencia.FIELD_PAGINAS, insertarJText());
+		this.creador = new CreadorComponentes();
+		this.fields = new HashMap<Referencia, JTextField>();
+		this.button = new HashMap<Referencia, JButton>();
+		this.jradbtn = new HashMap<Referencia, JRadioButton>();
+		this.formato = new ButtonGroup();
+		this.estado = new ButtonGroup();
+
+		this.comboTematica = this.creador.dameJComboBox();
+		for (Tematica tema : Tematica.values()) {
+			this.comboTematica.addItem(tema);
+		}
+
+		this.fields.put(Referencia.FIELD_TITULO, this.creador.dameJTextField());
+		this.fields.put(Referencia.FIELD_AUTOR, this.creador.dameJTextField());
+		this.fields.put(Referencia.FIELD_PRECIO, this.creador.dameJTextField());
+		this.fields.put(Referencia.FIELD_ISBN, this.creador.dameJTextField());
+		this.fields.put(Referencia.FIELD_PAGINAS, this.creador.dameJTextField());
 
 		soloLetras(this.fields.get(Referencia.FIELD_AUTOR));
 		soloNumeros(this.fields.get(Referencia.FIELD_PRECIO));
@@ -39,19 +55,19 @@ public class GestorVista {
 		soloNumeros(this.fields.get(Referencia.FIELD_ISBN));
 		longitudMax(this.fields.get(Referencia.FIELD_ISBN), 13);
 
-		this.button.put(Referencia.BTN_NUEVO, insertarBtn("Nuevo"));
-		this.button.put(Referencia.BTN_ALTA, insertarBtn("Alta ISBN / Alta"));
-		this.button.put(Referencia.BTN_BAJA, insertarBtn("Baja ISBN / Baja"));
-		this.button.put(Referencia.BTN_VERDETALLES, insertarBtn("Ver Detalles"));
-		this.button.put(Referencia.BTN_MODIFICAR, insertarBtn("Modificar"));
-		this.button.put(Referencia.BTN_ELIMINAR, insertarBtn("Eliminar"));
-		this.button.put(Referencia.BTN_SALIR, insertarBtn("Salir"));
+		this.button.put(Referencia.BTN_NUEVO, this.creador.dameJButton("Nuevo"));
+		this.button.put(Referencia.BTN_ALTA, this.creador.dameJButton("Alta ISBN / Alta"));
+		this.button.put(Referencia.BTN_BAJA, this.creador.dameJButton("Baja ISBN / Baja"));
+		this.button.put(Referencia.BTN_VERDETALLES, this.creador.dameJButton("Ver Detalles"));
+		this.button.put(Referencia.BTN_MODIFICAR, this.creador.dameJButton("Modificar"));
+		this.button.put(Referencia.BTN_ELIMINAR, this.creador.dameJButton("Eliminar"));
+		this.button.put(Referencia.BTN_SALIR, this.creador.dameJButton("Salir"));
 
-		this.jradbtn.put(Referencia.RADIOBTN_DIGITAL, insertarRadioBtn("Digital"));
-		this.jradbtn.put(Referencia.RADIOBTN_REEDICION, insertarRadioBtn("Reedicion"));
-		this.jradbtn.put(Referencia.RADIOBTN_RUSTICA, insertarRadioBtn("Rustica"));
-		this.jradbtn.put(Referencia.RADIOBTN_CARTONE, insertarRadioBtn("Cartone"));
-		this.jradbtn.put(Referencia.RADIOBTN_NOVEDAD, insertarRadioBtn("Novedad"));
+		this.jradbtn.put(Referencia.RADIOBTN_DIGITAL, this.creador.dameJRadioButton("Digital"));
+		this.jradbtn.put(Referencia.RADIOBTN_REEDICION, this.creador.dameJRadioButton("Reedicion"));
+		this.jradbtn.put(Referencia.RADIOBTN_RUSTICA, this.creador.dameJRadioButton("Rustica"));
+		this.jradbtn.put(Referencia.RADIOBTN_CARTONE, this.creador.dameJRadioButton("Cartone"));
+		this.jradbtn.put(Referencia.RADIOBTN_NOVEDAD, this.creador.dameJRadioButton("Novedad"));
 
 		formato.add(this.jradbtn.get(Referencia.RADIOBTN_CARTONE));
 		formato.add(this.jradbtn.get(Referencia.RADIOBTN_RUSTICA));
@@ -79,6 +95,14 @@ public class GestorVista {
 
 	public JTextField getField(Referencia referencia) {
 		return this.fields.get(referencia);
+	}
+
+	public JComboBox<Tematica> getComboTematica() {
+		return comboTematica;
+	}
+
+	public JLabel dameJLabel(String title, int longitud) {
+		return this.creador.dameJLabel(title, longitud);
 	}
 
 	public HashMap<Referencia, String> getDatosField() {
@@ -130,32 +154,6 @@ public class GestorVista {
 		if (this.jradbtn.get(Referencia.RADIOBTN_REEDICION).isSelected())
 			return this.jradbtn.get(Referencia.RADIOBTN_REEDICION).getText();
 		return null;
-	}
-
-	private JRadioButton insertarRadioBtn(String titulo) {
-		JRadioButton button = new JRadioButton();
-		button.setText(titulo);
-		button.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 20));
-		button.setBackground(new Color(238, 236, 226));
-		return button;
-	}
-
-	private JButton insertarBtn(String textBtn) {
-		JButton btn = new JButton();
-		btn.setText(textBtn);
-		btn.setFont(new Font("Microsoft JhengHei", Font.BOLD, 20));
-		btn.setBackground(new Color(238, 236, 226));
-		btn.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		return btn;
-	}
-
-	private JTextField insertarJText() {
-		JTextField field = new JTextField();
-		field.setText(null);
-		field.setForeground(new Color(106, 93, 77));
-		field.setFont(new Font("Monospaced", Font.BOLD, 20));
-		field.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		return field;
 	}
 
 	private void longitudMax(JTextField field, int longitud) {

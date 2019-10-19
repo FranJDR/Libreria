@@ -61,7 +61,7 @@ class LibreriaTest {
 	void testInsertarLibro() {
 		int longitudInicial = libreria.getLibros().size();
 		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
-		libreria.insertarLibro(Tematica.Fantasia, map);
+		libreria.insertarLibro(map);
 		assertTrue(longitudInicial < libreria.getLibros().size());
 	}
 

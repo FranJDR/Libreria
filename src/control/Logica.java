@@ -77,11 +77,11 @@ public class Logica {
 		guardarCambios();
 	}
 
-	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
+	public boolean insertarLibro(HashMap<Referencia, String> map) {
 		if (this.datos.getLibros()
 				.add(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR), map.get(Referencia.ISBN),
-						map.get(Referencia.PAGINAS), tematica, map.get(Referencia.PRECIO), map.get(Referencia.FORMATO),
-						map.get(Referencia.ESTADO))))
+						map.get(Referencia.PAGINAS), map.get(Referencia.TEMATICA), map.get(Referencia.PRECIO),
+						map.get(Referencia.FORMATO), map.get(Referencia.ESTADO))))
 			return guardarCambios();
 		return false;
 	}

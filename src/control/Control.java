@@ -20,9 +20,9 @@ public class Control {
 		this.libreria.eliminarLibro(ISBN);
 	}
 
-	public boolean insertarLibro(Tematica tematica, HashMap<Referencia, String> map) {
+	public boolean insertarLibro(HashMap<Referencia, String> map) {
 		return this.validador.validarLibro(map) && this.libreria.validarIsbn(map.get(Referencia.ISBN))
-				? this.libreria.insertarLibro(tematica, map)
+				? this.libreria.insertarLibro(map)
 				: false;
 	}
 

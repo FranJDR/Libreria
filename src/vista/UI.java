@@ -39,8 +39,6 @@ public class UI extends JFrame {
 
 	private JPanel contentPane = new JPanel();
 
-	protected JComboBox<Tematica> comboTematica = new JComboBox<Tematica>();
-
 	private Color colorFondo = new Color(254, 243, 196); // 232, 225, 146
 	private Color colorBtn = new Color(238, 236, 226);
 
@@ -210,7 +208,6 @@ public class UI extends JFrame {
 		this.table.setRowHeight(25);
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 15));
 		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
-		personalizarComboTematica();
 		rellenarPanelDatos();
 		revalidate();
 		repaint();
@@ -236,27 +233,6 @@ public class UI extends JFrame {
 		return this.gestor.getDatosField();
 	}
 
-	public Tematica obtenerTematica() {
-		switch (this.comboTematica.getSelectedItem().toString()) {
-		case "Poesia":
-			return Tematica.Poesia;
-		case "Fantasia":
-			return Tematica.Fantasia;
-		case "Ficcion":
-			return Tematica.Ficcion;
-		case "Economia":
-			return Tematica.Economia;
-		case "Psicologia":
-			return Tematica.Psicologia;
-		case "Historia":
-			return Tematica.Historia;
-		case "Ciencia":
-			return Tematica.Ciencia;
-		default:
-			return Tematica.Poesia;
-		}
-	}
-
 	public void rellenarTable(String[][] datos, JTable table) {
 		String[] camposTable = { "ISBN", "TITULO", "TEMATICA", "CANTIDAD", "PRECIO" };
 		this.datos = datos;
@@ -274,42 +250,20 @@ public class UI extends JFrame {
 	}
 
 	private void rellenarPanelDatos() {
-		this.panelLabel.add(newLabel("Titulo : ", 14));
+		this.panelLabel.add(this.gestor.dameJLabel("Titulo : ", 14));
 		this.panelField.add(this.gestor.getField(Referencia.FIELD_TITULO));
-		this.panelLabel.add(newLabel("Autor : ", 14));
+		this.panelLabel.add(this.gestor.dameJLabel("Autor : ", 14));
 		this.panelField.add(this.gestor.getField(Referencia.FIELD_AUTOR));
-		this.panelLabel.add(newLabel("Tematica : ", 8));
-		this.panelField.add(this.comboTematica);
-		this.panelLabel.add(newLabel("ISBN : ", 14));
+		this.panelLabel.add(this.gestor.dameJLabel("Tematica : ", 8));
+		this.panelField.add(this.gestor.getComboTematica());
+		this.panelLabel.add(this.gestor.dameJLabel("ISBN : ", 14));
 		this.panelField.add(this.gestor.getField(Referencia.FIELD_ISBN));
-		this.panelLabel.add(newLabel("Num.Paginas : ", 1));
+		this.panelLabel.add(this.gestor.dameJLabel("Num.Paginas : ", 1));
 		this.panelField.add(this.gestor.getField(Referencia.FIELD_PAGINAS));
-		this.panelLabel.add(newLabel("Precio : ", 14));
+		this.panelLabel.add(this.gestor.dameJLabel("Precio : ", 14));
 		this.panelField.add(this.gestor.getField(Referencia.FIELD_PRECIO));
 		revalidate();
 		repaint();
-	}
-
-	private JLabel newLabel(String titulo, int cantidad) {
-		for (int i = 0; i < cantidad; i++) {
-			titulo += " ";
-		}
-		JLabel jLabel = new JLabel(titulo);
-		jLabel.setForeground(Color.BLACK);
-		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, 20));
-		return jLabel;
-	}
-
-	private void personalizarComboTematica() {
-		this.comboTematica = new JComboBox<Tematica>();
-		this.comboTematica.setForeground(Color.BLACK);
-		this.comboTematica.setFont(new Font("Monospaced", Font.BOLD, 20));
-		this.comboTematica.setBorder(new MatteBorder(1, 1, 1, 1, (Color) new Color(0, 0, 0)));
-		this.comboTematica.setBackground(Color.white);
-		this.panelDatos.add(this.comboTematica);
-		for (Tematica tematica : Tematica.values()) {
-			this.comboTematica.addItem(tematica);
-		}
 	}
 
 	public JButton getBtn(Referencia referencia) {
