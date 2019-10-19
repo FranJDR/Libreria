@@ -133,37 +133,29 @@ public class UI extends JFrame {
 		panelField = new JPanel();
 		panelField.setBackground(this.colorFondo);
 		GroupLayout gl_panelDatos = new GroupLayout(panelDatos);
-		gl_panelDatos.setHorizontalGroup(
-			gl_panelDatos.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelDatos.createSequentialGroup()
-					.addContainerGap()
-					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
+				.createSequentialGroup().addContainerGap()
+				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_panelDatos.createSequentialGroup()
-							.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
-							.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
+								.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
+								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
 						.addGroup(gl_panelDatos.createSequentialGroup()
-							.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
-							.addGap(20)
-							.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addGap(20)
+								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
 						.addComponent(lblRegistrarNuevoLibro))
-					.addContainerGap())
-		);
-		gl_panelDatos.setVerticalGroup(
-			gl_panelDatos.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panelDatos.createSequentialGroup()
-					.addGap(15)
-					.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-					.addGap(18)
-					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+				.addContainerGap()));
+		gl_panelDatos.setVerticalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
+				.createSequentialGroup().addGap(15)
+				.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
+				.addGap(18)
+				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
 						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
 						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
-					.addGap(18)
-					.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
+				.addGap(18)
+				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
 						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
 						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-					.addContainerGap())
-		);
+				.addContainerGap()));
 		panelField.setLayout(new GridLayout(0, 1, 0, 30));
 		panelLabel.setLayout(new GridLayout(0, 1, 0, 30));
 		panelDatos.setLayout(gl_panelDatos);
