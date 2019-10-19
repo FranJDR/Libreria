@@ -6,6 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -37,16 +38,16 @@ public class UI extends JFrame {
 
 	private GestorVista gestor = new GestorVista();
 
-	private JPanel contentPane = new JPanel();
-
 	private Color colorFondo = new Color(254, 243, 196); // 232, 225, 146
 	private Color colorBtn = new Color(238, 236, 226);
 
+	private JPanel contentPane = new JPanel();
 	private JPanel panel = new JPanel();
 	private JPanel panelDatos = new JPanel();
 	private JPanel panel_1 = new JPanel();
-
-	private final JPanel panel_2 = new JPanel();
+	private JPanel panel_2 = new JPanel();
+	private JPanel panelLabel;
+	private JPanel panelField;
 
 	private String[][] datos;
 
@@ -54,9 +55,6 @@ public class UI extends JFrame {
 	private JScrollPane scrollPane;
 
 	protected PanelInfo panelInfo;
-	private JTextField fieldBusquedaISBN;
-	private JPanel panelLabel;
-	private JPanel panelField;
 
 	public UI() {
 		this.gestor = new GestorVista();
@@ -161,10 +159,7 @@ public class UI extends JFrame {
 		panel_1.setBackground(this.colorFondo);
 		panel.add(panel_1);
 
-		fieldBusquedaISBN = new JTextField();
-		fieldBusquedaISBN.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		fieldBusquedaISBN.setHorizontalAlignment(SwingConstants.CENTER);
-		fieldBusquedaISBN.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
+		JTextField fieldBusquedaISBN = this.gestor.getField(Referencia.FIELD_BUSQUEDAISBN);
 		fieldBusquedaISBN.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Busqueda por ISBN :");

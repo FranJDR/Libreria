@@ -48,6 +48,7 @@ public class GestorVista {
 		this.fields.put(Referencia.FIELD_PRECIO, this.creador.dameJTextField());
 		this.fields.put(Referencia.FIELD_ISBN, this.creador.dameJTextField());
 		this.fields.put(Referencia.FIELD_PAGINAS, this.creador.dameJTextField());
+		this.fields.put(Referencia.FIELD_BUSQUEDAISBN, this.creador.dameJTextField());
 
 		soloLetras(this.fields.get(Referencia.FIELD_AUTOR));
 		soloNumeros(this.fields.get(Referencia.FIELD_PRECIO));
