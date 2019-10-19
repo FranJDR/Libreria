@@ -56,13 +56,12 @@ public class GestorVista {
 		soloNumeros(this.fields.get(Referencia.FIELD_ISBN));
 		longitudMax(this.fields.get(Referencia.FIELD_ISBN), 13);
 
-		this.button.put(Referencia.BTN_NUEVO, this.creador.dameJButton("Nuevo"));
-		this.button.put(Referencia.BTN_ALTA, this.creador.dameJButton("Alta ISBN / Alta"));
-		this.button.put(Referencia.BTN_BAJA, this.creador.dameJButton("Baja ISBN / Baja"));
+		this.button.put(Referencia.BTN_NUEVO, this.creador.dameJButton("Añadir nuevo libro"));
+		this.button.put(Referencia.BTN_ALTA, this.creador.dameJButton("Añadir"));
+		this.button.put(Referencia.BTN_BAJA, this.creador.dameJButton("Quitar"));
 		this.button.put(Referencia.BTN_VERDETALLES, this.creador.dameJButton("Ver Detalles"));
 		this.button.put(Referencia.BTN_MODIFICAR, this.creador.dameJButton("Modificar"));
 		this.button.put(Referencia.BTN_ELIMINAR, this.creador.dameJButton("Eliminar"));
-		this.button.put(Referencia.BTN_SALIR, this.creador.dameJButton("Salir"));
 
 		this.jradbtn.put(Referencia.RADIOBTN_DIGITAL, this.creador.dameJRadioButton("Digital"));
 		this.jradbtn.put(Referencia.RADIOBTN_REEDICION, this.creador.dameJRadioButton("Reedicion"));
@@ -113,6 +112,7 @@ public class GestorVista {
 		retorno.put(Referencia.PRECIO, getField(Referencia.FIELD_PRECIO).getText());
 		retorno.put(Referencia.ISBN, getField(Referencia.FIELD_ISBN).getText());
 		retorno.put(Referencia.PAGINAS, getField(Referencia.FIELD_PAGINAS).getText());
+		retorno.put(Referencia.TEMATICA, this.comboTematica.getSelectedItem().toString());
 		retorno.put(Referencia.ESTADO, getFormato());
 		retorno.put(Referencia.FORMATO, getEstado());
 		return retorno;

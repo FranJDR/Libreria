@@ -38,7 +38,7 @@ public class UI extends JFrame {
 
 	private GestorVista gestor = new GestorVista();
 
-	private Color colorFondo = new Color(254, 243, 196); // 232, 225, 146
+	private Color colorFondo = new Color(254, 243, 196);
 	private Color colorBtn = new Color(238, 236, 226);
 
 	private JPanel contentPane = new JPanel();
@@ -69,7 +69,7 @@ public class UI extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setLocationRelativeTo(null);
-//		setExtendedState(JFrame.MAXIMIZED_BOTH);
+		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
 		JLabel lblNewLabel = new JLabel("Librería");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
@@ -79,14 +79,9 @@ public class UI extends JFrame {
 		lblNewLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 		contentPane.add(lblNewLabel, BorderLayout.NORTH);
 
-		JPanel panelBtn = new JPanel();
-		panelBtn.setBackground(this.colorFondo);
-		panelBtn.setMinimumSize(new Dimension(100, 50));
-		contentPane.add(panelBtn, BorderLayout.SOUTH);
-		panelBtn.setLayout(new GridLayout(1, 0, 10, 30));
-
 		contentPane.add(panel, BorderLayout.CENTER);
 		panel.setLayout(new GridLayout(1, 0, 0, 0));
+		panelDatos.setBorder(new MatteBorder(0, 0, 0, 1, (Color) new Color(0, 0, 0)));
 
 		panelDatos.setBackground(this.colorFondo);
 		panel.add(panelDatos);
@@ -128,30 +123,35 @@ public class UI extends JFrame {
 
 		panelField = new JPanel();
 		panelField.setBackground(this.colorFondo);
+
+		JPanel panelBtnNuevo = new JPanel();
+		panelBtnNuevo.setBackground(this.colorFondo);
 		GroupLayout gl_panelDatos = new GroupLayout(panelDatos);
-		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDatos.createSequentialGroup()
+		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(
+				Alignment.TRAILING,
+				gl_panelDatos.createSequentialGroup().addContainerGap().addGroup(gl_panelDatos
+						.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelBtnNuevo, GroupLayout.DEFAULT_SIZE, 658, Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING, gl_panelDatos.createSequentialGroup()
 								.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE))
-						.addGroup(gl_panelDatos.createSequentialGroup()
-								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE).addGap(20)
-								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
-						.addComponent(lblRegistrarNuevoLibro))
-				.addContainerGap()));
+								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 465, Short.MAX_VALUE))
+						.addGroup(Alignment.LEADING, gl_panelDatos.createSequentialGroup()
+								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE).addGap(20)
+								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 319, Short.MAX_VALUE))
+						.addComponent(lblRegistrarNuevoLibro, Alignment.LEADING)).addContainerGap()));
 		gl_panelDatos.setVerticalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
 				.createSequentialGroup().addGap(15)
 				.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 				.addGap(18)
 				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
-						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE))
+						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE)
+						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 367, Short.MAX_VALUE))
 				.addGap(18)
 				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
-						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE))
-				.addContainerGap()));
+						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE))
+				.addGap(10).addComponent(panelBtnNuevo, GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE).addGap(15)));
+		panelBtnNuevo.setLayout(new BorderLayout(0, 0));
 		panelField.setLayout(new GridLayout(0, 1, 0, 30));
 		panelLabel.setLayout(new GridLayout(0, 1, 0, 30));
 		panelDatos.setLayout(gl_panelDatos);
@@ -159,28 +159,37 @@ public class UI extends JFrame {
 		panel_1.setBackground(this.colorFondo);
 		panel.add(panel_1);
 
-		JTextField fieldBusquedaISBN = this.gestor.getField(Referencia.FIELD_BUSQUEDAISBN);
+//		JTextField fieldBusquedaISBN = this.gestor.getField(Referencia.FIELD_BUSQUEDAISBN);
+		JTextField fieldBusquedaISBN = new JTextField();
 		fieldBusquedaISBN.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Busqueda por ISBN :");
 		lblNewLabel_2.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
 		lblNewLabel_2.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
 
+		JPanel panelBtnTable = new JPanel();
+		panelBtnTable.setBackground(this.colorFondo);
+
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_1
-				.createSequentialGroup().addGap(15)
-				.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING)
-						.addGroup(gl_panel_1.createSequentialGroup().addComponent(lblNewLabel_2).addGap(30)
-								.addComponent(fieldBusquedaISBN, GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE))
-						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE))
-				.addGap(15)));
+		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(Alignment.LEADING,
+				gl_panel_1.createSequentialGroup().addGap(15).addGroup(gl_panel_1
+						.createParallelGroup(Alignment.TRAILING)
+						.addComponent(panelBtnTable, Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+						.addComponent(panel_2, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE,
+								Short.MAX_VALUE)
+						.addGroup(Alignment.LEADING,
+								gl_panel_1.createSequentialGroup().addComponent(lblNewLabel_2).addGap(30).addComponent(
+										fieldBusquedaISBN, GroupLayout.DEFAULT_SIZE, 451, Short.MAX_VALUE)))
+						.addGap(12)));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_panel_1.createSequentialGroup().addGap(20)
 						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
 								.addComponent(fieldBusquedaISBN, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 										GroupLayout.PREFERRED_SIZE)
 								.addComponent(lblNewLabel_2))
-						.addGap(20).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 302, Short.MAX_VALUE).addGap(15)));
+						.addGap(20).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 576, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.UNRELATED)
+						.addComponent(panelBtnTable, GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE).addGap(5)));
 		panel_2.setLayout(new BorderLayout(0, 0));
 
 		scrollPane = new JScrollPane();
@@ -188,12 +197,12 @@ public class UI extends JFrame {
 
 		panel_1.setLayout(gl_panel_1);
 
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_ALTA));
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_BAJA));
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_VERDETALLES));
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_ELIMINAR));
-		panelBtn.add(this.gestor.getBtn(Referencia.BTN_SALIR));
+		panelBtnNuevo.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
+		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ALTA));
+		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_BAJA));
+		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_VERDETALLES));
+		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ELIMINAR));
+		panelBtnTable.setLayout(new GridLayout(1, 0, 5, 0));
 
 		scrollPane.add(this.table);
 		scrollPane.setViewportView(this.table);
