@@ -22,7 +22,10 @@ public class Validador {
 		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.ISBN).length() == 13));
 		this.respuestas.add(
 				new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.AUTOR))));
-
+		this.respuestas
+				.add(new Respuesta("El precio debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PRECIO))));
+		this.respuestas
+				.add(new Respuesta("El paginas debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PAGINAS))));
 		for (Respuesta respuesta : respuestas) {
 			if (!respuesta.isValido()) {
 				WarningMessage(respuesta.getMensage());
@@ -45,6 +48,10 @@ public class Validador {
 			return true;
 		WarningMessage("Tiene que ser un digito.");
 		return false;
+	}
+
+	private boolean validarSinCeros(String cadena) {
+		return Pattern.matches("[1-9]{1}[0-9]{0,200}", cadena);
 	}
 
 }
