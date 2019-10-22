@@ -1,5 +1,9 @@
 package control;
 
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import listener.Eventos;
 import listener.LogicaEventos;
 import modelo.Referencia;
@@ -10,7 +14,8 @@ public class ParaUI extends UI {
 	public ParaUI() {
 		super();
 		Control control = new Control();
-		Eventos eventos = new Eventos(new LogicaEventos(control, this));
+		LogicaEventos logicaEventos = new LogicaEventos(control, this);
+		Eventos eventos = new Eventos(logicaEventos);
 		rellenarTable(control.obtenerDatosLibros());
 
 		getBtn(Referencia.BTN_ALTA).addActionListener(eventos.getMasCantidadTable());
@@ -21,6 +26,12 @@ public class ParaUI extends UI {
 		getBtn(Referencia.BTN_MODIFICAR).addActionListener(eventos.getModificarLibro());
 		getBtn(Referencia.BTN_BUSCAR).addActionListener(eventos.getBuscar());
 
+		getField(Referencia.FIELD_BUSQUEDAISBN).addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyReleased(KeyEvent e) {
+				super.keyReleased(e);
+				logicaEventos.buscarISBN();
+			}
+		});
 	}
-
 }

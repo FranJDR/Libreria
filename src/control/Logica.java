@@ -20,6 +20,37 @@ public class Logica {
 		this.datos = new Datos();
 	}
 
+	public String[][] getDatosPorBusqueda(String[][] datos, String ISBN) {
+		ArrayList<String> aux = new ArrayList<String>();
+		for (Libro libro : this.datos.getLibros()) {
+			if (coincide(libro.getISBN(), ISBN)) {
+				aux.add(libro.getDatos());
+			}
+		}
+		String[][] retorno = new String[aux.size()][7];
+		int indice = 0;
+		for (String cadena : aux) {
+			String[] libro = cadena.split(" ");
+			retorno[indice][0] = libro[0];
+			retorno[indice][1] = libro[1];
+			retorno[indice][2] = libro[2];
+			retorno[indice][3] = libro[3];
+			retorno[indice][4] = libro[4];
+			retorno[indice][5] = libro[5];
+			retorno[indice][6] = libro[6];
+			indice++;
+		}
+		return retorno;
+	}
+
+	private boolean coincide(String libro, String iSBN) {
+		for (int i = 0; i < iSBN.length(); i++) {
+			if (iSBN.charAt(i) != libro.charAt(i))
+				return false;
+		}
+		return true;
+	}
+
 	private void quitarLibrosACero() {
 		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();

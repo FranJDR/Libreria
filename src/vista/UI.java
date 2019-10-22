@@ -21,6 +21,9 @@ import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
@@ -61,8 +64,8 @@ public class UI extends JFrame {
 
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000, 600);
-		setMinimumSize(new Dimension(800, 800));
+		setSize(1000, 700);
+//		setMinimumSize(new Dimension(800, 600));
 		contentPane = new JPanel();
 		contentPane.setBackground(this.colorFondo);
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -71,7 +74,7 @@ public class UI extends JFrame {
 		setLocationRelativeTo(null);
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblNewLabel = new JLabel("Librer�a");
+		JLabel lblNewLabel = new JLabel("Libreria");
 		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel.setOpaque(true);
@@ -130,40 +133,39 @@ public class UI extends JFrame {
 		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.TRAILING).addGroup(gl_panelDatos
 				.createSequentialGroup().addContainerGap()
 				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelBtnNuevo, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
 						.addGroup(gl_panelDatos.createSequentialGroup()
 								.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
 								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
 						.addGroup(gl_panelDatos.createSequentialGroup()
 								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE).addGap(20)
 								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-						.addComponent(lblRegistrarNuevoLibro))
+						.addComponent(lblRegistrarNuevoLibro)
+						.addComponent(panelBtnNuevo, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
 				.addContainerGap()));
 		gl_panelDatos.setVerticalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
 				.createSequentialGroup().addGap(15)
 				.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
 				.addGap(18)
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addComponent(panelField, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-						.addComponent(panelLabel, GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-				.addGap(18)
 				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(verticalBox_1, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, 150,
-								GroupLayout.PREFERRED_SIZE)
-						.addComponent(verticalBox, GroupLayout.PREFERRED_SIZE, 150, GroupLayout.PREFERRED_SIZE))
-				.addGap(10).addComponent(panelBtnNuevo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
+						.addComponent(panelField, 0, 0, Short.MAX_VALUE)
+						.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 288, Short.MAX_VALUE))
+				.addGap(30)
+				.addGroup(gl_panelDatos.createParallelGroup(Alignment.TRAILING)
+						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
+						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+				.addGap(18).addComponent(panelBtnNuevo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
 						GroupLayout.PREFERRED_SIZE)
-				.addGap(15)));
+				.addContainerGap()));
 		panelBtnNuevo.setLayout(new BorderLayout(0, 0));
-		panelField.setLayout(new GridLayout(0, 1, 0, 30));
-		panelLabel.setLayout(new GridLayout(0, 1, 0, 30));
+		panelField.setLayout(new GridLayout(0, 1, 0, 20));
+		panelLabel.setLayout(new GridLayout(0, 1, 0, 20));
 		panelDatos.setLayout(gl_panelDatos);
 
 		panel_1.setBackground(this.colorFondo);
 		panel.add(panel_1);
 
 		JTextField fieldBusquedaISBN = this.gestor.getField(Referencia.FIELD_BUSQUEDAISBN);
-//		JTextField fieldBusquedaISBN = new JTextField();
+//		fieldBusquedaISBN = new JTextField();
 		fieldBusquedaISBN.setColumns(10);
 
 		JLabel lblNewLabel_2 = new JLabel("Busqueda por ISBN :");
@@ -173,34 +175,25 @@ public class UI extends JFrame {
 		JPanel panelBtnTable = new JPanel();
 		panelBtnTable.setBackground(this.colorFondo);
 
-		JButton btnNewButton = this.gestor.getBtn(Referencia.BTN_BUSCAR);
-//		JButton btnNewButton = new JButton("buscar");
-
 		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-				.addGroup(gl_panel_1.createSequentialGroup().addGap(15).addGroup(gl_panel_1
-						.createParallelGroup(Alignment.LEADING).addComponent(panelBtnTable, 0, 0, Short.MAX_VALUE)
-						.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-						.addGroup(gl_panel_1.createSequentialGroup().addComponent(lblNewLabel_2)
-								.addPreferredGap(ComponentPlacement.UNRELATED)
-								.addComponent(fieldBusquedaISBN, GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
-								.addGap(8)
-								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 132, GroupLayout.PREFERRED_SIZE)
-								.addPreferredGap(ComponentPlacement.RELATED)))
-						.addGap(10)));
+		gl_panel_1
+				.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_panel_1.createSequentialGroup().addGap(15)
+								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+										.addComponent(panelBtnTable, 0, 0, Short.MAX_VALUE)
+										.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
+										.addGroup(gl_panel_1.createSequentialGroup().addComponent(lblNewLabel_2)
+												.addPreferredGap(ComponentPlacement.UNRELATED)
+												.addComponent(fieldBusquedaISBN, GroupLayout.DEFAULT_SIZE, 282,
+														Short.MAX_VALUE)
+												.addPreferredGap(ComponentPlacement.RELATED)))
+								.addGap(10)));
 		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1
 				.createSequentialGroup().addGap(24)
-				.addGroup(gl_panel_1.createParallelGroup(Alignment.TRAILING).addGroup(gl_panel_1.createSequentialGroup()
-						.addGroup(gl_panel_1.createParallelGroup(Alignment.BASELINE)
-								.addComponent(fieldBusquedaISBN, GroupLayout.PREFERRED_SIZE, 30,
-										GroupLayout.PREFERRED_SIZE)
-								.addComponent(btnNewButton, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-						.addGap(20)).addGroup(
-								gl_panel_1.createSequentialGroup()
-										.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 30,
-												GroupLayout.PREFERRED_SIZE)
-										.addGap(18)))
-				.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 568, Short.MAX_VALUE)
+				.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
+						.addComponent(fieldBusquedaISBN, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
+				.addGap(18).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
 				.addPreferredGap(ComponentPlacement.UNRELATED)
 				.addComponent(panelBtnTable, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE).addGap(5)));
 		panel_2.setLayout(new BorderLayout(0, 0));
@@ -210,7 +203,6 @@ public class UI extends JFrame {
 
 		panel_1.setLayout(gl_panel_1);
 
-		// sdasd
 		panelBtnNuevo.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ALTA));
 		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_BAJA));
@@ -227,8 +219,17 @@ public class UI extends JFrame {
 		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 15));
 		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
 		rellenarPanelDatos();
+
 		revalidate();
 		repaint();
+	}
+
+	public boolean isEmptyField(Referencia referencia) {
+		return this.gestor.getField(referencia).getText().isEmpty();
+	}
+
+	public JTextField getField(Referencia referencia) {
+		return this.gestor.getField(referencia);
 	}
 
 	public String getTextField(Referencia referencia) {

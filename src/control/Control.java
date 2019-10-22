@@ -54,4 +54,7 @@ public class Control {
 		return this.logica.validarIsbn(ISBN);
 	}
 
+	public String[][] getDatosPorBusqueda(String[][] datos, String cadena) {
+		return this.logica.getDatosPorBusqueda(datos, cadena);
+	}
 }

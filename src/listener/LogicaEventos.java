@@ -20,6 +20,15 @@ public class LogicaEventos {
 		this.paraUI = paraUI;
 	}
 
+	public void buscarISBN() {
+		if (this.paraUI.isEmptyField(Referencia.FIELD_BUSQUEDAISBN)) {
+			this.actualizarJTable();
+		} else {
+			this.paraUI.rellenarTable(this.control.getDatosPorBusqueda(this.paraUI.getDatos(),
+					this.paraUI.getTextField(Referencia.FIELD_BUSQUEDAISBN)));
+		}
+	}
+
 	public void nuevoLibro() {
 		if (this.isSelectFormatoEstado()) {
 			if (this.control.insertarLibro(this.paraUI.getDatosField())) {
