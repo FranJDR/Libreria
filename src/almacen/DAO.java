@@ -23,7 +23,6 @@ public class DAO<T> {
 			e.printStackTrace();
 		}
 		return retorno;
-
 	}
 
 	public T leer(String ruta) {

@@ -8,7 +8,7 @@ public class Datos {
 
 	private DTO<ArrayList<Libro>> dtoLibros;
 	private ArrayList<Libro> libros;
-	private String rutaLibros = "libros.dat";
+	private final String rutaLibros = "libros.dat";
 
 	public Datos() {
 		super();

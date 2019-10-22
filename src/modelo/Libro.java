@@ -31,8 +31,8 @@ public class Libro implements Serializable {
 	}
 
 	public String getDatos() {
-		return this.TITULO + " " + this.AUTOR + " " + this.tema + " " + this.PAGINAS + " " + this.ISBN + " "
-				+ this.precio + " " + this.cantidad;
+		return this.TITULO + "/" + this.AUTOR + "/" + this.tema + "/" + this.PAGINAS + "/" + this.ISBN + "/"
+				+ this.precio + "/" + this.cantidad;
 	}
 
 	public void modificarLibro(HashMap<Referencia, String> map) {

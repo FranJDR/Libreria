@@ -30,7 +30,7 @@ public class Logica {
 		String[][] retorno = new String[aux.size()][7];
 		int indice = 0;
 		for (String cadena : aux) {
-			String[] libro = cadena.split(" ");
+			String[] libro = cadena.split("/");
 			retorno[indice][0] = libro[0];
 			retorno[indice][1] = libro[1];
 			retorno[indice][2] = libro[2];
