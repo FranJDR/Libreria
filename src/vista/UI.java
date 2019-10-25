@@ -289,6 +289,13 @@ public class UI extends JFrame {
 		repaint();
 	}
 
+	public void getInciarPanelInfo() {
+		String[] datos = new String[6];
+		for (int i = 0; i < datos.length; i++)
+			datos[i] = this.datos[getTable().getSelectedRow()][i];
+		this.panelInfo = new PanelInfo(datos, this.gestor.getBtn(Referencia.BTN_MODIFICAR), this);
+	}
+
 	public JButton getBtn(Referencia referencia) {
 		return this.gestor.getBtn(referencia);
 	}

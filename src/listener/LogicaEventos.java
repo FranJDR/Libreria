@@ -39,10 +39,7 @@ public class LogicaEventos {
 	}
 
 	public void verDetalles() {
-		String[] datos = new String[6];
-		for (int i = 0; i < datos.length; i++)
-			datos[i] = this.paraUI.getDatos()[this.paraUI.getTable().getSelectedRow()][i];
-		this.paraUI.setPanelInfo(new PanelInfo(datos, this.paraUI.getBtn(Referencia.BTN_MODIFICAR), this.paraUI));
+		this.paraUI.getInciarPanelInfo();
 	}
 
 	public void modificarLibro() {
@@ -65,30 +62,18 @@ public class LogicaEventos {
 		return this.paraUI.isSelectEstado() && this.paraUI.isSelectFormato();
 	}
 
-	public void aumentarCantidadTable(String cantidad) {
-		this.aumentarCantidad(this.obtenerISBNTable(), cantidad);
-	}
-
-	public void reducirCantidadTable(String cantidad) {
-		this.reducirCantidad(this.obtenerISBNTable(), cantidad);
-	}
-
-	public void eliminarLibroJTable() {
-		this.eliminarLibro(this.obtenerISBNTable());
-	}
-
-	private void eliminarLibro(String isbn) {
-		this.control.eliminarLibro(isbn);
+	public void aumentarCantidad(String cantidad) {
+		control.aumentarNumLibro(this.obtenerISBNTable(), cantidad);
 		actualizarJTable();
 	}
 
-	private void aumentarCantidad(String isbn, String cantidad) {
-		control.aumentarNumLibro(isbn, cantidad);
+	public void reducirCantidad(String cantidad) {
+		this.control.reducirNumLibro(this.obtenerISBNTable(), cantidad);
 		actualizarJTable();
 	}
 
-	private void reducirCantidad(String isbn, String cantidad) {
-		this.control.reducirNumLibro(isbn, cantidad);
+	public void eliminarLibro() {
+		this.control.eliminarLibro(this.obtenerISBNTable());
 		actualizarJTable();
 	}
 

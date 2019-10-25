@@ -64,7 +64,6 @@ public class GestorVista {
 		this.button.put(Referencia.BTN_VERDETALLES, this.creador.dameJButton("Ver Detalles"));
 		this.button.put(Referencia.BTN_MODIFICAR, this.creador.dameJButton("Modificar"));
 		this.button.put(Referencia.BTN_ELIMINAR, this.creador.dameJButton("Eliminar"));
-		this.button.put(Referencia.BTN_BUSCAR, this.creador.dameJButton("Buscar"));
 
 		this.jradbtn.put(Referencia.RADIOBTN_DIGITAL, this.creador.dameJRadioButton("Digital"));
 		this.jradbtn.put(Referencia.RADIOBTN_REEDICION, this.creador.dameJRadioButton("Reedicion"));
