@@ -55,32 +55,32 @@ public class Logica {
 		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();
 			if (libro.getCantidad() <= 0)
-				iterator.remove();
+				this.datos.eliminarLibro(libro.getISBN());
 		}
-		guardarCambios();
 	}
 
 	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
-		Libro libro = getLibroISBN(ISBN);
+		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			libro.modificarLibro(map);
-			guardarCambios();
+			this.datos.gerGrabarLibro(libro);
 		}
 	}
 
 	public void aumentarNumLibro(String ISBN, int cantidad) {
-		Libro libro = getLibroISBN(ISBN);
+		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			libro.aumentarCantidad(cantidad);
-			guardarCambios();
+			this.datos.gerGrabarLibro(libro);
 		}
 	}
 
 	public void reducirNumLibro(String ISBN, int cantidad) {
-		Libro libro = getLibroISBN(ISBN);
+		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			if (libro.getCantidad() >= cantidad) {
 				libro.reducirCantidad(cantidad);
+				this.datos.gerGrabarLibro(libro);
 				quitarLibrosACero();
 			} else
 				JOptionPane.showMessageDialog(null, "La cantidad es superior al numero de unidades.", "error de datos ",
@@ -103,24 +103,6 @@ public class Logica {
 		return isbn;
 	}
 
-	public void eliminarLibro(String ISBN) {
-		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
-			Libro libro = (Libro) iterator.next();
-			if (libro.getISBN() == ISBN)
-				iterator.remove();
-		}
-		guardarCambios();
-	}
-
-	public boolean insertarLibro(HashMap<Referencia, String> map) {
-		if (this.datos.getLibros()
-				.add(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR), map.get(Referencia.ISBN),
-						map.get(Referencia.PAGINAS), map.get(Referencia.TEMATICA), map.get(Referencia.PRECIO),
-						map.get(Referencia.FORMATO), map.get(Referencia.ESTADO))))
-			return guardarCambios();
-		return false;
-	}
-
 	public String[][] obtenerDatosLibros() {
 		int index = 0;
 		String[][] datos = new String[this.datos.getLibros().size()][7];
@@ -137,16 +119,18 @@ public class Logica {
 		return datos;
 	}
 
-	private Libro getLibroISBN(String isbn) {
-		for (Libro libro : this.datos.getLibros()) {
-			if (libro.getISBN().compareTo(isbn) == 0)
-				return libro;
-		}
-		return null;
+	public void eliminarLibro(String ISBN) {
+		this.datos.eliminarLibro(ISBN);
 	}
 
-	private boolean guardarCambios() {
-		return this.datos.gerGrabarLibros();
+	public boolean insertarLibro(HashMap<Referencia, String> map) {
+		return this.datos.gerGrabarLibro(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
+				map.get(Referencia.ISBN), map.get(Referencia.PAGINAS), map.get(Referencia.TEMATICA),
+				map.get(Referencia.PRECIO), map.get(Referencia.FORMATO), map.get(Referencia.ESTADO)));
+	}
+
+	private Libro getLibroISBN(String ISBN) {
+		return this.datos.getLibro(ISBN);
 	}
 
 	public ArrayList<Libro> getLibros() {

@@ -15,17 +15,13 @@ public class Validador {
 		for (String campo : map.values())
 			this.respuestas.add(new Respuesta("Campo vacios.", !campo.isEmpty()));
 		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.", isNumber(map.get(Referencia.ISBN))));
-		this.respuestas
-				.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.PAGINAS))));
-		this.respuestas
-				.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.PRECIO))));
+		this.respuestas.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.PAGINAS))));
+		this.respuestas.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.PRECIO))));
 		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.ISBN).length() == 13));
-		this.respuestas.add(
-				new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.AUTOR))));
-		this.respuestas
-				.add(new Respuesta("El precio debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PRECIO))));
-		this.respuestas
-				.add(new Respuesta("El paginas debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PAGINAS))));
+		this.respuestas.add(new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.AUTOR))));
+		this.respuestas.add(new Respuesta("El precio debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PRECIO))));
+		this.respuestas.add(new Respuesta("El paginas debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PAGINAS))));
+		
 		for (Respuesta respuesta : respuestas) {
 			if (!respuesta.isValido()) {
 				WarningMessage(respuesta.getMensage());
