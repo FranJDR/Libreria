@@ -37,8 +37,7 @@ public class Datos {
 
 	public ArrayList<Libro> getLibros() {
 		ArrayList<Libro> libros = new ArrayList<Libro>();
-		File directorio = new File(this.directorio);
-		String[] nombreArchivo = directorio.list();
+		String[] nombreArchivo = new File(this.directorio).list();
 		for (int i = 0; i < nombreArchivo.length; i++) {
 			libros.add(dtoLibros.leer(this.directorio + "/" + nombreArchivo[i]));
 		}
