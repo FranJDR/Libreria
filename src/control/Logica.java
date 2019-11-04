@@ -9,7 +9,6 @@ import javax.swing.JOptionPane;
 import modelo.Datos;
 import modelo.Libro;
 import modelo.Referencia;
-import modelo.Tematica;
 
 public class Logica {
 
@@ -21,26 +20,13 @@ public class Logica {
 	}
 
 	public String[][] getDatosPorBusqueda(String[][] datos, String ISBN) {
-		ArrayList<String> aux = new ArrayList<String>();
+		ArrayList<Libro> aux = new ArrayList<Libro>();
 		for (Libro libro : this.datos.getLibros()) {
 			if (coincide(libro.getISBN(), ISBN)) {
-				aux.add(libro.getDatos());
+				aux.add(libro);
 			}
 		}
-		String[][] retorno = new String[aux.size()][7];
-		int indice = 0;
-		for (String cadena : aux) {
-			String[] libro = cadena.split("/");
-			retorno[indice][0] = libro[0];
-			retorno[indice][1] = libro[1];
-			retorno[indice][2] = libro[2];
-			retorno[indice][3] = libro[3];
-			retorno[indice][4] = libro[4];
-			retorno[indice][5] = libro[5];
-			retorno[indice][6] = libro[6];
-			indice++;
-		}
-		return retorno;
+		return this.crearMatrizDatos(aux);
 	}
 
 	private boolean coincide(String libro, String iSBN) {
@@ -63,7 +49,7 @@ public class Logica {
 		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			libro.modificarLibro(map);
-			this.datos.gerGrabarLibro(libro);
+			this.datos.grabarLibro(libro);
 		}
 	}
 
@@ -71,7 +57,7 @@ public class Logica {
 		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			libro.aumentarCantidad(cantidad);
-			this.datos.gerGrabarLibro(libro);
+			this.datos.grabarLibro(libro);
 		}
 	}
 
@@ -80,7 +66,7 @@ public class Logica {
 		if (libro != null) {
 			if (libro.getCantidad() >= cantidad) {
 				libro.reducirCantidad(cantidad);
-				this.datos.gerGrabarLibro(libro);
+				this.datos.grabarLibro(libro);
 				quitarLibrosACero();
 			} else
 				JOptionPane.showMessageDialog(null, "La cantidad es superior al numero de unidades.", "error de datos ",
@@ -104,19 +90,7 @@ public class Logica {
 	}
 
 	public String[][] obtenerDatosLibros() {
-		int index = 0;
-		String[][] datos = new String[this.datos.getLibros().size()][7];
-		for (Libro libro : this.datos.getLibros()) {
-			datos[index][0] = libro.getTITULO();
-			datos[index][1] = libro.getAUTOR();
-			datos[index][2] = libro.getTema();
-			datos[index][3] = libro.getPAGINAS();
-			datos[index][4] = libro.getISBN();
-			datos[index][5] = libro.getPrecio();
-			datos[index][6] = String.valueOf(libro.getCantidad());
-			index++;
-		}
-		return datos;
+		return this.crearMatrizDatos(this.datos.getLibros());
 	}
 
 	public void eliminarLibro(String ISBN) {
@@ -124,13 +98,25 @@ public class Logica {
 	}
 
 	public boolean insertarLibro(HashMap<Referencia, String> map) {
-		return this.datos.gerGrabarLibro(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
+		return this.datos.grabarLibro(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
 				map.get(Referencia.ISBN), map.get(Referencia.PAGINAS), map.get(Referencia.TEMATICA),
 				map.get(Referencia.PRECIO), map.get(Referencia.FORMATO), map.get(Referencia.ESTADO)));
 	}
 
-	private Libro getLibroISBN(String ISBN) {
-		return this.datos.getLibro(ISBN);
+	private String[][] crearMatrizDatos(ArrayList<Libro> libros) {
+		String[][] retorno = new String[libros.size()][7];
+		int index = 0;
+		for (Libro libro : libros) {
+			retorno[index][0] = libro.getTITULO();
+			retorno[index][1] = libro.getAUTOR();
+			retorno[index][2] = libro.getTema();
+			retorno[index][3] = libro.getPAGINAS();
+			retorno[index][4] = libro.getISBN();
+			retorno[index][5] = libro.getPrecio();
+			retorno[index][6] = String.valueOf(libro.getCantidad());
+			index++;
+		}
+		return retorno;
 	}
 
 	public ArrayList<Libro> getLibros() {

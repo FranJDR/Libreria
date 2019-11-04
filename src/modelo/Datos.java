@@ -8,42 +8,45 @@ import almacen.DTO;
 public class Datos {
 
 	private DTO<Libro> dtoLibros;
-	private final String rutaLibros = "libros.dat";
 
-	private final static String RUTADIRECTORIO = "./libros";
+	private final static String directorio = "./libros";
 
 	public Datos() {
 		super();
 
-		File directorio = new File(this.RUTADIRECTORIO);
+		File directorio = new File(this.directorio);
 		if (!directorio.exists())
 			directorio.mkdir();
 
 		this.dtoLibros = new DTO<Libro>();
 	}
 
-	public boolean gerGrabarLibro(Libro libro) {
-		return this.dtoLibros.grabar(libro, this.RUTADIRECTORIO + "/" + libro.getISBN() + ".dat");
+	public boolean grabarLibro(Libro libro) {
+		return this.dtoLibros.grabar(libro, this.obtenerRutaLibro(libro.getISBN()));
 	}
 
 	public Libro getLibro(String ISBN) {
-		return this.dtoLibros.leer(RUTADIRECTORIO + "/" + ISBN + ".dat");
+		return this.dtoLibros.leer(this.obtenerRutaLibro(ISBN));
 	}
 
 	public void eliminarLibro(String ISBN) {
-		File file = new File(this.RUTADIRECTORIO + "/" + ISBN + ".dat");
+		File file = new File(this.obtenerRutaLibro(ISBN));
 		if (file.exists())
 			file.delete();
 	}
 
 	public ArrayList<Libro> getLibros() {
 		ArrayList<Libro> libros = new ArrayList<Libro>();
-		File directorio = new File(this.RUTADIRECTORIO);
+		File directorio = new File(this.directorio);
 		String[] nombreArchivo = directorio.list();
 		for (int i = 0; i < nombreArchivo.length; i++) {
-			libros.add(dtoLibros.leer(this.RUTADIRECTORIO + "/" + nombreArchivo[i]));
+			libros.add(dtoLibros.leer(this.directorio + "/" + nombreArchivo[i]));
 		}
 		return libros;
+	}
+
+	private String obtenerRutaLibro(String ISBN) {
+		return this.directorio + "/" + ISBN + ".dat";
 	}
 
 }

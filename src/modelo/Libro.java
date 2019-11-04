@@ -30,11 +30,6 @@ public class Libro implements Serializable {
 		this.cantidad = 1;
 	}
 
-	public String getDatos() {
-		return this.TITULO + "/" + this.AUTOR + "/" + this.tema + "/" + this.PAGINAS + "/" + this.ISBN + "/"
-				+ this.precio + "/" + this.cantidad;
-	}
-
 	public void modificarLibro(HashMap<Referencia, String> map) {
 		this.precio = map.get(Referencia.PRECIO);
 	}
