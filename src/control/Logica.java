@@ -6,22 +6,22 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import modelo.Datos;
+import almacen.AlmacenIndividual;
 import modelo.Libro;
 import modelo.enums.ReferenciaDatos;
 
 public class Logica {
 
-	private Datos datos;
+	private AlmacenIndividual<Libro> almacenLibros;
 
 	public Logica() {
 		super();
-		this.datos = new Datos();
+		this.almacenLibros = new AlmacenIndividual<Libro>("libros", "dat");
 	}
 
 	public String[][] getDatosPorBusqueda(String[][] datos, String ISBN) {
 		ArrayList<Libro> aux = new ArrayList<Libro>();
-		for (Libro libro : this.datos.getLibros()) {
+		for (Libro libro : this.almacenLibros.getListObject()) {
 			if (coincide(libro.getISBN(), ISBN)) {
 				aux.add(libro);
 			}
@@ -38,35 +38,35 @@ public class Logica {
 	}
 
 	private void quitarLibrosACero() {
-		for (Iterator iterator = this.datos.getLibros().iterator(); iterator.hasNext();) {
+		for (Iterator iterator = this.almacenLibros.getListObject().iterator(); iterator.hasNext();) {
 			Libro libro = (Libro) iterator.next();
 			if (libro.getCantidad() <= 0)
-				this.datos.eliminarLibro(libro.getISBN());
+				this.almacenLibros.eliminarFichero(libro.getISBN());
 		}
 	}
 
 	public void modificarLibro(String ISBN, HashMap<ReferenciaDatos, String> map) {
-		Libro libro = this.datos.getLibro(ISBN);
+		Libro libro = this.almacenLibros.getObject(ISBN);
 		if (libro != null) {
 			libro.modificarLibro(map);
-			this.datos.grabarLibro(libro);
+			this.almacenLibros.grabarObject(libro.getISBN(), libro);
 		}
 	}
 
 	public void aumentarNumLibro(String ISBN, int cantidad) {
-		Libro libro = this.datos.getLibro(ISBN);
+		Libro libro = this.almacenLibros.getObject(ISBN);
 		if (libro != null) {
 			libro.aumentarCantidad(cantidad);
-			this.datos.grabarLibro(libro);
+			this.almacenLibros.grabarObject(libro.getISBN(), libro);
 		}
 	}
 
 	public void reducirNumLibro(String ISBN, int cantidad) {
-		Libro libro = this.datos.getLibro(ISBN);
+		Libro libro = this.almacenLibros.getObject(ISBN);
 		if (libro != null) {
 			if (libro.getCantidad() >= cantidad) {
 				libro.reducirCantidad(cantidad);
-				this.datos.grabarLibro(libro);
+				this.almacenLibros.grabarObject(libro.getISBN(), libro);
 				quitarLibrosACero();
 			} else
 				JOptionPane.showMessageDialog(null, "La cantidad es superior al numero de unidades.", "error de datos ",
@@ -84,24 +84,24 @@ public class Logica {
 
 	public ArrayList<String> getListISBN() {
 		ArrayList<String> isbn = new ArrayList<String>();
-		for (Libro libro : this.datos.getLibros())
+		for (Libro libro : this.almacenLibros.getListObject())
 			isbn.add(libro.getISBN());
 		return isbn;
 	}
 
 	public String[][] obtenerDatosLibros() {
-		return this.crearMatrizDatos(this.datos.getLibros());
+		return this.crearMatrizDatos(this.almacenLibros.getListObject());
 	}
 
 	public void eliminarLibro(String ISBN) {
-		this.datos.eliminarLibro(ISBN);
+		this.almacenLibros.eliminarFichero(ISBN);
 	}
 
 	public boolean insertarLibro(HashMap<ReferenciaDatos, String> map) {
-		return this.datos
-				.grabarLibro(new Libro(map.get(ReferenciaDatos.TITULO), map.get(ReferenciaDatos.AUTOR), map.get(ReferenciaDatos.ISBN),
-						map.get(ReferenciaDatos.PAGINAS), map.get(ReferenciaDatos.TEMATICA), map.get(ReferenciaDatos.EDITORIAL),
-						map.get(ReferenciaDatos.PRECIO), map.get(ReferenciaDatos.FORMATO), map.get(ReferenciaDatos.ESTADO)));
+		return this.almacenLibros.grabarObject(map.get(ReferenciaDatos.ISBN), new Libro(map.get(ReferenciaDatos.TITULO),
+				map.get(ReferenciaDatos.AUTOR), map.get(ReferenciaDatos.ISBN), map.get(ReferenciaDatos.PAGINAS),
+				map.get(ReferenciaDatos.TEMATICA), map.get(ReferenciaDatos.EDITORIAL), map.get(ReferenciaDatos.PRECIO),
+				map.get(ReferenciaDatos.FORMATO), map.get(ReferenciaDatos.ESTADO)));
 	}
 
 	private String[][] crearMatrizDatos(ArrayList<Libro> libros) {
@@ -122,7 +122,7 @@ public class Logica {
 	}
 
 	public ArrayList<Libro> getLibros() {
-		return this.datos.getLibros();
+		return this.almacenLibros.getListObject();
 	}
 
 }
