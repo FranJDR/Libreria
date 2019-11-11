@@ -51,9 +51,7 @@ public class CreadorComponentes {
 		return box;
 	}
 
-	public JLabel dameJLabel(String title, int longitud) {
-		for (int i = 0; i < longitud; i++)
-			title += " ";
+	public JLabel dameJLabel(String title) {
 		JLabel jLabel = new JLabel(title);
 		jLabel.setForeground(Color.BLACK);
 		jLabel.setFont(new Font("Book Antiqua", Font.ITALIC, this.fontSize));

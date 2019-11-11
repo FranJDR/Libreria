@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 
 import modelo.Datos;
 import modelo.Libro;
-import modelo.Referencia;
+import modelo.enums.ReferenciaDatos;
 
 public class Logica {
 
@@ -45,7 +45,7 @@ public class Logica {
 		}
 	}
 
-	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
+	public void modificarLibro(String ISBN, HashMap<ReferenciaDatos, String> map) {
 		Libro libro = this.datos.getLibro(ISBN);
 		if (libro != null) {
 			libro.modificarLibro(map);
@@ -97,14 +97,15 @@ public class Logica {
 		this.datos.eliminarLibro(ISBN);
 	}
 
-	public boolean insertarLibro(HashMap<Referencia, String> map) {
-		return this.datos.grabarLibro(new Libro(map.get(Referencia.TITULO), map.get(Referencia.AUTOR),
-				map.get(Referencia.ISBN), map.get(Referencia.PAGINAS), map.get(Referencia.TEMATICA),
-				map.get(Referencia.PRECIO), map.get(Referencia.FORMATO), map.get(Referencia.ESTADO)));
+	public boolean insertarLibro(HashMap<ReferenciaDatos, String> map) {
+		return this.datos
+				.grabarLibro(new Libro(map.get(ReferenciaDatos.TITULO), map.get(ReferenciaDatos.AUTOR), map.get(ReferenciaDatos.ISBN),
+						map.get(ReferenciaDatos.PAGINAS), map.get(ReferenciaDatos.TEMATICA), map.get(ReferenciaDatos.EDITORIAL),
+						map.get(ReferenciaDatos.PRECIO), map.get(ReferenciaDatos.FORMATO), map.get(ReferenciaDatos.ESTADO)));
 	}
 
 	private String[][] crearMatrizDatos(ArrayList<Libro> libros) {
-		String[][] retorno = new String[libros.size()][7];
+		String[][] retorno = new String[libros.size()][8];
 		int index = 0;
 		for (Libro libro : libros) {
 			retorno[index][0] = libro.getTITULO();
@@ -114,6 +115,7 @@ public class Logica {
 			retorno[index][4] = libro.getISBN();
 			retorno[index][5] = libro.getPrecio();
 			retorno[index][6] = String.valueOf(libro.getCantidad());
+			retorno[index][7] = libro.getEditorial();
 			index++;
 		}
 		return retorno;

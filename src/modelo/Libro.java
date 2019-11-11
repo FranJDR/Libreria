@@ -3,35 +3,39 @@ package modelo;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import modelo.enums.ReferenciaDatos;
+
 public class Libro implements Serializable {
 
 	private final String TITULO;
 	private final String AUTOR;
 	private final String ISBN;
 	private final String PAGINAS;
-	private final String tema;
+	private final String TEMA;
+	private String editorial;
 	private String precio;
 	private int cantidad;
 
 	private String formato;
 	private String estado;
 
-	public Libro(String titulo, String autor, String isbn, String paginas, String tema, String precio, String formato,
-			String estado) {
+	public Libro(String titulo, String autor, String ISBN, String paginas, String tema, String editorial, String precio,
+			String formato, String estado) {
 		super();
 		this.TITULO = titulo;
 		this.AUTOR = autor;
-		this.ISBN = isbn;
+		this.ISBN = ISBN;
 		this.PAGINAS = paginas;
-		this.tema = tema;
+		this.TEMA = tema;
+		this.editorial = editorial;
 		this.precio = precio;
+		this.cantidad = 1;
 		this.formato = formato;
 		this.estado = estado;
-		this.cantidad = 1;
 	}
 
-	public void modificarLibro(HashMap<Referencia, String> map) {
-		this.precio = map.get(Referencia.PRECIO);
+	public void modificarLibro(HashMap<ReferenciaDatos, String> map) {
+		this.precio = map.get(ReferenciaDatos.PRECIO);
 	}
 
 	public void aumentarCantidad(int cantidad) {
@@ -59,7 +63,7 @@ public class Libro implements Serializable {
 	}
 
 	public String getTema() {
-		return tema;
+		return this.TEMA;
 	}
 
 	public String getPrecio() {
@@ -72,6 +76,10 @@ public class Libro implements Serializable {
 
 	public String getEstado() {
 		return estado;
+	}
+
+	public String getEditorial() {
+		return this.editorial;
 	}
 
 	public int getCantidad() {

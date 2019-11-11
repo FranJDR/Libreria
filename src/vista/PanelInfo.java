@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.MatteBorder;
 
-import modelo.Referencia;
+import modelo.enums.ReferenciaDatos;
 
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -27,7 +27,8 @@ public class PanelInfo extends JDialog {
 	private ArrayList<JLabel> labels;
 
 	private String[] datos;
-	private String[] nombreCampos = { "Titulo : ", "Autor : ", "Tematica : ", "Paginas : ", "ISBN : ", "Precio : " };
+	private String[] nombreCampos = { "Titulo : ", "Autor : ", "Tematica : ", "Paginas : ", "ISBN : ", "Precio : ",
+			"Cantidad : ", "Editorial : " };
 
 	private JButton btnModificar = new JButton("MODIFICAR");
 	private JPanel panelBtn = new JPanel();
@@ -64,13 +65,13 @@ public class PanelInfo extends JDialog {
 		personalizarCampos();
 	}
 
-	public HashMap<Referencia, String> getHashMap() {
-		HashMap<Referencia, String> retorno = new HashMap<Referencia, String>();
-		retorno.put(Referencia.TITULO, this.fields.get(0).getText());
-		retorno.put(Referencia.AUTOR, this.fields.get(1).getText());
-		retorno.put(Referencia.PAGINAS, this.fields.get(3).getText());
-		retorno.put(Referencia.ISBN, this.fields.get(4).getText());
-		retorno.put(Referencia.PRECIO, this.fields.get(5).getText());
+	public HashMap<ReferenciaDatos, String> getHashMap() {
+		HashMap<ReferenciaDatos, String> retorno = new HashMap<ReferenciaDatos, String>();
+		retorno.put(ReferenciaDatos.TITULO, this.fields.get(0).getText());
+		retorno.put(ReferenciaDatos.AUTOR, this.fields.get(1).getText());
+		retorno.put(ReferenciaDatos.PAGINAS, this.fields.get(3).getText());
+		retorno.put(ReferenciaDatos.ISBN, this.fields.get(4).getText());
+		retorno.put(ReferenciaDatos.PRECIO, this.fields.get(5).getText());
 		return retorno;
 	}
 
@@ -84,11 +85,7 @@ public class PanelInfo extends JDialog {
 	}
 
 	private void personalizarCampos() {
-		this.fields.get(0).setFocusable(false);
-		this.fields.get(1).setFocusable(false);
-		this.fields.get(2).setFocusable(false);
-		this.fields.get(3).setFocusable(false);
-		this.fields.get(4).setFocusable(false);
+		this.bloquearFields();
 		for (int i = 0; i < this.fields.size(); i++) {
 			this.labels.get(i).setFont(new Font("Bookman Old Style", Font.BOLD, 20));
 			this.labels.get(i).setBorder(new MatteBorder(2, 2, 0, 0, (Color) new Color(0, 0, 0)));
@@ -98,10 +95,24 @@ public class PanelInfo extends JDialog {
 			this.fields.get(i).setFont(new Font("Bookman Old Style", Font.BOLD, 20));
 			this.fields.get(i).setBorder(new MatteBorder(2, 2, 0, 2, (Color) new Color(0, 0, 0)));
 			this.fields.get(i).setHorizontalAlignment(SwingConstants.CENTER);
-			this.fields.get(i).setForeground(Color.BLUE);
+			if (i == 5) {
+				this.fields.get(i).setForeground(Color.red);
+			} else {
+				this.fields.get(i).setForeground(Color.BLUE);
+			}
 			this.fields.get(i).setText(this.datos[i]);
 			this.panelCampos.add(this.fields.get(i));
 		}
+	}
+
+	private void bloquearFields() {
+		this.fields.get(0).setFocusable(false);
+		this.fields.get(1).setFocusable(false);
+		this.fields.get(2).setFocusable(false);
+		this.fields.get(3).setFocusable(false);
+		this.fields.get(4).setFocusable(false);
+		this.fields.get(6).setFocusable(false);
+		this.fields.get(7).setFocusable(false);
 	}
 
 }

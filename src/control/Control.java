@@ -3,9 +3,9 @@ package control;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import modelo.Referencia;
-import modelo.Tematica;
 import modelo.Validador;
+import modelo.enums.ReferenciaDatos;
+import modelo.enums.Tematica;
 
 public class Control {
 
@@ -21,8 +21,8 @@ public class Control {
 		this.logica.eliminarLibro(ISBN);
 	}
 
-	public boolean insertarLibro(HashMap<Referencia, String> map) {
-		return this.validador.validarLibro(map) && this.logica.validarIsbn(map.get(Referencia.ISBN))
+	public boolean insertarLibro(HashMap<ReferenciaDatos, String> map) {
+		return this.validador.validarLibro(map) && this.logica.validarIsbn(map.get(ReferenciaDatos.ISBN))
 				? this.logica.insertarLibro(map)
 				: false;
 	}
@@ -41,7 +41,7 @@ public class Control {
 		return this.logica.obtenerDatosLibros();
 	}
 
-	public void modificarLibro(String ISBN, HashMap<Referencia, String> map) {
+	public void modificarLibro(String ISBN, HashMap<ReferenciaDatos, String> map) {
 		if (this.validador.isNumber(ISBN))
 			this.logica.modificarLibro(ISBN, map);
 	}

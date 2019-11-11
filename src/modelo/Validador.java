@@ -6,21 +6,23 @@ import java.util.regex.Pattern;
 
 import javax.swing.JOptionPane;
 
+import modelo.enums.ReferenciaDatos;
+
 public class Validador {
 
 	private ArrayList<Respuesta> respuestas = new ArrayList<Respuesta>();
 
-	public boolean validarLibro(HashMap<Referencia, String> map) {
+	public boolean validarLibro(HashMap<ReferenciaDatos, String> map) {
 		this.respuestas.clear();
 		for (String campo : map.values())
 			this.respuestas.add(new Respuesta("Campo vacios.", !campo.isEmpty()));
-		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.", isNumber(map.get(Referencia.ISBN))));
-		this.respuestas.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(Referencia.PAGINAS))));
-		this.respuestas.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(Referencia.PRECIO))));
-		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(Referencia.ISBN).length() == 13));
-		this.respuestas.add(new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(Referencia.AUTOR))));
-		this.respuestas.add(new Respuesta("El precio debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PRECIO))));
-		this.respuestas.add(new Respuesta("El paginas debe ser mayor a 0.", validarSinCeros(map.get(Referencia.PAGINAS))));
+		this.respuestas.add(new Respuesta("El campo ISBN debe contener digitos.", isNumber(map.get(ReferenciaDatos.ISBN))));
+		this.respuestas.add(new Respuesta("El campo paginas debe contener digitos.", isNumber(map.get(ReferenciaDatos.PAGINAS))));
+		this.respuestas.add(new Respuesta("El campo precio debe contener digitos.", isNumber(map.get(ReferenciaDatos.PRECIO))));
+		this.respuestas.add(new Respuesta("El ISBN de tener 13 digitos.", map.get(ReferenciaDatos.ISBN).length() == 13));
+		this.respuestas.add(new Respuesta("El nombre del autor no puede tener digitos.", validarAutor(map.get(ReferenciaDatos.AUTOR))));
+		this.respuestas.add(new Respuesta("El precio debe ser mayor a 0.", validarSinCeros(map.get(ReferenciaDatos.PRECIO))));
+		this.respuestas.add(new Respuesta("El paginas debe ser mayor a 0.", validarSinCeros(map.get(ReferenciaDatos.PAGINAS))));
 		
 		for (Respuesta respuesta : respuestas) {
 			if (!respuesta.isValido()) {

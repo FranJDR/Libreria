@@ -5,29 +5,24 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.JComboBox;
-import javax.swing.JFileChooser;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
 
-import modelo.Referencia;
-import modelo.Tematica;
+import modelo.enums.RefereciaRadioButton;
+import modelo.enums.ReferenciaButton;
+import modelo.enums.ReferenciaDatos;
+import modelo.enums.ReferenciaFields;
 
 import java.awt.Color;
-import java.awt.Component;
 
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.HashMap;
 
 import javax.swing.JButton;
-import java.awt.Dimension;
 
 import javax.swing.JTable;
 import javax.swing.Box;
@@ -106,9 +101,9 @@ public class UI extends JFrame {
 		lblNewLabel_1.setBackground(this.colorBtn);
 		lblNewLabel_1.setOpaque(true);
 		verticalBox.add(lblNewLabel_1);
-		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_CARTONE));
-		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_RUSTICA));
-		verticalBox.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_DIGITAL));
+		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.CARTONE));
+		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.RUSTICA));
+		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.DIGITAL));
 
 		Box verticalBox_1 = Box.createVerticalBox();
 		verticalBox_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
@@ -121,8 +116,8 @@ public class UI extends JFrame {
 		lblEstado.setOpaque(true);
 
 		verticalBox_1.add(lblEstado);
-		verticalBox_1.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_NOVEDAD));
-		verticalBox_1.add(this.gestor.getRadioBtn(Referencia.RADIOBTN_REEDICION));
+		verticalBox_1.add(this.gestor.getRadioBtn(RefereciaRadioButton.NOCEDAD));
+		verticalBox_1.add(this.gestor.getRadioBtn(RefereciaRadioButton.REEDICION));
 
 		panelField = new JPanel();
 		panelField.setBackground(this.colorFondo);
@@ -164,7 +159,7 @@ public class UI extends JFrame {
 		panel_1.setBackground(this.colorFondo);
 		panel.add(panel_1);
 
-		JTextField fieldBusquedaISBN = this.gestor.getField(Referencia.FIELD_BUSQUEDAISBN);
+		JTextField fieldBusquedaISBN = this.gestor.getField(ReferenciaFields.BUSQUEDAISBN);
 //		fieldBusquedaISBN = new JTextField();
 		fieldBusquedaISBN.setColumns(10);
 
@@ -203,15 +198,15 @@ public class UI extends JFrame {
 
 		panel_1.setLayout(gl_panel_1);
 
-		panelBtnNuevo.add(this.gestor.getBtn(Referencia.BTN_NUEVO));
-		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ALTA));
-		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_BAJA));
-		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_VERDETALLES));
-		panelBtnTable.add(this.gestor.getBtn(Referencia.BTN_ELIMINAR));
+		panelBtnNuevo.add(this.gestor.getBtn(ReferenciaButton.NUEVO));
+		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.ALTA));
+		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.BAJA));
+		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.VERDETALLES));
+		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.ELIMINAR));
 		panelBtnTable.setLayout(new GridLayout(1, 0, 5, 0));
 
 		scrollPane.add(this.table);
-		scrollPane.setViewportView(this.table);
+		scrollPane.setViewportView(this.table); // importante , sin esto no se ve la tabla
 		scrollPane.setBackground(Color.WHITE);
 		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
 
@@ -224,15 +219,15 @@ public class UI extends JFrame {
 		repaint();
 	}
 
-	public boolean isEmptyField(Referencia referencia) {
+	public boolean isEmptyField(ReferenciaFields referencia) {
 		return this.gestor.getField(referencia).getText().isEmpty();
 	}
 
-	public JTextField getField(Referencia referencia) {
+	public JTextField getField(ReferenciaFields referencia) {
 		return this.gestor.getField(referencia);
 	}
 
-	public String getTextField(Referencia referencia) {
+	public String getTextField(ReferenciaFields referencia) {
 		return this.gestor.getField(referencia).getText();
 	}
 
@@ -248,11 +243,11 @@ public class UI extends JFrame {
 		return this.gestor.isSelectEstado();
 	}
 
-	public HashMap<Referencia, String> getMapPanelInfo() {
+	public HashMap<ReferenciaDatos, String> getMapPanelInfo() {
 		return this.panelInfo.getHashMap();
 	}
 
-	public HashMap<Referencia, String> getDatosField() {
+	public HashMap<ReferenciaDatos, String> getDatosField() {
 		return this.gestor.getDatosField();
 	}
 
@@ -273,30 +268,32 @@ public class UI extends JFrame {
 	}
 
 	private void rellenarPanelDatos() {
-		this.panelLabel.add(this.gestor.dameJLabel("Titulo : ", 14));
-		this.panelField.add(this.gestor.getField(Referencia.FIELD_TITULO));
-		this.panelLabel.add(this.gestor.dameJLabel("Autor : ", 14));
-		this.panelField.add(this.gestor.getField(Referencia.FIELD_AUTOR));
-		this.panelLabel.add(this.gestor.dameJLabel("Tematica : ", 8));
+		this.panelLabel.add(this.gestor.dameJLabel("Titulo : "));
+		this.panelField.add(this.gestor.getField(ReferenciaFields.TITULO));
+		this.panelLabel.add(this.gestor.dameJLabel("Autor : "));
+		this.panelField.add(this.gestor.getField(ReferenciaFields.AUTOR));
+		this.panelLabel.add(this.gestor.dameJLabel("Tematica : "));
 		this.panelField.add(this.gestor.getComboTematica());
-		this.panelLabel.add(this.gestor.dameJLabel("ISBN : ", 14));
-		this.panelField.add(this.gestor.getField(Referencia.FIELD_ISBN));
-		this.panelLabel.add(this.gestor.dameJLabel("Num.Paginas : ", 1));
-		this.panelField.add(this.gestor.getField(Referencia.FIELD_PAGINAS));
-		this.panelLabel.add(this.gestor.dameJLabel("Precio : ", 14));
-		this.panelField.add(this.gestor.getField(Referencia.FIELD_PRECIO));
+		this.panelLabel.add(this.gestor.dameJLabel("Editorial : "));
+		this.panelField.add(this.gestor.getComboEditorial());
+		this.panelLabel.add(this.gestor.dameJLabel("ISBN : "));
+		this.panelField.add(this.gestor.getField(ReferenciaFields.ISBN));
+		this.panelLabel.add(this.gestor.dameJLabel("Ejemplares : "));
+		this.panelField.add(this.gestor.getField(ReferenciaFields.PAGINAS));
+		this.panelLabel.add(this.gestor.dameJLabel("Precio : "));
+		this.panelField.add(this.gestor.getField(ReferenciaFields.PRECIO));
 		revalidate();
 		repaint();
 	}
 
 	public void getInciarPanelInfo() {
-		String[] datos = new String[6];
+		String[] datos = new String[8];
 		for (int i = 0; i < datos.length; i++)
 			datos[i] = this.datos[getTable().getSelectedRow()][i];
-		this.panelInfo = new PanelInfo(datos, this.gestor.getBtn(Referencia.BTN_MODIFICAR), this);
+		this.panelInfo = new PanelInfo(datos, this.gestor.getBtn(ReferenciaButton.MODIFICAR), this);
 	}
 
-	public JButton getBtn(Referencia referencia) {
+	public JButton getBtn(ReferenciaButton referencia) {
 		return this.gestor.getBtn(referencia);
 	}
 

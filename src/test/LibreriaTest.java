@@ -7,8 +7,8 @@ import java.util.HashMap;
 import org.junit.jupiter.api.Test;
 
 import control.Logica;
-import modelo.Referencia;
-import modelo.Tematica;
+import modelo.enums.ReferenciaDatos;
+import modelo.enums.Tematica;
 
 class LibreriaTest {
 
@@ -18,8 +18,8 @@ class LibreriaTest {
 	void testModificarLibro() {
 		String isbn = libreria.getLibros().get(0).getISBN();
 		String precioOriginal = libreria.getLibros().get(0).getPrecio();
-		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
-		map.put(Referencia.PRECIO, "50");
+		HashMap<ReferenciaDatos, String> map = new HashMap<ReferenciaDatos, String>();
+		map.put(ReferenciaDatos.PRECIO, "50");
 		libreria.modificarLibro(isbn, map);
 		assertTrue(precioOriginal.compareTo(libreria.getLibros().get(0).getPrecio()) != 0);
 	}
@@ -60,7 +60,7 @@ class LibreriaTest {
 	@Test
 	void testInsertarLibro() {
 		int longitudInicial = libreria.getLibros().size();
-		HashMap<Referencia, String> map = new HashMap<Referencia, String>();
+		HashMap<ReferenciaDatos, String> map = new HashMap<ReferenciaDatos, String>();
 		libreria.insertarLibro(map);
 		assertTrue(longitudInicial < libreria.getLibros().size());
 	}

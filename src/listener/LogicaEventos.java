@@ -6,7 +6,8 @@ import javax.swing.JOptionPane;
 
 import control.Control;
 import control.ParaUI;
-import modelo.Referencia;
+import modelo.enums.ReferenciaDatos;
+import modelo.enums.ReferenciaFields;
 import vista.PanelInfo;
 
 public class LogicaEventos {
@@ -21,11 +22,11 @@ public class LogicaEventos {
 	}
 
 	public void buscarISBN() {
-		if (this.paraUI.isEmptyField(Referencia.FIELD_BUSQUEDAISBN)) {
+		if (this.paraUI.isEmptyField(ReferenciaFields.BUSQUEDAISBN)) {
 			this.actualizarJTable();
 		} else {
 			this.paraUI.rellenarTable(this.control.getDatosPorBusqueda(this.paraUI.getDatos(),
-					this.paraUI.getTextField(Referencia.FIELD_BUSQUEDAISBN)));
+					this.paraUI.getTextField(ReferenciaFields.BUSQUEDAISBN)));
 		}
 	}
 
@@ -43,8 +44,8 @@ public class LogicaEventos {
 	}
 
 	public void modificarLibro() {
-		HashMap<Referencia, String> map = this.paraUI.getMapPanelInfo();
-		this.control.modificarLibro(map.get(Referencia.ISBN), map);
+		HashMap<ReferenciaDatos, String> map = this.paraUI.getMapPanelInfo();
+		this.control.modificarLibro(map.get(ReferenciaDatos.ISBN), map);
 		this.paraUI.rellenarTable(control.obtenerDatosLibros());
 	}
 
@@ -93,7 +94,7 @@ public class LogicaEventos {
 		return false;
 	}
 
-	public String getTextFiled(Referencia referencia) {
+	public String getTextFiled(ReferenciaFields referencia) {
 		return this.paraUI.getTextField(referencia);
 	}
 
