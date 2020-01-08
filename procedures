@@ -1,0 +1,20 @@
+CREATE PROCEDURE insertarLibro 
+	(
+    @isbn VARCHAR(13),
+    @titulo VARCHAR(50),
+    @autor VARCHAR(50),
+    @paginas VARCHAR(50),
+    @idTema INTEGER,
+    @idEditorial INTEGER,
+    @precio VARCHAR(50),
+    @formato VARCHAR(50),
+    @estado VARCHAR(50),
+    @cantidad VARCHAR(50)
+	) AS
+
+BEGIN
+
+INSERT INTO libro (isbn, titulo, autor, paginas, idTema, idEditorial, precio, formato, estado, cantidad) 
+VALUES (@isbn, @titulo, @autor, @paginas, @isTema, @idEditorial, @precio, @formato, @estado, @cantidad)
+
+END

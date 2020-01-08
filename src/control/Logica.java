@@ -2,27 +2,25 @@ package control;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-import almacen.AlmacenIndividual;
-import modelo.Libro;
-import modelo.enums.ReferenciaDatos;
+import modelo.AlmacenLibros;
+import modelo.enums.Libro;
 
 public class Logica {
 
-	private AlmacenIndividual<Libro> almacenLibros;
+	private AlmacenLibros acceso;
 
 	public Logica() {
 		super();
-		this.almacenLibros = new AlmacenIndividual<Libro>("libros", "dat");
+		this.acceso = new AlmacenLibros();
 	}
 
 	public String[][] getDatosPorBusqueda(String[][] datos, String ISBN) {
-		ArrayList<Libro> aux = new ArrayList<Libro>();
-		for (Libro libro : this.almacenLibros.getListObject()) {
-			if (coincide(libro.getISBN(), ISBN)) {
+		ArrayList<HashMap<Libro, String>> aux = new ArrayList<HashMap<Libro, String>>();
+		for (HashMap<Libro, String> libro : this.obtenerListaLibros()) {
+			if (coincide(libro.get(Libro.ISBN), ISBN)) {
 				aux.add(libro);
 			}
 		}
@@ -37,41 +35,14 @@ public class Logica {
 		return true;
 	}
 
-	private void quitarLibrosACero() {
-		for (Iterator iterator = this.almacenLibros.getListObject().iterator(); iterator.hasNext();) {
-			Libro libro = (Libro) iterator.next();
-			if (libro.getCantidad() <= 0)
-				this.almacenLibros.eliminarFichero(libro.getISBN());
-		}
+	public void modificarPrecio(String ISBN, String precio) {
+		this.acceso.modificarPrecio(ISBN, precio);
 	}
 
-	public void modificarLibro(String ISBN, HashMap<ReferenciaDatos, String> map) {
-		Libro libro = this.almacenLibros.getObject(ISBN);
-		if (libro != null) {
-			libro.modificarLibro(map);
-			this.almacenLibros.grabarObject(libro.getISBN(), libro);
-		}
-	}
-
-	public void aumentarNumLibro(String ISBN, int cantidad) {
-		Libro libro = this.almacenLibros.getObject(ISBN);
-		if (libro != null) {
-			libro.aumentarCantidad(cantidad);
-			this.almacenLibros.grabarObject(libro.getISBN(), libro);
-		}
-	}
-
-	public void reducirNumLibro(String ISBN, int cantidad) {
-		Libro libro = this.almacenLibros.getObject(ISBN);
-		if (libro != null) {
-			if (libro.getCantidad() >= cantidad) {
-				libro.reducirCantidad(cantidad);
-				this.almacenLibros.grabarObject(libro.getISBN(), libro);
-				quitarLibrosACero();
-			} else
-				JOptionPane.showMessageDialog(null, "La cantidad es superior al numero de unidades.", "error de datos ",
-						JOptionPane.WARNING_MESSAGE);
-		}
+	public void modifcarCantidadLibro(String ISBN, int cantidad) {
+		HashMap<Libro, String> libro = this.obtenerLibro(ISBN);
+		int cantidadModificada = Integer.parseInt(libro.get(Libro.CANTIDAD)) + cantidad;
+		this.acceso.modificarCantidad(ISBN, String.valueOf(cantidadModificada));
 	}
 
 	public boolean validarIsbn(String ISBN) {
@@ -83,46 +54,80 @@ public class Logica {
 	}
 
 	public ArrayList<String> getListISBN() {
-		ArrayList<String> isbn = new ArrayList<String>();
-		for (Libro libro : this.almacenLibros.getListObject())
-			isbn.add(libro.getISBN());
-		return isbn;
+		return this.acceso.obtenerListaISBN();
 	}
 
 	public String[][] obtenerDatosLibros() {
-		return this.crearMatrizDatos(this.almacenLibros.getListObject());
+		return this.crearMatrizDatos(this.obtenerListaLibros());
 	}
 
-	public void eliminarLibro(String ISBN) {
-		this.almacenLibros.eliminarFichero(ISBN);
-	}
-
-	public boolean insertarLibro(HashMap<ReferenciaDatos, String> map) {
-		return this.almacenLibros.grabarObject(map.get(ReferenciaDatos.ISBN), new Libro(map.get(ReferenciaDatos.TITULO),
-				map.get(ReferenciaDatos.AUTOR), map.get(ReferenciaDatos.ISBN), map.get(ReferenciaDatos.PAGINAS),
-				map.get(ReferenciaDatos.TEMATICA), map.get(ReferenciaDatos.EDITORIAL), map.get(ReferenciaDatos.PRECIO),
-				map.get(ReferenciaDatos.FORMATO), map.get(ReferenciaDatos.ESTADO)));
-	}
-
-	private String[][] crearMatrizDatos(ArrayList<Libro> libros) {
-		String[][] retorno = new String[libros.size()][8];
+	private String[][] crearMatrizDatos(ArrayList<HashMap<Libro, String>> libros) {
+		String[][] retorno = new String[libros.size()][10];
 		int index = 0;
-		for (Libro libro : libros) {
-			retorno[index][0] = libro.getTITULO();
-			retorno[index][1] = libro.getAUTOR();
-			retorno[index][2] = libro.getTema();
-			retorno[index][3] = libro.getPAGINAS();
-			retorno[index][4] = libro.getISBN();
-			retorno[index][5] = libro.getPrecio();
-			retorno[index][6] = String.valueOf(libro.getCantidad());
-			retorno[index][7] = libro.getEditorial();
+		for (HashMap<Libro, String> libro : libros) {
+			retorno[index][0] = libro.get(Libro.ISBN);
+			retorno[index][1] = libro.get(Libro.TITULO);
+			retorno[index][2] = libro.get(Libro.AUTOR);
+			retorno[index][3] = libro.get(Libro.PAGINAS);
+			retorno[index][4] = libro.get(Libro.PRECIO);
+			retorno[index][5] = libro.get(Libro.TEMATICA);
+			retorno[index][6] = libro.get(Libro.EDITORIAL);
+			retorno[index][7] = libro.get(Libro.FORMATO);
+			retorno[index][8] = libro.get(Libro.ESTADO);
+			retorno[index][9] = libro.get(Libro.CANTIDAD);
 			index++;
 		}
 		return retorno;
 	}
 
-	public ArrayList<Libro> getLibros() {
-		return this.almacenLibros.getListObject();
+	public boolean temaEnUso(String tema) {
+		for (HashMap<Libro, String> libro : this.obtenerListaLibros()) {
+			if (libro.get(Libro.TEMATICA).compareTo(tema) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean editorialEnUso(String editorial) {
+		for (HashMap<Libro, String> libro : this.obtenerListaLibros()) {
+			if (libro.get(Libro.EDITORIAL).compareTo(editorial) == 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public void eliminarTema(String tema) {
+		this.acceso.eliminartema(tema);
+	}
+
+	public void eliminarEditorial(String editorial) {
+		this.acceso.eliminarEditorial(editorial);
+	}
+
+	public void insertarTema(String tema) {
+		this.acceso.insertarTema(tema);
+	}
+
+	public void insertarEditorial(String editorial) {
+		this.acceso.insertarEditorial(editorial);
+	}
+
+	public boolean insertarLibro(HashMap<Libro, String> map) {
+		return this.acceso.insertarLibro(map);
+	}
+
+	public void eliminarLibro(String ISBN) {
+		this.acceso.borrarLibro(ISBN);
+	}
+
+	public HashMap<Libro, String> obtenerLibro(String ISBN) {
+		return this.acceso.obtenerLibro(ISBN);
+	}
+
+	public ArrayList<HashMap<Libro, String>> obtenerListaLibros() {
+		return this.acceso.obtenerListaLibros();
 	}
 
 }

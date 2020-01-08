@@ -1,315 +1,278 @@
 package vista;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Dimension;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.MatteBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 
-import modelo.enums.RefereciaRadioButton;
-import modelo.enums.ReferenciaButton;
-import modelo.enums.ReferenciaDatos;
-import modelo.enums.ReferenciaFields;
+import modelo.listener.Evento;
+import modelo.listener.EventoKeyAdapter;
+import modelo.enums.Libro;
+import modelo.enums.NombreEvento;
+import utiles.Utiles;
 
-import java.awt.Color;
-
-import javax.swing.JLabel;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JMenu;
 import javax.swing.SwingConstants;
 
 import java.awt.Font;
-import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.HashMap;
-
-import javax.swing.JButton;
-
-import javax.swing.JTable;
-import javax.swing.Box;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
 import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
-import javax.swing.LayoutStyle.ComponentPlacement;
+import javax.swing.border.LineBorder;
 
 public class UI extends JFrame {
 
-	private GestorVista gestor = new GestorVista();
+	private JPanel contentPane;
 
 	private Color colorFondo = new Color(254, 243, 196);
-	private Color colorBtn = new Color(238, 236, 226);
 
-	private JPanel contentPane = new JPanel();
-	private JPanel panel = new JPanel();
-	private JPanel panelDatos = new JPanel();
-	private JPanel panel_1 = new JPanel();
-	private JPanel panel_2 = new JPanel();
-	private JPanel panelLabel;
-	private JPanel panelField;
+	private JDialogAltaLibro altaLibro = new JDialogAltaLibro(this);
+	private JDialogHistoricoLibro historicoLibro = new JDialogHistoricoLibro(this);
+
+	private JTable tabla = new JTable();
 
 	private String[][] datos;
 
-	private JTable table = new JTable();
-	private JScrollPane scrollPane;
+	private JTextField textbusquedaISBN;
 
-	protected PanelInfo panelInfo;
+	private JMenuItem itemNuevoLibro = this.crearJMenuItem("Registrar Nuevo Libro");
+	private JMenuItem itemMasCantidad = this.crearJMenuItem("Comprar Libros");
+	private JMenuItem itemMenosCantidad = this.crearJMenuItem("Vender Libros");
+	private JMenuItem itemModificarLibro = this.crearJMenuItem("Modificar Precio");
+	private JMenuItem itemNuevaTematica = this.crearJMenuItem("Resgistrar Tema");
+	private JMenuItem itemEliminarTema = this.crearJMenuItem("Eliminar Tema");
+	private JMenuItem itemNuevaEditorial = this.crearJMenuItem("Registrar Editorial");
+	private JMenuItem itemEliminarEditorial = this.crearJMenuItem("Eliminar Editorial");
+	private JMenuItem itemEliminarLibro = this.crearJMenuItem("Eliminar Libro");
+	private JMenuItem itemHistoricoLibro = this.crearJMenuItem("Ver Historico Libro");
 
 	public UI() {
-		this.gestor = new GestorVista();
-
 		setVisible(true);
+		setBackground(this.colorFondo);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setSize(1000, 700);
-//		setMinimumSize(new Dimension(800, 600));
-		contentPane = new JPanel();
-		contentPane.setBackground(this.colorFondo);
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(new BorderLayout(0, 0));
+		setBounds(100, 100, 900, 750);
 		setLocationRelativeTo(null);
-		setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-		JLabel lblNewLabel = new JLabel("Libreria");
-		lblNewLabel.setFont(new Font("Book Antiqua", Font.BOLD | Font.ITALIC, 40));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setOpaque(true);
-		lblNewLabel.setBackground(this.colorBtn);
-		lblNewLabel.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		contentPane.add(lblNewLabel, BorderLayout.NORTH);
+		// ***************************************************************
 
-		contentPane.add(panel, BorderLayout.CENTER);
-		panel.setLayout(new GridLayout(1, 0, 0, 0));
-		panelDatos.setBorder(new MatteBorder(0, 0, 0, 3, (Color) new Color(0, 0, 0)));
+		JMenuBar miMenu = new JMenuBar();
+		miMenu.setBackground(Color.DARK_GRAY);
+		setJMenuBar(miMenu);
 
-		panelDatos.setBackground(this.colorFondo);
-		panel.add(panelDatos);
+		JMenu menuOpciones = this.crearJMenur("Libro");
+		JMenu menuTema = this.crearJMenur("Tema");
+		JMenu menuEditorial = this.crearJMenur("Editorial");
+		JMenu menuHistorico = this.crearJMenur("Historico");
 
-		JLabel lblRegistrarNuevoLibro = new JLabel("REGISTRAR NUEVO LIBRO");
-		lblRegistrarNuevoLibro.setFont(new Font("Baskerville Old Face", Font.PLAIN, 25));
-		lblRegistrarNuevoLibro.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
+		miMenu.add(menuOpciones);
+		miMenu.add(menuTema);
+		miMenu.add(menuEditorial);
+		miMenu.add(menuHistorico);
 
-		panelLabel = new JPanel();
-		panelLabel.setBackground(this.colorFondo);
+		menuOpciones.add(this.itemNuevoLibro);
+		menuOpciones.add(this.itemMasCantidad);
+		menuOpciones.add(this.itemMenosCantidad);
+		menuOpciones.add(this.itemModificarLibro);
+		menuOpciones.add(this.itemEliminarLibro);
 
-		Box verticalBox = Box.createVerticalBox();
-		verticalBox.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		verticalBox.setBackground(this.colorBtn);
-		verticalBox.setOpaque(true);
+		menuTema.add(this.itemNuevaTematica);
+		menuTema.add(this.itemEliminarTema);
 
-		JLabel lblNewLabel_1 = new JLabel("FORMATO");
-		lblNewLabel_1.setFont(new Font("Bookman Old Style", Font.BOLD, 25));
-		lblNewLabel_1.setBackground(this.colorBtn);
-		lblNewLabel_1.setOpaque(true);
-		verticalBox.add(lblNewLabel_1);
-		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.CARTONE));
-		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.RUSTICA));
-		verticalBox.add(this.gestor.getRadioBtn(RefereciaRadioButton.DIGITAL));
+		menuEditorial.add(this.itemNuevaEditorial);
+		menuEditorial.add(this.itemEliminarEditorial);
 
-		Box verticalBox_1 = Box.createVerticalBox();
-		verticalBox_1.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-		verticalBox_1.setBackground(this.colorBtn);
-		verticalBox_1.setOpaque(true);
+		menuHistorico.add(this.itemHistoricoLibro);
 
-		JLabel lblEstado = new JLabel("ESTADO");
-		lblEstado.setFont(new Font("Bookman Old Style", Font.BOLD, 25));
-		lblEstado.setBackground(this.colorBtn);
-		lblEstado.setOpaque(true);
+		// ***************************************************************
 
-		verticalBox_1.add(lblEstado);
-		verticalBox_1.add(this.gestor.getRadioBtn(RefereciaRadioButton.NOCEDAD));
-		verticalBox_1.add(this.gestor.getRadioBtn(RefereciaRadioButton.REEDICION));
+		contentPane = new JPanel();
+		this.contentPane.setBackground(this.colorFondo);
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setLayout(new BorderLayout(0, 0));
+		setContentPane(contentPane);
 
-		panelField = new JPanel();
-		panelField.setBackground(this.colorFondo);
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBorder(new EmptyBorder(2, 2, 2, 2));
+		scrollPane.setBackground(this.colorFondo);
+		contentPane.add(scrollPane, BorderLayout.CENTER);
+		scrollPane.add(this.tabla);
+		scrollPane.setViewportView(this.tabla);
 
-		JPanel panelBtnNuevo = new JPanel();
-		panelBtnNuevo.setBackground(this.colorFondo);
-		GroupLayout gl_panelDatos = new GroupLayout(panelDatos);
-		gl_panelDatos.setHorizontalGroup(gl_panelDatos.createParallelGroup(Alignment.TRAILING).addGroup(gl_panelDatos
-				.createSequentialGroup().addContainerGap()
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panelDatos.createSequentialGroup()
-								.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 175, GroupLayout.PREFERRED_SIZE)
-								.addGap(18).addComponent(panelField, GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE))
-						.addGroup(gl_panelDatos.createSequentialGroup()
-								.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE).addGap(20)
-								.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 222, Short.MAX_VALUE))
-						.addComponent(lblRegistrarNuevoLibro)
-						.addComponent(panelBtnNuevo, GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE))
-				.addContainerGap()));
-		gl_panelDatos.setVerticalGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING).addGroup(gl_panelDatos
-				.createSequentialGroup().addGap(15)
-				.addComponent(lblRegistrarNuevoLibro, GroupLayout.PREFERRED_SIZE, 35, GroupLayout.PREFERRED_SIZE)
-				.addGap(18)
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.LEADING, false)
-						.addComponent(panelField, 0, 0, Short.MAX_VALUE)
-						.addComponent(panelLabel, GroupLayout.PREFERRED_SIZE, 288, Short.MAX_VALUE))
-				.addGap(30)
-				.addGroup(gl_panelDatos.createParallelGroup(Alignment.TRAILING)
-						.addComponent(verticalBox_1, GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)
-						.addComponent(verticalBox, GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
-				.addGap(18).addComponent(panelBtnNuevo, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE,
-						GroupLayout.PREFERRED_SIZE)
-				.addContainerGap()));
-		panelBtnNuevo.setLayout(new BorderLayout(0, 0));
-		panelField.setLayout(new GridLayout(0, 1, 0, 20));
-		panelLabel.setLayout(new GridLayout(0, 1, 0, 20));
-		panelDatos.setLayout(gl_panelDatos);
+		JPanel panel = new JPanel();
+		panel.setBackground(this.colorFondo);
+		contentPane.add(panel, BorderLayout.NORTH);
+		panel.setLayout(new BorderLayout(0, 0));
 
-		panel_1.setBackground(this.colorFondo);
-		panel.add(panel_1);
+		JLabel lblNewLabel = new JLabel("BUSQUEDA POR ISBN :      ");
+		lblNewLabel.setFont(new Font("Tahoma", Font.BOLD | Font.ITALIC, 20));
+		panel.add(lblNewLabel, BorderLayout.WEST);
 
-		JTextField fieldBusquedaISBN = this.gestor.getField(ReferenciaFields.BUSQUEDAISBN);
-//		fieldBusquedaISBN = new JTextField();
-		fieldBusquedaISBN.setColumns(10);
+		this.textbusquedaISBN = new JTextField();
+		this.textbusquedaISBN.setBackground(Color.WHITE);
+		this.textbusquedaISBN.setForeground(new Color(106, 93, 77));
+		this.textbusquedaISBN.setBorder(new LineBorder(new Color(0, 0, 0), 2));
+		this.textbusquedaISBN.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		this.textbusquedaISBN.setHorizontalAlignment(SwingConstants.CENTER);
+		this.textbusquedaISBN.setColumns(10);
+		this.longitudMax(this.textbusquedaISBN, 13);
+		this.soloNumeros(this.textbusquedaISBN);
 
-		JLabel lblNewLabel_2 = new JLabel("Busqueda por ISBN :");
-		lblNewLabel_2.setBorder(new MatteBorder(0, 0, 1, 0, (Color) new Color(0, 0, 0)));
-		lblNewLabel_2.setFont(new Font("Baskerville Old Face", Font.PLAIN, 20));
+		JLabel lblNewLabel_1 = new JLabel(" ");
+		JLabel lblNewLabel_2 = new JLabel(" ");
+		panel.add(this.textbusquedaISBN, BorderLayout.CENTER);
+		panel.add(lblNewLabel_1, BorderLayout.SOUTH);
+		panel.add(lblNewLabel_2, BorderLayout.NORTH);
+		scrollPane.setBorder(new LineBorder(Color.black, 2));
 
-		JPanel panelBtnTable = new JPanel();
-		panelBtnTable.setBackground(this.colorFondo);
+		this.actualizarTabla(null);
+		this.crearEventos();
+		this.setExtendedState(MAXIMIZED_BOTH);
+		this.personalizarTabla();
+	}
 
-		GroupLayout gl_panel_1 = new GroupLayout(panel_1);
-		gl_panel_1
-				.setHorizontalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addGroup(gl_panel_1.createSequentialGroup().addGap(15)
-								.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-										.addComponent(panelBtnTable, 0, 0, Short.MAX_VALUE)
-										.addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 462, Short.MAX_VALUE)
-										.addGroup(gl_panel_1.createSequentialGroup().addComponent(lblNewLabel_2)
-												.addPreferredGap(ComponentPlacement.UNRELATED)
-												.addComponent(fieldBusquedaISBN, GroupLayout.DEFAULT_SIZE, 282,
-														Short.MAX_VALUE)
-												.addPreferredGap(ComponentPlacement.RELATED)))
-								.addGap(10)));
-		gl_panel_1.setVerticalGroup(gl_panel_1.createParallelGroup(Alignment.LEADING).addGroup(gl_panel_1
-				.createSequentialGroup().addGap(24)
-				.addGroup(gl_panel_1.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblNewLabel_2, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE)
-						.addComponent(fieldBusquedaISBN, GroupLayout.PREFERRED_SIZE, 30, GroupLayout.PREFERRED_SIZE))
-				.addGap(18).addComponent(panel_2, GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
-				.addPreferredGap(ComponentPlacement.UNRELATED)
-				.addComponent(panelBtnTable, GroupLayout.PREFERRED_SIZE, 38, GroupLayout.PREFERRED_SIZE).addGap(5)));
-		panel_2.setLayout(new BorderLayout(0, 0));
-
-		scrollPane = new JScrollPane();
-		panel_2.add(scrollPane, BorderLayout.CENTER);
-
-		panel_1.setLayout(gl_panel_1);
-
-		panelBtnNuevo.add(this.gestor.getBtn(ReferenciaButton.NUEVO));
-		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.ALTA));
-		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.BAJA));
-		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.VERDETALLES));
-		panelBtnTable.add(this.gestor.getBtn(ReferenciaButton.ELIMINAR));
-		panelBtnTable.setLayout(new GridLayout(1, 0, 5, 0));
-
-		scrollPane.add(this.table);
-		scrollPane.setViewportView(this.table); // importante , sin esto no se ve la tabla
-		scrollPane.setBackground(Color.WHITE);
-		scrollPane.setBorder(new MatteBorder(2, 2, 2, 2, (Color) new Color(0, 0, 0)));
-
-		this.table.setRowHeight(25);
-		this.table.setFont(new Font("Bookman Old Style", Font.ITALIC, 15));
-		this.table.setDefaultEditor(Object.class, null); // no te deja editar la tabla
-		rellenarPanelDatos();
-
+	public void actualizarTabla(String[][] datos) {
+		String[] nombreColumnas = { "ISBN", "TITULO", "AUTOR", "PAGINAS", "PRECIO", "TEMATICA", "EDITORIAL",
+				"FORMATO", "ESTADO", "CANTIDAD" };
+		this.datos = datos;
+		DefaultTableModel model = new DefaultTableModel(datos, nombreColumnas);
+		this.tabla.setModel(model);
 		revalidate();
-		repaint();
 	}
 
-	public boolean isEmptyField(ReferenciaFields referencia) {
-		return this.gestor.getField(referencia).getText().isEmpty();
+	public HashMap<Libro, String> obtenerDatosAltaLibro() {
+		return this.altaLibro.obtenerDatos();
 	}
 
-	public JTextField getField(ReferenciaFields referencia) {
-		return this.gestor.getField(referencia);
+	public void actualizarTableHistorico() {
+		this.historicoLibro.actualizarTable();
 	}
 
-	public String getTextField(ReferenciaFields referencia) {
-		return this.gestor.getField(referencia).getText();
+	public boolean isSelectRowTable() {
+		if (this.tabla.getSelectedRow() != -1)
+			return true;
+		Utiles.mensajeError("Debes seleccionar una fila de la tabla");
+		return false;
+	}
+
+	private void personalizarTabla() {
+		this.tabla.setBackground(this.colorFondo);
+		this.tabla.setForeground(Color.black);
+		this.tabla.setRowHeight(30);
+		this.tabla.setFont(new Font("Bookman Old Style", Font.BOLD | Font.ITALIC, 15));
+		this.tabla.setDefaultEditor(Object.class, null); // no te deja editar la tabla
+		this.tabla.setBackground(Color.LIGHT_GRAY);
+		this.tabla.setForeground(Color.BLACK);
+		this.tabla.setGridColor(Color.LIGHT_GRAY);
+
+		JTableHeader cabecera = this.tabla.getTableHeader();
+		cabecera.setBorder(new LineBorder(Color.DARK_GRAY, 5));
+		cabecera.setOpaque(true);
+		cabecera.setFont(new Font("Arial Blac", Font.BOLD, 15));
+		cabecera.setBackground(Color.DARK_GRAY);
+		cabecera.setForeground(Color.WHITE);
+		cabecera.setSize(50, 50);
+		cabecera.setPreferredSize(new Dimension(6, cabecera.getWidth()));
+	}
+
+	private JMenuItem crearJMenuItem(String titulo) {
+		JMenuItem item = new JMenuItem(titulo);
+		item.setFont(new Font("Arial", Font.BOLD, 20));
+		item.setHorizontalAlignment(SwingConstants.CENTER);
+		item.setForeground(Color.black);
+		item.setBackground(Color.LIGHT_GRAY);
+		item.setBorder(new MatteBorder(0, 0, 2, 0, Color.WHITE));
+		return item;
+	}
+
+	private JMenu crearJMenur(String titulo) {
+		JMenu menu = new JMenu(titulo);
+		menu.setForeground(Color.WHITE);
+		menu.setFont(new Font("Arial", Font.BOLD, 25));
+		return menu;
+	}
+
+	private void longitudMax(JTextField field, int longitud) {
+		field.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if (field.getText().length() == longitud)
+					e.consume();
+			}
+		});
+	}
+
+	private void soloNumeros(Component component) {
+		component.addKeyListener(new KeyAdapter() {
+			public void keyTyped(KeyEvent e) {
+				if ((e.getKeyChar() < '0' || e.getKeyChar() > '9'))
+					e.consume();
+			}
+		});
+	}
+
+	private void crearEventos() {
+		this.itemMasCantidad.addActionListener(new Evento(NombreEvento.ComprarLibros));
+		this.itemMenosCantidad.addActionListener(new Evento(NombreEvento.VenderLibros));
+		this.itemModificarLibro.addActionListener(new Evento(NombreEvento.ModificarPrecioLibro));
+		this.itemEliminarLibro.addActionListener(new Evento(NombreEvento.EliminarLibro));
+		this.itemNuevaTematica.addActionListener(new Evento(NombreEvento.NuevoTema));
+		this.itemNuevaEditorial.addActionListener(new Evento(NombreEvento.NuevaEditorial));
+		this.itemEliminarTema.addActionListener(new Evento(NombreEvento.EliminarTema));
+		this.itemEliminarEditorial.addActionListener(new Evento(NombreEvento.EliminarEditorial));
+		this.textbusquedaISBN.addKeyListener(new EventoKeyAdapter(NombreEvento.BusquedaPorISBN));
+		this.altaLibro.getOkButton().addActionListener(new Evento(NombreEvento.NuevoLibro));
+		this.itemNuevoLibro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				altaLibro.setVisible(true);
+			}
+		});
+		this.itemHistoricoLibro.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				historicoLibro.setVisible(true);
+			}
+		});
+	}
+
+	public String obtenerISBNTable() {
+		return this.datos[this.tabla.getSelectedRow()][0];
+	}
+
+	public void actualizarComboEditorial() {
+		this.altaLibro.actualizarComboEditorial();
+	}
+
+	public void actualizarComboTema() {
+		this.altaLibro.actualizarComboTema();
 	}
 
 	public void limpiarVista() {
-		this.gestor.limpiarVista();
+		this.altaLibro.limpiarCampos();
 	}
 
-	public boolean isSelectFormato() {
-		return this.gestor.isSelectFormato();
+	public JTextField getTextbusquedaISBN() {
+		return textbusquedaISBN;
 	}
 
-	public boolean isSelectEstado() {
-		return this.gestor.isSelectEstado();
-	}
-
-	public HashMap<ReferenciaDatos, String> getMapPanelInfo() {
-		return this.panelInfo.getHashMap();
-	}
-
-	public HashMap<ReferenciaDatos, String> getDatosField() {
-		return this.gestor.getDatosField();
-	}
-
-	public void rellenarTable(String[][] datos) {
-		String[] camposTable = { "ISBN", "TITULO", "TEMATICA", "CANTIDAD", "PRECIO" };
-		this.datos = datos;
-		String[][] aux = new String[this.datos.length][camposTable.length];
-		for (int i = 0; i < this.datos.length; i++) {
-			aux[i][0] = this.datos[i][4];
-			aux[i][1] = this.datos[i][0];
-			aux[i][2] = this.datos[i][2];
-			aux[i][3] = this.datos[i][6];
-			aux[i][4] = this.datos[i][5] + "$";
-		}
-		DefaultTableModel model = new DefaultTableModel(aux, camposTable);
-		this.table.setModel(model);
-		revalidate();
-	}
-
-	private void rellenarPanelDatos() {
-		this.panelLabel.add(this.gestor.dameJLabel("Titulo : "));
-		this.panelField.add(this.gestor.getField(ReferenciaFields.TITULO));
-		this.panelLabel.add(this.gestor.dameJLabel("Autor : "));
-		this.panelField.add(this.gestor.getField(ReferenciaFields.AUTOR));
-		this.panelLabel.add(this.gestor.dameJLabel("Tematica : "));
-		this.panelField.add(this.gestor.getComboTematica());
-		this.panelLabel.add(this.gestor.dameJLabel("Editorial : "));
-		this.panelField.add(this.gestor.getComboEditorial());
-		this.panelLabel.add(this.gestor.dameJLabel("ISBN : "));
-		this.panelField.add(this.gestor.getField(ReferenciaFields.ISBN));
-		this.panelLabel.add(this.gestor.dameJLabel("Ejemplares : "));
-		this.panelField.add(this.gestor.getField(ReferenciaFields.PAGINAS));
-		this.panelLabel.add(this.gestor.dameJLabel("Precio : "));
-		this.panelField.add(this.gestor.getField(ReferenciaFields.PRECIO));
-		revalidate();
-		repaint();
-	}
-
-	public void getInciarPanelInfo() {
-		String[] datos = new String[8];
-		for (int i = 0; i < datos.length; i++)
-			datos[i] = this.datos[getTable().getSelectedRow()][i];
-		this.panelInfo = new PanelInfo(datos, this.gestor.getBtn(ReferenciaButton.MODIFICAR), this);
-	}
-
-	public JButton getBtn(ReferenciaButton referencia) {
-		return this.gestor.getBtn(referencia);
-	}
-
-	public JTable getTable() {
-		return table;
+	public JTable getTabla() {
+		return tabla;
 	}
 
 	public String[][] getDatos() {
 		return datos;
 	}
 
-	public PanelInfo getPanelInfo() {
-		return panelInfo;
-	}
-
-	public void setPanelInfo(PanelInfo panelInfo) {
-		this.panelInfo = panelInfo;
-	}
 }

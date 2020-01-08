@@ -1,0 +1,5 @@
+package modelo.enums;
+
+public enum Libro {
+	TITULO, AUTOR, ISBN, PRECIO, PAGINAS, FORMATO, ESTADO, TEMATICA, EDITORIAL, CANTIDAD
+}
