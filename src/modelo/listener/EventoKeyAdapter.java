@@ -18,7 +18,7 @@ public class EventoKeyAdapter extends KeyAdapter {
 	@Override
 	public void keyReleased(KeyEvent e) {
 		super.keyReleased(e);
-		GestorEventos.execute(this.evento);
+		GestorEventos.ejecuta(this.evento);
 	}
 
 }

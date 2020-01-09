@@ -17,7 +17,7 @@ public class Evento implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		GestorEventos.execute(this.evento);
+		GestorEventos.ejecuta(this.evento);
 	}
 
 }

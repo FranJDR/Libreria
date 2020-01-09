@@ -1,27 +1,39 @@
 package control;
 
+import java.util.HashMap;
+
 import modelo.enums.NombreEvento;
 import modelo.interfaces.Ejecutable;
 import vista.UI;
 
 public class GestorEventos {
 
-	private static Control control = new Control();
-	private static UI ui = new UI();
+	private static Control control;
+	private static UI ui;
+	private static HashMap<NombreEvento, Ejecutable> listEventos;
 
 	public GestorEventos() {
-		this.ui.actualizarTabla(this.control.obtenerDatosLibros());
+		control = new Control();
+		ui = new UI();
+		listEventos = new HashMap<NombreEvento, Ejecutable>();
+
+		ui.actualizarTabla(control.obtenerDatosLibros());
+		for (NombreEvento evento : NombreEvento.values()) {
+			this.registrarEvento(evento);
+		}
 	}
 
-	public static void execute(NombreEvento nombreEvento) {
-		String nameClass = "modelo.eventos." + nombreEvento;
-		Object object = null;
+	private void registrarEvento(NombreEvento nombre) {
+		String nameClass = "modelo.eventos." + nombre;
 		try {
-			object = Class.forName(nameClass).newInstance();
-			((Ejecutable) object).execute(control, ui);
+			this.listEventos.put(nombre, (Ejecutable) Class.forName(nameClass).newInstance());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+	public static void ejecuta(NombreEvento nombreEvento) {
+		listEventos.get(nombreEvento).execute(control, ui);
 	}
 
 }

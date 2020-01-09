@@ -139,14 +139,14 @@ public class JDialogAltaLibro extends JDialog {
 
     public void actualizarComboEditorial() {
         this.comboEditorial.removeAll();
-        ArrayList<String> editorial = Conexion.instance().obtenerListCampo("SELECT * FROM EDITORIAL", "nombre");
+        ArrayList<String> editorial = Conexion.instance().obtenerListCampo("SELECT * FROM EDITORIAL", "nombreEditorial");
         for (String valor : editorial)
             this.comboEditorial.addItem(valor);
     }
 
     public void actualizarComboTema() {
         this.comboTema.removeAll();
-        ArrayList<String> tema = Conexion.instance().obtenerListCampo("SELECT * FROM TEMA", "nombre");
+        ArrayList<String> tema = Conexion.instance().obtenerListCampo("SELECT * FROM TEMA", "nombreTema");
         for (String valor : tema)
             this.comboTema.addItem(valor);
     }

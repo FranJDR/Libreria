@@ -35,10 +35,6 @@ public class Logica {
 		return true;
 	}
 
-	public void modificarPrecio(String ISBN, String precio) {
-		this.acceso.modificarPrecio(ISBN, precio);
-	}
-
 	public void modifcarCantidadLibro(String ISBN, int cantidad) {
 		HashMap<Libro, String> libro = this.obtenerLibro(ISBN);
 		int cantidadModificada = Integer.parseInt(libro.get(Libro.CANTIDAD)) + cantidad;
@@ -53,10 +49,6 @@ public class Logica {
 		return true;
 	}
 
-	public ArrayList<String> getListISBN() {
-		return this.acceso.obtenerListaISBN();
-	}
-
 	public String[][] obtenerDatosLibros() {
 		return this.crearMatrizDatos(this.obtenerListaLibros());
 	}
@@ -65,16 +57,11 @@ public class Logica {
 		String[][] retorno = new String[libros.size()][10];
 		int index = 0;
 		for (HashMap<Libro, String> libro : libros) {
-			retorno[index][0] = libro.get(Libro.ISBN);
-			retorno[index][1] = libro.get(Libro.TITULO);
-			retorno[index][2] = libro.get(Libro.AUTOR);
-			retorno[index][3] = libro.get(Libro.PAGINAS);
-			retorno[index][4] = libro.get(Libro.PRECIO);
-			retorno[index][5] = libro.get(Libro.TEMATICA);
-			retorno[index][6] = libro.get(Libro.EDITORIAL);
-			retorno[index][7] = libro.get(Libro.FORMATO);
-			retorno[index][8] = libro.get(Libro.ESTADO);
-			retorno[index][9] = libro.get(Libro.CANTIDAD);
+			int aux = 0;
+			for (Libro enumLibro : Libro.values()) {
+				retorno[index][aux] = libro.get(enumLibro);
+				aux++;
+			}
 			index++;
 		}
 		return retorno;
@@ -96,6 +83,14 @@ public class Logica {
 			}
 		}
 		return false;
+	}
+
+	public ArrayList<String> getListISBN() {
+		return this.acceso.obtenerListaISBN();
+	}
+
+	public void modificarPrecio(String ISBN, String precio) {
+		this.acceso.modificarPrecio(ISBN, precio);
 	}
 
 	public void eliminarTema(String tema) {

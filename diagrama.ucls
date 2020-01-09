@@ -3,7 +3,7 @@
   associations="true" dependencies="false" nesting-relationships="true" router="FAN">  
   <class id="1" language="java" name="control.Logica" project="LibreriaV5" file="/LibreriaV5/src/control/Logica.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="934" y="199"/>    
+    <position height="-1" width="-1" x="876" y="169"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -21,7 +21,7 @@
   </class>  
   <class id="3" language="java" name="control.Control" project="LibreriaV5" file="/LibreriaV5/src/control/Control.java" 
     binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="749" y="295"/>    
+    <position height="-1" width="-1" x="922" y="297"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -30,7 +30,7 @@
   </class>  
   <class id="4" language="java" name="modelo.Respuesta" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/Respuesta.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="60" width="118" x="1091" y="314"/>    
+    <position height="60" width="118" x="1139" y="91"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -39,7 +39,7 @@
   </class>  
   <class id="5" language="java" name="modelo.Validador" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/Validador.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="929" y="333"/>    
+    <position height="-1" width="-1" x="1089" y="228"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -48,7 +48,7 @@
   </class>  
   <class id="6" language="java" name="modelo.AlmacenLibros" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/AlmacenLibros.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1154" y="197"/>    
+    <position height="-1" width="-1" x="1020" y="69"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -57,7 +57,7 @@
   </class>  
   <class id="7" language="java" name="vista.UI" project="LibreriaV5" file="/LibreriaV5/src/vista/UI.java" binary="false" 
     corner="BOTTOM_RIGHT">    
-    <position height="60" width="146" x="209" y="240"/>    
+    <position height="60" width="151" x="305" y="292"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -66,7 +66,7 @@
   </class>  
   <class id="8" language="java" name="vista.JDialogAltaLibro" project="LibreriaV5" 
     file="/LibreriaV5/src/vista/JDialogAltaLibro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="60" width="175" x="41" y="364"/>    
+    <position height="60" width="175" x="18" y="330"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -75,7 +75,7 @@
   </class>  
   <class id="9" language="java" name="vista.JDialogHistoricoLibro" project="LibreriaV5" 
     file="/LibreriaV5/src/vista/JDialogHistoricoLibro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="60" width="178" x="55" y="123"/>    
+    <position height="60" width="178" x="14" y="218"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -84,7 +84,7 @@
   </class>  
   <interface id="10" language="java" name="modelo.interfaces.Ejecutable" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/interfaces/Ejecutable.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="579" y="449"/>    
+    <position height="-1" width="-1" x="656" y="432"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -93,8 +93,8 @@
   </interface>  
   <class id="11" language="java" name="control.GestorEventos" project="LibreriaV5" 
     file="/LibreriaV5/src/control/GestorEventos.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="518" y="283"/>    
-    <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
+    <position height="60" width="132" x="584" y="278"/>    
+    <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
@@ -102,7 +102,7 @@
   </class>  
   <class id="12" language="java" name="modelo.eventos.VenderLibros" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/VenderLibros.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="115" y="659"/>    
+    <position height="-1" width="-1" x="215" y="558"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -111,7 +111,7 @@
   </class>  
   <class id="13" language="java" name="modelo.eventos.NuevaEditorial" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/NuevaEditorial.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="119" y="752"/>    
+    <position height="-1" width="-1" x="228" y="639"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -120,7 +120,7 @@
   </class>  
   <class id="14" language="java" name="modelo.eventos.EliminarEditorial" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/EliminarEditorial.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="266" y="756"/>    
+    <position height="-1" width="-1" x="275" y="719"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -129,7 +129,7 @@
   </class>  
   <class id="15" language="java" name="modelo.eventos.NuevoLibro" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/NuevoLibro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="403" y="754"/>    
+    <position height="-1" width="-1" x="406" y="724"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -138,7 +138,7 @@
   </class>  
   <class id="16" language="java" name="modelo.eventos.EliminarLibro" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/EliminarLibro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="60" width="118" x="652" y="725"/>    
+    <position height="60" width="118" x="659" y="694"/>    
     <display autosize="false" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -147,7 +147,7 @@
   </class>  
   <class id="17" language="java" name="modelo.eventos.ComprarLibros" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/ComprarLibros.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="844" y="756"/>    
+    <position height="-1" width="-1" x="859" y="722"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -156,7 +156,7 @@
   </class>  
   <class id="18" language="java" name="modelo.eventos.EliminarTema" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/EliminarTema.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1265" y="751"/>    
+    <position height="-1" width="-1" x="1012" y="617"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -165,7 +165,7 @@
   </class>  
   <class id="19" language="java" name="modelo.eventos.ModificarPrecioLibro" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/ModificarPrecioLibro.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="553" y="756"/>    
+    <position height="-1" width="-1" x="557" y="725"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -174,7 +174,7 @@
   </class>  
   <class id="20" language="java" name="modelo.eventos.NuevoTema" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/NuevoTema.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="974" y="756"/>    
+    <position height="-1" width="-1" x="1008" y="542"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
@@ -183,163 +183,163 @@
   </class>  
   <class id="21" language="java" name="modelo.eventos.BusquedaPorISBN" project="LibreriaV5" 
     file="/LibreriaV5/src/modelo/eventos/BusquedaPorISBN.java" binary="false" corner="BOTTOM_RIGHT">    
-    <position height="-1" width="-1" x="1118" y="755"/>    
+    <position height="-1" width="-1" x="1010" y="703"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
       <attributes public="true" package="true" protected="true" private="true" static="true"/>      
       <operations public="false" package="false" protected="false" private="false" static="true"/>    
     </display>  
   </class>  
-  <association id="22">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="23" name="altaLibro">        
-        <position height="0" width="0" x="-77" y="-302"/>      
-      </attribute>      
-      <multiplicity id="24" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-77" y="-302"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="8" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="25">    
-    <end type="SOURCE" refId="17"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="26">    
-    <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="27" name="acceso">        
-        <position height="0" width="0" x="14" y="22"/>      
-      </attribute>      
-      <multiplicity id="28" minimum="0" maximum="1">        
-        <position height="0" width="0" x="14" y="22"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="6" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="29">    
-    <end type="SOURCE" refId="13"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <dependency id="30">    
-    <end type="SOURCE" refId="2"/>    
-    <end type="TARGET" refId="11"/>  
-  </dependency>  
-  <realization id="31">    
-    <end type="SOURCE" refId="16"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <dependency id="32">    
+  <dependency id="22">    
     <end type="SOURCE" refId="11"/>    
     <end type="TARGET" refId="10"/>  
   </dependency>  
-  <dependency id="33">    
-    <end type="SOURCE" refId="10"/>    
-    <end type="TARGET" refId="7"/>  
-  </dependency>  
-  <realization id="34">    
-    <end type="SOURCE" refId="20"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="35">    
-    <end type="SOURCE" refId="5" navigable="false">      
-      <attribute id="36" name="respuestas">        
-        <position height="0" width="0" x="8" y="26"/>      
-      </attribute>      
-      <multiplicity id="37" minimum="0" maximum="2147483647">        
-        <position height="0" width="0" x="8" y="26"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="38">    
-    <end type="SOURCE" refId="14"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <realization id="39">    
-    <end type="SOURCE" refId="12"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <association id="40">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="41" name="logica">        
-        <position height="0" width="0" x="-18" y="17"/>      
-      </attribute>      
-      <multiplicity id="42" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-18" y="17"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="1" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <realization id="43">    
-    <end type="SOURCE" refId="21"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <realization id="44">    
-    <end type="SOURCE" refId="19"/>    
-    <end type="TARGET" refId="10"/>  
-  </realization>  
-  <dependency id="45">    
+  <dependency id="23">    
     <end type="SOURCE" refId="10"/>    
     <end type="TARGET" refId="3"/>  
   </dependency>  
-  <association id="46">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="47" name="validador">        
-        <position height="0" width="0" x="-22" y="-7"/>      
-      </attribute>      
-      <multiplicity id="48" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-22" y="-7"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="49">    
-    <end type="SOURCE" refId="7" navigable="false">      
-      <attribute id="50" name="historicoLibro">        
-        <position height="0" width="0" x="-249" y="-584"/>      
-      </attribute>      
-      <multiplicity id="51" minimum="0" maximum="1">        
-        <position height="0" width="0" x="-249" y="-584"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="9" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="52">    
+  <association id="24">    
     <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="53" name="ui">        
-        <position height="0" width="0" x="19" y="-23"/>      
+      <attribute id="25" name="ui">        
+        <position height="0" width="0" x="115" y="29"/>      
       </attribute>      
-      <multiplicity id="54" minimum="0" maximum="1">        
-        <position height="0" width="0" x="19" y="-23"/>      
+      <multiplicity id="26" minimum="0" maximum="1">        
+        <position height="0" width="0" x="115" y="29"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="7" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="55">    
-    <end type="SOURCE" refId="11" navigable="false">      
-      <attribute id="56" name="control">        
-        <position height="0" width="0" x="84" y="146"/>      
+  <association id="27">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="28" name="historicoLibro">        
+        <position height="0" width="0" x="-290" y="-489"/>      
       </attribute>      
-      <multiplicity id="57" minimum="0" maximum="1">        
-        <position height="0" width="0" x="84" y="146"/>      
+      <multiplicity id="29" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-290" y="-489"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="9" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="30">    
+    <end type="SOURCE" refId="16"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="31">    
+    <end type="SOURCE" refId="1" navigable="false">      
+      <attribute id="32" name="acceso">        
+        <position height="0" width="0" x="-120" y="-106"/>      
+      </attribute>      
+      <multiplicity id="33" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-120" y="-106"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="6" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="34">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="35" name="validador">        
+        <position height="0" width="0" x="138" y="-112"/>      
+      </attribute>      
+      <multiplicity id="36" minimum="0" maximum="1">        
+        <position height="0" width="0" x="138" y="-112"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="5" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <dependency id="37">    
+    <end type="SOURCE" refId="10"/>    
+    <end type="TARGET" refId="7"/>  
+  </dependency>  
+  <realization id="38">    
+    <end type="SOURCE" refId="14"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="39">    
+    <end type="SOURCE" refId="3" navigable="false">      
+      <attribute id="40" name="logica">        
+        <position height="0" width="0" x="-76" y="-13"/>      
+      </attribute>      
+      <multiplicity id="41" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-76" y="-13"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="1" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <association id="42">    
+    <end type="SOURCE" refId="11" navigable="false">      
+      <attribute id="43" name="control">        
+        <position height="0" width="0" x="257" y="148"/>      
+      </attribute>      
+      <multiplicity id="44" minimum="0" maximum="1">        
+        <position height="0" width="0" x="257" y="148"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <realization id="58">    
+  <realization id="45">    
+    <end type="SOURCE" refId="13"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="46">    
+    <end type="SOURCE" refId="5" navigable="false">      
+      <attribute id="47" name="respuestas">        
+        <position height="0" width="0" x="56" y="-197"/>      
+      </attribute>      
+      <multiplicity id="48" minimum="0" maximum="2147483647">        
+        <position height="0" width="0" x="56" y="-197"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="4" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="49">    
+    <end type="SOURCE" refId="21"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <dependency id="50">    
+    <end type="SOURCE" refId="2"/>    
+    <end type="TARGET" refId="11"/>  
+  </dependency>  
+  <realization id="51">    
+    <end type="SOURCE" refId="20"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="52">    
     <end type="SOURCE" refId="18"/>    
     <end type="TARGET" refId="10"/>  
   </realization>  
-  <realization id="59">    
+  <realization id="53">    
     <end type="SOURCE" refId="15"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="54">    
+    <end type="SOURCE" refId="12"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <realization id="55">    
+    <end type="SOURCE" refId="19"/>    
+    <end type="TARGET" refId="10"/>  
+  </realization>  
+  <association id="56">    
+    <end type="SOURCE" refId="7" navigable="false">      
+      <attribute id="57" name="altaLibro">        
+        <position height="0" width="0" x="-100" y="-336"/>      
+      </attribute>      
+      <multiplicity id="58" minimum="0" maximum="1">        
+        <position height="0" width="0" x="-100" y="-336"/>      
+      </multiplicity>    
+    </end>    
+    <end type="TARGET" refId="8" navigable="true"/>    
+    <display labels="true" multiplicity="true"/>  
+  </association>  
+  <realization id="59">    
+    <end type="SOURCE" refId="17"/>    
     <end type="TARGET" refId="10"/>  
   </realization>  
   <classifier-display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
